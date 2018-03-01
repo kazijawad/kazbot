@@ -1,0 +1,22 @@
+{
+  "name": "trackerbot",
+  "version": "1.0.0",
+  "description": "Discord Bot that tracks game stats!",
+  "main": "app.js",
+  "engines": {
+    "node": "8.x",
+    "npm": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Kazi Jawad",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "fortnite-api": "^2.6.1",
+    "leaguejs": "^1.8.0",
+    "overwatch-js": "^1.6.1"
+  }
+}
