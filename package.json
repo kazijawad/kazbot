@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.0",
+    "dotenv": "^5.0.1",
     "fortnite-api": "^2.6.1",
     "leaguejs": "^1.8.0",
     "overwatch-js": "^1.6.1"

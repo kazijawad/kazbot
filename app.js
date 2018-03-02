@@ -1,4 +1,5 @@
 process.env.LEAGUE_API_PLATFORM_ID = 'na1';
+require('dotenv').config();
 
 const { prefix } = require('./config.json');
 const discord = require("discord.js");
@@ -18,15 +19,17 @@ client.on("ready", function(){
     console.log("Logged in as " + client.user.tag + "!");
 });
 
-client.on("message", function(message){
-    if (!message.content.startsWith(prefix) || message.author.bot) {
-        return;
-    }
+client.on("guildMemberAdd", function(message){
+    message.channel.send(`Welcome to the Server, ${member}`);
+});
 
+client.on("message", function(message){
     const args = message.content.slice(prefix.length).split(' ');
     const command = args.shift().toLowerCase();
 
-    if (command === "ping") {
+    if (!message.content.startsWith(prefix) || message.author.bot) {
+        return;
+    } else if (command === "ping") {
         message.channel.send("Pong!");
     } else if (command === "help") {
         message.channel.send({embed: {
@@ -39,6 +42,10 @@ client.on("message", function(message){
             fields: [{
                 name: "Command List",
                 value: "!help"
+            },
+            {
+                name: "User Info",
+                value: "!me"
             },
             {
                 name: "Fortnite Player Stats:",
@@ -63,14 +70,41 @@ client.on("message", function(message){
             {
                 name: "Credits:",
                 value: "!credit"
-            }
-            ],
+            }],
             timestamp: new Date(),
             footer: {
                 icon_url: client.user.avatarURL,
                 text: "©Game-Tracker"
             }            
         }});
+    } else if (command === "me" && args[0] === undefined) {
+        message.channel.send({embed: {
+                color: 3426654,
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
+                title: message.author.username + "'s Info",
+                thumbnail: {
+                    url: message.author.avatarURL
+                },
+                fields: [{
+                    name: "Discord ID",
+                    value: message.author.id,
+                    inline: true
+                },
+                {
+                    name: "Status",
+                    value: message.author.presence.status,
+                    inline: true
+                }],
+                timestamp: new Date(),
+                footer: {
+                    icon_url: client.user.avatarURL,
+                    text: "@Game-Tracker"
+                }
+            }
+        });
     } else if (command === "fort" && args[0] != undefined) {
         fortniteAPI.login().then(() => {
             fortniteAPI.getStatsBR(args[0], "pc")
@@ -97,8 +131,7 @@ client.on("message", function(message){
                     {
                         name: "Total Playtime:",
                         value: stats["lifetimeStats"]["timePlayed"]
-                    }
-                    ],
+                    }],
                     timestamp: new Date(),
                     footer: {
                         icon_url: client.user.avatarURL,
@@ -138,8 +171,7 @@ client.on("message", function(message){
                     fields: [{
                         name: news["loginmessage"]["title"],
                         value: news["loginmessage"]["body"]
-                    }
-                    ],
+                    }],
                     footer: {
                         icon_url: client.user.avatarURL,
                         text: "©Game-Tracker"
@@ -194,8 +226,7 @@ client.on("message", function(message){
                 {
                     name: "Total Playtime:",
                     value: stats["competitive"]["global"]["time_played"]
-                }
-                ],
+                }],
                 timestamp: new Date(),
                 footer: {
                     icon_url: client.user.avatarURL,
@@ -250,8 +281,7 @@ client.on("message", function(message){
                         {
                             name: "Total Losses:",
                             value: stats[0]["losses"]
-                        }
-                        ],
+                        }],
                         timestamp: new Date(),
                         footer: {
                             icon_url: client.user.avatarURL,
@@ -292,8 +322,7 @@ client.on("message", function(message){
             {
                 name: "Discord Bot Icon",
                 value: "Icon made by Plainicon from www.flaticon.com is licensed by CC 3.0 BY"
-            }
-            ],
+            }],
             timestamp: new Date(),
             footer: {
                 icon_url: client.user.avatarURL,
