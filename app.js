@@ -19,8 +19,10 @@ client.on("ready", function(){
     console.log("Logged in as " + client.user.tag + "!");
 });
 
-client.on("guildMemberAdd", function(message){
-    message.channel.send(`Welcome to the Server, ${member}`);
+client.on("guildMemberAdd", message => {
+    const channel = member.guild.channels.find("name", "general");
+    if (!channel) return;
+    channel.send(`Welcome to the Server, ${member}`);
 });
 
 client.on("message", function(message){
@@ -79,42 +81,68 @@ client.on("message", function(message){
         }});
     } else if (command === "me" && args[0] === undefined) {
         message.channel.send({embed: {
-                color: message.member.roles.color,
-                author: {
-                    name: client.user.username,
-                    icon_url: client.user.avatarURL
-                },
-                title: message.member.displayName + "'s Info",
-                thumbnail: {
-                    url: message.author.avatarURL
-                },
-                fields: [{
-                    name: "Discord ID",
-                    value: message.author.id,
-                    inline: true
-                },
-                {
-                    name: "Discord Tag",
-                    value: message.author.tag,
-                    inline: true
-                },
-                {
-                    name: "Role Name",
-                    value: message.member.highestRole.name,
-                    inline: true
-                },
-                {
-                    name: "Role Position",
-                    value: message.member.highestRole.position,
-                    inline: true
-                }],
-                timestamp: new Date(),
-                footer: {
-                    icon_url: client.user.avatarURL,
-                    text: "@Game-Tracker"
-                }
+            color: message.member.roles.color,
+            author: {
+                name: client.user.username,
+                icon_url: client.user.avatarURL
+            },
+            title: message.member.displayName + "'s Info",
+            thumbnail: {
+                url: message.author.avatarURL
+            },
+            fields: [{
+                name: "Discord ID",
+                value: message.author.id,
+                inline: true
+            },
+            {
+                name: "Discord Tag",
+                value: message.author.tag,
+                inline: true
+            },
+            {
+                name: "Role Name",
+                value: message.member.highestRole.name,
+                inline: true
+            },
+            {
+                name: "Role Position",
+                value: message.member.highestRole.position,
+                inline: true
+            }],
+            timestamp: new Date(),
+            footer: {
+                icon_url: client.user.avatarURL,
+                text: "@Game-Tracker"
             }
-        });
+        }});
+    } else if (command === "server" && args[0] === undefined) {
+        message.channel.send({embed: {
+            color: 1752220,
+            author: {
+                name: client.user.username,
+                icon_url: client.user.avatarURL
+            },
+            title: message.member.guild.name + "'s Info",
+            thumbnail: {
+                url: message.member.guild.iconURL
+            },
+            fields: [{
+                name: "Server Owner",
+                value: message.member.guild.owner.displayName,
+                inline: true
+            },
+            {
+                name: "Total Members",
+                value: message.member.guild.memberCount,
+                inline: true
+            }],
+            timestamp: new Date(),
+            footer: {
+                icon_url: client.user.avatarURL,
+                text: "@Game-Tracker"
+            }
+        }});
     } else if (command === "fort" && args[0] != undefined) {
         fortniteAPI.login().then(() => {
             fortniteAPI.getStatsBR(args[0], "pc")
