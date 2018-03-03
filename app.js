@@ -79,12 +79,12 @@ client.on("message", function(message){
         }});
     } else if (command === "me" && args[0] === undefined) {
         message.channel.send({embed: {
-                color: 3426654,
+                color: message.member.roles.color,
                 author: {
                     name: client.user.username,
                     icon_url: client.user.avatarURL
                 },
-                title: message.author.username + "'s Info",
+                title: message.member.displayName + "'s Info",
                 thumbnail: {
                     url: message.author.avatarURL
                 },
@@ -94,8 +94,18 @@ client.on("message", function(message){
                     inline: true
                 },
                 {
-                    name: "Status",
-                    value: message.author.presence.status,
+                    name: "Discord Tag",
+                    value: message.author.tag,
+                    inline: true
+                },
+                {
+                    name: "Role Name",
+                    value: message.member.highestRole.name,
+                    inline: true
+                },
+                {
+                    name: "Role Position",
+                    value: message.member.highestRole.position,
                     inline: true
                 }],
                 timestamp: new Date(),
