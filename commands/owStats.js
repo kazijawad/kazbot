@@ -24,7 +24,7 @@ module.exports = {
 					.addField('Most Gold Medals', stats['competitive']['global']['medals_gold'])
 					.addField('Total Playtime', stats['competitive']['global']['time_played'])
 					.setTimestamp(new Date())
-					.setFooter('@Game-Tracker');
+					.setFooter('@Kaz-Bot');
 				message.channel.send({ embed: owEmbed });
 			})
 			.catch((err) => {

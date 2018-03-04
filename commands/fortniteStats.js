@@ -20,10 +20,9 @@ module.exports = {
 						.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
 						.addField('Total Wins', stats['lifetimeStats']['wins'], true)
 						.addField('Total Kills', stats['lifetimeStats']['kills'], true)
-						.addBlankField()
 						.addField('Total Matches', stats['lifetimeStats']['matches'], true)
 						.addField('Total Playtime', stats['lifetimeStats']['timePlayed'], true)
-						.setFooter('@Game-Tracker')
+						.setFooter('@Kaz-Bot')
 						.setTimestamp(new Date());
 					message.channel.send({ embed: fortStats });
 				})

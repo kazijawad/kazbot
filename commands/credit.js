@@ -14,7 +14,7 @@ module.exports = {
 			.addField('League of Legends API', 'https://developer.riotgames.com/api-methods/' + '\n' + 'https://github.com/Colorfulstan/LeagueJS')
 			.addField('Github Repository', 'https://github.com/kazijawad/discord-bot')
 			.addField('Discord Bot Icon', 'Icon made by Plainicon from www.flaticon.com is licensed by CC 3.0 BY')
-			.setFooter('@Game-Tracker')
+			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
 		message.channel.send({ embed: creditEmbed });

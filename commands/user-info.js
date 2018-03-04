@@ -15,7 +15,7 @@ module.exports = {
 			.addBlankField()
 			.addField('Role Name', message.member.highestRole.name, true)
 			.addField('Role Position', message.member.highestRole.position, true)
-			.setFooter('@Game-Tracker')
+			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
 		message.channel.send({ embed: userEmbed });

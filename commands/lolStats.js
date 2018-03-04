@@ -35,7 +35,7 @@ module.exports = {
 									.addField('Total Wins', stats[0]['wins'], true)
 									.addField('Total Losses', stats[0]['losses'], true)
 									.setTimestamp(new Date())
-									.setFooter('@Game-Tracker');
+									.setFooter('@Kaz-Bot');
 								message.channe.send({ embed: lolEmbed });
 							});
 					});

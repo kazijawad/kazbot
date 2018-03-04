@@ -13,7 +13,7 @@ module.exports = {
 			.addField('Server Owner', message.guild.owner.displayName, true)
 			.addField('Total Members', message.guild.memberCount, true)
 			.addField('Server Region', message.guild.region, true)
-			.setFooter('@Game-Tracker')
+			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
 		message.channel.send({ embed: guildEmbed });
