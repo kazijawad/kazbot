@@ -8,6 +8,10 @@ module.exports = {
 	execute(message, args) {
 		const amount = parseInt(args[0]) + 1;
 
+		if (!message.member.hasPermission('MANAGE_MESSAGES', true)) {
+			return message.reply('You cannot use this command!');
+		}
+
 		if (isNaN(amount)) {
 			return message.reply('Invalid Argument');
 		}
