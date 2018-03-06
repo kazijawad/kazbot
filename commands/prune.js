@@ -3,7 +3,7 @@ module.exports = {
 	aliases: ['cut', 'shorten'],
 	description: 'Delete previous messages in the channel!',
 	args: true,
-	cooldown: 10,
+	cooldown: 3,
 	usage: '[Value]',
 	execute(message, args) {
 		const amount = parseInt(args[0]) + 1;
