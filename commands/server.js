@@ -5,6 +5,7 @@ module.exports = {
 	aliases: ['guild', 'server-info', 'guild-info'],
 	description: 'Discord Server Information',
 	cooldown: 5,
+	guildOnly: true,
 	execute(message) {
 		const guildEmbed = new discord.RichEmbed()
 			.setColor('AQUA')
