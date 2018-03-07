@@ -10,8 +10,8 @@ module.exports = {
 		const { commands } = message.client;
 		const data = [];
 		if (!args.length) {
-			data.push('Command List');
-			data.push(commands.map(command => command.name).join(', '));
+			data.push('__Command List__');
+			data.push(commands.map(command => command.name).join('\n'));
 			data.push(`\nUse \`${prefix}help [command name]\` to get info on a specific command!`);
 		}
 		else {
@@ -21,13 +21,13 @@ module.exports = {
 
 			const command = commands.get(args[0]);
 
-			data.push(`**Name:** ${command.name}`);
+			data.push(`__Name:__ ${command.name}`);
 
-			if (command.description) data.push(`**Description:** ${command.description}`);
-			if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-			if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+			if (command.description) data.push(`__Description:__ ${command.description}`);
+			if (command.aliases) data.push(`__Aliases:__ ${command.aliases.join(', ')}`);
+			if (command.usage) data.push(`__Usage:__ ${prefix}${command.name} ${command.usage}`);
 
-			data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+			data.push(`__Cooldown:__ ${command.cooldown || 3} second(s)`);
 		}
 		message.author.send(data, { split: true })
 			.then(() => {

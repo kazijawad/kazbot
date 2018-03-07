@@ -12,10 +12,10 @@ module.exports = {
 			.setImage(message.author.avatarURL);
 
 		if (args[0] === 'me') {
-			message.reply({ embed: avatarEmbed });
+			return message.reply({ embed: avatarEmbed });
 		}
 		else {
-			message.reply('Invalid argument!');
+			return message.reply('Invalid argument!');
 		}
 	},
 };

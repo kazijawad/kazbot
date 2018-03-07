@@ -12,7 +12,7 @@ module.exports = {
 			.addField('Fortnite API', 'https://github.com/qlaffont/fortnite-api')
 			.addField('Overwatch API', 'https://github.com/gclem/overwatch-js')
 			.addField('League of Legends API', 'https://developer.riotgames.com/api-methods/' + '\n' + 'https://github.com/Colorfulstan/LeagueJS')
-			.addField('Github Repository', 'https://github.com/kazijawad/discord-bot')
+			.addField('Github Repository', 'https://github.com/kazijawad/kaz-bot')
 			.addField('Discord Bot Icon', 'Icon made by Plainicon from www.flaticon.com is licensed by CC 3.0 BY')
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());

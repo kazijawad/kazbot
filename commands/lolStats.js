@@ -36,14 +36,14 @@ module.exports = {
 									.addField('Total Losses', stats[0]['losses'], true)
 									.setTimestamp(new Date())
 									.setFooter('@Kaz-Bot');
-								message.channe.send({ embed: lolEmbed });
+								return message.channel.send({ embed: lolEmbed });
 							});
 					});
 			})
 			.catch(err => {
 				'use strict';
 				console.log(err);
-				message.channel.send('Unable to retrieve Lol Stats!');
+				return message.channel.send('Unable to retrieve Lol Stats!');
 			});
 	},
 };

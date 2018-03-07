@@ -25,11 +25,11 @@ module.exports = {
 					.addField('Total Playtime', stats['competitive']['global']['time_played'])
 					.setTimestamp(new Date())
 					.setFooter('@Kaz-Bot');
-				message.channel.send({ embed: owEmbed });
+				return message.channel.send({ embed: owEmbed });
 			})
 			.catch((err) => {
 				console.log(err);
-				message.channel.send('Unable to retrieve Overwatch Play Stats!');
+				return message.channel.send('Unable to retrieve Overwatch Play Stats!');
 			});
 	},
 };

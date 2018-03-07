@@ -17,6 +17,6 @@ module.exports = {
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
-		message.channel.send({ embed: guildEmbed });
+		return message.channel.send({ embed: guildEmbed });
 	},
 };

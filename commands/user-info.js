@@ -18,6 +18,6 @@ module.exports = {
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
-		message.channel.send({ embed: userEmbed });
+		return message.channel.send({ embed: userEmbed });
 	},
 };
