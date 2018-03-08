@@ -9,8 +9,8 @@ module.exports = {
 	aliases: ['fortnite', 'ft'],
 	description: 'Shows all Fortnite Player Stats',
 	args: true,
-	cooldown: 10,
 	usage: '[USERNAME] [PLATFORM]',
+	cooldown: 10,
 	execute(message, args) {
 		fortniteAPI.login().then(() => {
 			fortniteAPI.getStatsBR(args[0], args[1] || 'pc')

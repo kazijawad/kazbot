@@ -4,8 +4,8 @@ module.exports = {
 	name: 'help',
 	aliases: ['commands'],
 	description: 'List of all available Commands',
-	cooldown: 5,
 	usage: '[Command Name]',
+	cooldown: 5,
 	execute(message, args) {
 		const { commands } = message.client;
 		const data = [];

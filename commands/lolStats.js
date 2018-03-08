@@ -11,8 +11,8 @@ module.exports = {
 	aliases: ['league'],
 	description: 'Shows all LoL Player Stats',
 	args: true,
-	cooldown: 30,
 	usage: '[SUMMONER-NAME]',
+	cooldown: 30,
 	execute(message, args) {
 		leagueAPI.Summoner.gettingByName(args[0])
 			.then(data => {

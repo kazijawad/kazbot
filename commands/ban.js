@@ -2,8 +2,8 @@ module.exports = {
 	name: 'ban',
 	description: 'Allows for an Admin to ban members from the server!',
 	args: true,
-	cooldown: 5,
 	usage: '[Discord Name Mention]',
+	cooldown: 5,
 	guildOnly: true,
 	execute(message) {
 		const member = message.mentions.members.first();
