@@ -17,11 +17,18 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-client.on('ready', function() {
+client.on('ready', () => {
 	console.log('Logged in as ' + client.user.tag + '!');
 });
 
-client.on('message', function(message) {
+client.on('guildMemberAdd', member => {
+	const channel = member.guild.channels.find('name', 'general');
+
+	if (!channel) return;
+	channel.send(`Welcome to the server, ${member}!`);
+});
+
+client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).split(/ +/);
@@ -75,7 +82,7 @@ client.on('message', function(message) {
 	}
 	catch (error) {
 		console.error(error);
-		message.reply('There was an error trying to execute that command!');
+		return message.reply('There was an error trying to execute that command!');
 	}
 });
 

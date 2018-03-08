@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'prune',
-	aliases: ['cut', 'shorten'],
+	aliases: ['cut', 'shorten', 'purge'],
 	description: 'Delete previous messages in the channel!',
 	args: true,
 	cooldown: 3,

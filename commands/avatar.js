@@ -4,18 +4,11 @@ module.exports = {
 	name: 'avatar',
 	aliases: ['icon'],
 	description: 'Shows the Discord Avatar for the specific user!',
-	args: true,
 	cooldown: 5,
-	usage: '[Discord Name]',
-	execute(message, args) {
+	execute(message) {
 		const avatarEmbed = new discord.RichEmbed()
 			.setImage(message.author.avatarURL);
 
-		if (args[0] === 'me') {
-			return message.reply({ embed: avatarEmbed });
-		}
-		else {
-			return message.reply('Invalid argument!');
-		}
+		return message.reply({ embed: avatarEmbed });
 	},
 };

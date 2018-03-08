@@ -14,6 +14,7 @@ module.exports = {
 			.addField('Server Owner', message.guild.owner.displayName, true)
 			.addField('Total Members', message.guild.memberCount, true)
 			.addField('Server Region', message.guild.region, true)
+			.addField('AFK Channel', message.guild.afkChannel.name, true)
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
