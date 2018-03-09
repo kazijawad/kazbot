@@ -13,7 +13,8 @@ module.exports = {
 	usage: '[SEARCH QUERY]',
 	guildOnly: true,
 	execute(message, args) {
-		youtube.search(args[0], 1, (err, result) => {
+		const arg = args.join(' ');
+		youtube.search(arg, 1, (err, result) => {
 			const video = result.items[0].id.videoId;
 			const url = 'https://www.youtube.com/watch?v=' + video;
 			const { voiceChannel } = message.member;
@@ -25,7 +26,7 @@ module.exports = {
 			voiceChannel.join().then(connection => {
 				const stream = ytdl(url, { filter: 'audioonly' });
 				const dispatcher = connection.playStream(stream);
-
+				message.channel.send('Now Playing: ' + arg);
 				dispatcher.on('end', () => voiceChannel.leave());
 			});
 		});
