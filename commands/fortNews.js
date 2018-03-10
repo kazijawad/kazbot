@@ -17,7 +17,8 @@ module.exports = {
 						.setColor('DARK_PURPLE')
 						.setTitle('Fortnite News')
 						.addField(news['loginmessage']['title'], news['loginmessage']['body'])
-						.setFooter('@Kaz-Bot');
+						.setFooter('@Kaz-Bot')
+						.setTimestamp(new Date());
 					message.channel.send({ embed: fortNews });
 				})
 				.catch((err) => {
