@@ -6,7 +6,7 @@ const fortniteAPI = new fortnite(fortniteAPIKey);
 
 module.exports = {
 	name: 'fortnews',
-	aliases: ['fortnews', 'ftnews'],
+	aliases: ['fortniteNews', 'ftnews'],
 	description: 'Shows the latest Fortnite News!',
 	cooldown: 10,
 	execute(message) {

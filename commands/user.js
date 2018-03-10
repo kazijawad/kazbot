@@ -2,7 +2,7 @@ const discord = require('discord.js');
 
 module.exports = {
 	name: 'user',
-	aliases: ['me'],
+	aliases: ['me', 'user-info'],
 	description: 'Discord User Information',
 	cooldown: 5,
 	execute(message) {
