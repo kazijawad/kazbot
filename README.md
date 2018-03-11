@@ -1,5 +1,12 @@
 <h1>Kaz Bot</h1>
 
+[![Discord Bots](https://discordbots.org/api/widget/status/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/servers/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/upvotes/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/lib/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/owner/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+
+
 [Server Invitation](https://discordapp.com/oauth2/authorize?client_id=419724462716354560&scope=bot&permissions=2146958591)
 
 <p>A Discord bot that can track Fortnite, Overwatch, and LoL Stats!</p>
