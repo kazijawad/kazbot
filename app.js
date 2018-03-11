@@ -3,10 +3,13 @@ require('dotenv').config();
 
 const fs = require('fs');
 const discord = require('discord.js');
+const DBL = require('dblapi.js');
 const { prefix } = require('./config.json');
-const token = process.env.token;
 
+const token = process.env.token;
 const client = new discord.Client();
+const dbl = new DBL(process.env.botAPIKey);
+
 client.commands = new discord.Collection();
 const cooldowns = new discord.Collection();
 
@@ -19,6 +22,9 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
 	console.log('Logged in as ' + client.user.tag + '!');
+	setInterval(() => {
+		dbl.postStats(client.guilds.size);
+	}, 1800000);
 });
 
 client.on('guildMemberAdd', member => {

@@ -2,7 +2,7 @@ const { prefix } = require('../config.json');
 
 module.exports = {
 	name: 'help',
-	aliases: ['commands'],
+	aliases: ['commands', 'support'],
 	description: 'List of all available Commands',
 	usage: '[Command Name]',
 	cooldown: 5,
