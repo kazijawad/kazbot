@@ -5,7 +5,7 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
 		if (args.length) {
-			message.reply('The coin command has no arguments!');
+			return message.reply('The coin command has no arguments!');
 		}
 
 		const coins = ['Heads', 'Tails'];
