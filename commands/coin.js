@@ -3,9 +3,13 @@ module.exports = {
 	aliases: ['toss'],
 	description: 'Toss a coin!',
 	cooldown: 5,
-	execute(message) {
+	execute(message, args) {
+		if (args.length) {
+			message.reply('The coin command has no arguments!');
+		}
+
 		const coins = ['Heads', 'Tails'];
 		const winner = coins[Math.floor(Math.random() * coins.length)];
-		message.reply(winner);
+		return message.reply(winner);
 	},
 };

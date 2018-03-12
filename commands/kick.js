@@ -5,7 +5,11 @@ module.exports = {
 	usage: '[Discord Name Mention]',
 	cooldown: 5,
 	guildOnly: true,
-	execute(message) {
+	execute(message, args) {
+		if (!args.length) {
+			return message.reply('The kick command needs a mentioned user!');
+		}
+
 		const member = message.mentions.members.first();
 
 		if (!message.member.hasPermission('KICK_MEMBERS', true)) {
@@ -14,6 +18,6 @@ module.exports = {
 
 		member.kick()
 			.then(() => message.reply(`Kicked ${member.displayName}!`))
-			.catch(message.reply('Failed to execute command!'));
+			.catch(message.reply(`Failed to kick ${member.displayName}!`));
 	},
 };

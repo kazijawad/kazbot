@@ -24,11 +24,11 @@ module.exports = {
 						.addField('Total Playtime', stats['lifetimeStats']['timePlayed'], true)
 						.setFooter('@Kaz-Bot')
 						.setTimestamp(new Date());
-					message.channel.send({ embed: fortStats });
+					return message.channel.send({ embed: fortStats });
 				})
 				.catch((err) => {
 					console.log(err);
-					message.channel.send('Cannot retrieve Player Stats!');
+					return message.channel.send('Cannot retrieve Player Stats!');
 				});
 		});
 	},

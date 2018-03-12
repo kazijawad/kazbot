@@ -28,6 +28,6 @@ module.exports = {
 			'Very doubtful',
 		];
 		const answer = response[Math.floor(Math.random() * response.length)];
-		message.reply(answer);
+		return message.reply(answer);
 	},
 };

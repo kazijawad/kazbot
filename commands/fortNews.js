@@ -19,11 +19,11 @@ module.exports = {
 						.addField(news['loginmessage']['title'], news['loginmessage']['body'])
 						.setFooter('@Kaz-Bot')
 						.setTimestamp(new Date());
-					message.channel.send({ embed: fortNews });
+					return message.channel.send({ embed: fortNews });
 				})
 				.catch((err) => {
 					console.log(err);
-					message.channel.send('Unable to find Fortnite News!');
+					return message.channel.send('Unable to find Fortnite News!');
 				});
 		});
 	},

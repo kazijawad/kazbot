@@ -2,16 +2,16 @@ process.on('unhandledRejection', error => console.error(`Uncaught Promise Reject
 require('dotenv').config();
 
 const fs = require('fs');
-const discord = require('discord.js');
+const Discord = require('discord.js');
 const DBL = require('dblapi.js');
 const { prefix } = require('./config.json');
 
 const token = process.env.token;
-const client = new discord.Client();
+const client = new Discord.Client();
 const dbl = new DBL(process.env.botAPIKey);
 
-client.commands = new discord.Collection();
-const cooldowns = new discord.Collection();
+client.commands = new Discord.Collection();
+const cooldowns = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands');
 
@@ -60,7 +60,7 @@ client.on('message', message => {
 	}
 
 	if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new discord.Collection());
+		cooldowns.set(command.name, new Discord.Collection());
 	}
 
 	const now = Date.now();
