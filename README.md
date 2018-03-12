@@ -9,7 +9,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
-[Server Invitation](https://discordapp.com/oauth2/authorize?client_id=419724462716354560&scope=bot&permissions=2146958591)
+[Server Invitation](https://discordapp.com/api/oauth2/authorize?client_id=419724462716354560&permissions=8&scope=bot)
 
 <p>A Discord bot that can track Fortnite, Overwatch, and LoL Stats!</p>
 <p>Prefix: k!</p>
