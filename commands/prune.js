@@ -20,9 +20,10 @@ module.exports = {
 			return message.reply('The argument has to be between 1 and 99');
 		}
 
-		message.channel.bulkDelete(amount, true).catch(err => {
-			console.error(err);
-			message.channel.send('There was an error trying to prune messages in this channel!');
-		});
+		message.channel.bulkDelete(amount, true)
+			.catch(err => {
+				console.error(err);
+				message.channel.send('There was an error trying to prune messages in this channel!');
+			});
 	},
 };

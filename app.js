@@ -37,6 +37,10 @@ client.on('guildMemberAdd', member => {
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+	if (message.content.startsWith(prefix) && !message.guild.me.hasPermission('ADMINISTRATOR', true)) {
+		return message.reply('Kaz Bot does not have permissions enabled, please enable Adminstrator for Kaz Bot!');
+	}
+
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
