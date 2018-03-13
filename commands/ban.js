@@ -2,14 +2,10 @@ module.exports = {
 	name: 'ban',
 	description: 'Allows for an Admin to ban members from the server!',
 	args: true,
-	usage: '[Discord Name Mention]',
+	usage: '[Discord User Mention]',
 	cooldown: 5,
 	guildOnly: true,
-	execute(message, args) {
-		if (!args.length) {
-			return message.reply('The ban command needs a mentioned user!');
-		}
-
+	execute(message) {
 		const member = message.mentions.members.first();
 
 		if (!message.member.hasPermission('BAN_MEMBERS', true)) {

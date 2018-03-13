@@ -8,6 +8,7 @@ module.exports = {
 	name: 'fortnews',
 	aliases: ['fortniteNews', 'ftnews'],
 	description: 'Shows the latest Fortnite News!',
+	args: false,
 	cooldown: 10,
 	execute(message) {
 		fortniteAPI.login().then(() => {

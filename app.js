@@ -49,6 +49,11 @@ client.on('message', message => {
 		return message.reply('This command can only be executed in a Guild!');
 	}
 
+	if (!command.args && args.length) {
+		const reply = `This command requires no arguments, ${message.author}`;
+		return message.channel.send(reply);
+	}
+
 	if (command.args && !args.length) {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
 

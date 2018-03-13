@@ -3,6 +3,7 @@ const discord = require('discord.js');
 module.exports = {
 	name: 'credit',
 	description: 'Credit to all the bot\' resources!',
+	args: false,
 	cooldown: 3,
 	execute(message) {
 		const creditEmbed = new discord.RichEmbed()

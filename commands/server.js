@@ -4,6 +4,7 @@ module.exports = {
 	name: 'server',
 	aliases: ['guild', 'server-info', 'guild-info'],
 	description: 'Discord Server Information',
+	args: false,
 	cooldown: 5,
 	guildOnly: true,
 	execute(message) {

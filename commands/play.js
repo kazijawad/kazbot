@@ -9,8 +9,8 @@ module.exports = {
 	aliases: ['yt', 'youtube'],
 	description: 'Play music from Youtube!',
 	args: true,
-	cooldown: 5,
 	usage: '[SONG NAME]',
+	cooldown: 5,
 	guildOnly: true,
 	execute(message, args) {
 		const arg = args.join(' ');

@@ -4,6 +4,7 @@ module.exports = {
 	name: 'user',
 	aliases: ['me', 'user-info'],
 	description: 'Discord User Information',
+	args: false,
 	cooldown: 5,
 	execute(message) {
 		const userEmbed = new discord.RichEmbed()
