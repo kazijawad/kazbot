@@ -6,8 +6,9 @@ module.exports = {
 	aliases: ['overwatch'],
 	description: 'Shows all Overwatch Player Stats',
 	args: true,
-	usage: '[USERNAME-TAG] [PLATFORM]',
+	usage: '[USERNAME-TAG] [PC/XB1/PSN]',
 	cooldown: 10,
+	guildOnly: false,
 	execute(message, args) {
 		overwatch.getOverall('pc' || args[1], 'us', args[0])
 			.then((stats) => {

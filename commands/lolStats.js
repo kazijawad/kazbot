@@ -13,6 +13,7 @@ module.exports = {
 	args: true,
 	usage: '[SUMMONER-NAME]',
 	cooldown: 30,
+	guildOnly: false,
 	execute(message, args) {
 		leagueAPI.Summoner.gettingByName(args[0])
 			.then(data => {

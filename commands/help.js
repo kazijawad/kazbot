@@ -6,6 +6,7 @@ module.exports = {
 	description: 'List of all available Commands',
 	usage: '[Command Name]',
 	cooldown: 5,
+	guildOnly: false,
 	execute(message, args) {
 		const { commands } = message.client;
 		const data = [];

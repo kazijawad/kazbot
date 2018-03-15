@@ -36,7 +36,7 @@ module.exports = {
 				const songEmbed = new discord.RichEmbed()
 					.setColor('BLUE')
 					.setTitle('Song List:')
-					.setDescription('Please responde with a value!')
+					.setDescription('Please respond with a value!')
 					.addField('1: ' + songTitle[1], songAuthor[1])
 					.addField('2: ' + songTitle[2], songAuthor[2])
 					.addField('3: ' + songTitle[3], songAuthor[3])

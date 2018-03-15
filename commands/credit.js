@@ -5,6 +5,7 @@ module.exports = {
 	description: 'Credit to all the bot\' resources!',
 	args: false,
 	cooldown: 3,
+	guildOnly: false,
 	execute(message) {
 		const creditEmbed = new discord.RichEmbed()
 			.setColor('GOLD')

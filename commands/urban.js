@@ -8,6 +8,7 @@ module.exports = {
 	args: true,
 	usage: '[WORD]',
 	cooldown: 5,
+	guildOnly: false,
 	execute(message, args) {
 		const phrase = args.join(' ');
 

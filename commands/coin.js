@@ -4,6 +4,7 @@ module.exports = {
 	description: 'Toss a coin!',
 	args: false,
 	cooldown: 5,
+	guildOnly: false,
 	execute(message) {
 		const coins = ['Heads', 'Tails'];
 		const winner = coins[Math.floor(Math.random() * coins.length)];

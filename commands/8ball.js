@@ -4,6 +4,7 @@ module.exports = {
 	args: true,
 	usage: '[QUESTION]',
 	cooldown: 5,
+	guildOnly: false,
 	execute(message) {
 		const response = [
 			'It is certain',

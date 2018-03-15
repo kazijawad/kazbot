@@ -9,8 +9,9 @@ module.exports = {
 	aliases: ['fortnite', 'ft'],
 	description: 'Shows all Fortnite Player Stats',
 	args: true,
-	usage: '[USERNAME] [PLATFORM]',
+	usage: '[USERNAME] [PC/XB1/PS4]',
 	cooldown: 10,
+	guildOnly: false,
 	execute(message, args) {
 		fortniteAPI.login().then(() => {
 			fortniteAPI.getStatsBR(args[0], args[1] || 'pc')

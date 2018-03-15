@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Discord User Information',
 	args: false,
 	cooldown: 5,
+	guildOnly: true,
 	execute(message) {
 		const userEmbed = new discord.RichEmbed()
 			.setColor(message.member.roles.color)

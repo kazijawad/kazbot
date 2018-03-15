@@ -7,7 +7,9 @@ module.exports = {
 	name: 'fortstatus',
 	aliases: ['fortniteStatus', 'ftstatus'],
 	description: 'Shows the status of Fortnite Servers',
+	args: false,
 	cooldown: 10,
+	guildOnly: false,
 	execute(message) {
 		fortniteAPI.login().then(() => {
 			fortniteAPI.checkFortniteStatus()

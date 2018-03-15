@@ -6,6 +6,7 @@ module.exports = {
 	description: 'Shows the Discord Avatar for the specific user!',
 	args: false,
 	cooldown: 5,
+	guildOnly: false,
 	execute(message) {
 		const avatarEmbed = new discord.RichEmbed()
 			.setTitle(message.author.username)
