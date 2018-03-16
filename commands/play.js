@@ -47,29 +47,33 @@ module.exports = {
 
 				const filter = response => response.content.match(/1|2|3|4|5/);
 
-				message.channel.send(songEmbed).then(() => {
-					message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000 })
-						.then(collected => {
-							const response = collected.map(c => c.content).toString();
-							message.channel.send(`:musical_score: ${songTitle[response]} selected! :musical_score:`);
-							const song = response - 1;
-							const video = result.items[song].id.videoId;
-							const url = 'https://www.youtube.com/watch?v=' + video;
-							memberChannel.join()
-								.then(connection => {
-									const stream = ytdl(url, { filter: 'audioonly' });
-									const dispatcher = connection.playStream(stream);
-									message.channel.send(':musical_note: Now Playing: ' + songTitle[response] + ':musical_note:');
-									dispatcher.on('end', () => {
-										memberChannel.leave();
-										message.channel.send('Kaz Bot has left ' + memberChannel.name);
+				message.channel.send(songEmbed)
+					.then(() => {
+						message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000 })
+							.then(collected => {
+								const response = collected.map(c => c.content).toString();
+								message.channel.send(`:musical_score: ${songTitle[response]} selected! :musical_score:`);
+								const song = response - 1;
+								const video = result.items[song].id.videoId;
+								const url = 'https://www.youtube.com/watch?v=' + video;
+								memberChannel.join()
+									.then(connection => {
+										const stream = ytdl(url, { filter: 'audioonly' });
+										const dispatcher = connection.playStream(stream);
+										message.channel.send(':musical_note: Now Playing: ' + songTitle[response] + ':musical_note:');
+										dispatcher.on('end', () => {
+											memberChannel.leave();
+											message.channel.send('Kaz Bot has left ' + memberChannel.name);
+										});
+									})
+									.catch(() => {
+										return message.channel.send('Unable to stream from Youtube!');
 									});
-								});
-						})
-						.catch(() => {
-							message.channel.send('There was an error in your response!');
-						});
-				});
+							})
+							.catch(() => {
+								return message.channel.send('There was an error in your response!');
+							});
+					});
 			});
 		}
 		else {

@@ -11,20 +11,25 @@ module.exports = {
 	cooldown: 10,
 	guildOnly: false,
 	execute(message) {
-		fortniteAPI.login().then(() => {
-			fortniteAPI.checkFortniteStatus()
-				.then((status) => {
-					if (status === true) {
-						return message.channel.send('Fortnite is Online!');
-					}
-					else if (status === false) {
-						return message.channel.send('Fortnite is Down!' + '\n' + 'Check: https://twitter.com/FortniteGame');
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-					return message.channel.send('Failed to check Fortnite Server Status!');
-				});
-		});
+		fortniteAPI.login()
+			.then(() => {
+				fortniteAPI.checkFortniteStatus()
+					.then((status) => {
+						if (status === true) {
+							return message.channel.send('Fortnite is Online!');
+						}
+						else if (status === false) {
+							return message.channel.send('Fortnite is Down!' + '\n' + 'Check: https://twitter.com/FortniteGame');
+						}
+					})
+					.catch((err) => {
+						console.log(err);
+						return message.channel.send('Failed to check Fortnite Server Status!');
+					});
+			})
+			.catch(err => {
+				console.log(err);
+				return message.channel.send('Unable to connect to Fortnite Servers!');
+			});
 	},
 };

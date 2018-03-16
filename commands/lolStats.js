@@ -38,7 +38,15 @@ module.exports = {
 									.setTimestamp(new Date())
 									.setFooter('@Kaz-Bot');
 								return message.channel.send({ embed: lolEmbed });
+							})
+							.catch(err => {
+								console.log(err);
+								return message.channel.send('Unable to retrieve Lol Stats!');
 							});
+					})
+					.catch(err => {
+						console.log(err);
+						return message.channel.send('Unable to retrieve Lol Stats!');
 					});
 			})
 			.catch(err => {

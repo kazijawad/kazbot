@@ -12,21 +12,26 @@ module.exports = {
 	cooldown: 10,
 	guildOnly: false,
 	execute(message) {
-		fortniteAPI.login().then(() => {
-			fortniteAPI.getFortniteNews('en')
-				.then((news) => {
-					const fortNews = new discord.RichEmbed()
-						.setColor('DARK_PURPLE')
-						.setTitle('Fortnite News')
-						.addField(news['loginmessage']['title'], news['loginmessage']['body'])
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
-					return message.channel.send({ embed: fortNews });
-				})
-				.catch((err) => {
-					console.log(err);
-					return message.channel.send('Unable to find Fortnite News!');
-				});
-		});
+		fortniteAPI.login()
+			.then(() => {
+				fortniteAPI.getFortniteNews('en')
+					.then((news) => {
+						const fortNews = new discord.RichEmbed()
+							.setColor('DARK_PURPLE')
+							.setTitle('Fortnite News')
+							.addField(news['loginmessage']['title'], news['loginmessage']['body'])
+							.setFooter('@Kaz-Bot')
+							.setTimestamp(new Date());
+						return message.channel.send({ embed: fortNews });
+					})
+					.catch(err => {
+						console.log(err);
+						return message.channel.send('Unable to find Fortnite News!');
+					});
+			})
+			.catch(err => {
+				console.log(err);
+				return message.channel.send('Unable to connect to Fortnite Servers!');
+			});
 	},
 };

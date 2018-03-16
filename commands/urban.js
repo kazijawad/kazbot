@@ -25,7 +25,10 @@ module.exports = {
 					.setFooter('@Kaz-Bot')
 					.setTimestamp(new Date());
 
-				message.channel.send({ embed: phraseEmbed });
+				return message.channel.send({ embed: phraseEmbed });
+			})
+			.catch(() => {
+				return message.channel.send('Unable to retrieve word from Urban Dictionary!');
 			});
 	},
 };
