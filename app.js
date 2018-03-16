@@ -37,7 +37,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	if (message.content.startsWith(prefix) && !message.guild.me.hasPermission('ADMINISTRATOR', true)) {
+	if (!(message.channel.type === 'dm') && message.content.startsWith(prefix) && !message.guild.me.hasPermission('ADMINISTRATOR', true)) {
 		return message.reply('Kaz Bot does not have permissions enabled, please enable Adminstrator for Kaz Bot!');
 	}
 
@@ -53,7 +53,7 @@ client.on('message', message => {
 		return message.reply('This command can only be executed in a Guild!');
 	}
 
-	if (!command.args && args.length) {
+	if (!command.args && !command.usage && args.length) {
 		const reply = `This command requires no arguments, ${message.author}`;
 		return message.channel.send(reply);
 	}

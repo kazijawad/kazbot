@@ -18,7 +18,8 @@
     "npm": "5.x"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "eslint app.js"
   },
   "dependencies": {
     "dblapi.js": "^1.2.0",
