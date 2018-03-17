@@ -1,9 +1,3 @@
-<h1>Kaz Bot</h1>
-
-[![Discord Bots](https://discordbots.org/api/widget/status/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/servers/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/upvotes/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/lib/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
 [![Discord Bots](https://discordbots.org/api/widget/owner/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
@@ -33,9 +27,15 @@
   	<li>credit</li>
 </ul>
 
+<h2>Crypto Commands</h2>
+<ul>
+	<li>crypto [SPECIFIC COIN]</li>
+	<li>crypto global</li>
+</ul>
+
 <h2>Fortnite Commands</h2>
 <ul>
-	<li>fort [FORTNITE USERNAME] [PLATFORM]</li>
+	<li>fort [FORTNITE USERNAME] [PC/XB1/PS4]</li>
   	<li>fortnews</li>
   	<li>fortstatus</li>
 </ul>
