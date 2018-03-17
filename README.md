@@ -1,3 +1,9 @@
+<h1>Kaz Bot</h1>
+
+[![Discord Bots](https://discordbots.org/api/widget/status/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/servers/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/upvotes/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
+[![Discord Bots](https://discordbots.org/api/widget/lib/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
 [![Discord Bots](https://discordbots.org/api/widget/owner/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
