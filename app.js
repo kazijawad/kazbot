@@ -1,4 +1,3 @@
-process.on('unhandledRejection', error => console.error(`Uncaught Promise Rejection:\n${error}`));
 require('dotenv').config();
 
 const fs = require('fs');
@@ -37,9 +36,9 @@ client.on('guildMemberAdd', member => {
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	if (!(message.channel.type === 'dm') && message.content.startsWith(prefix) && !message.guild.me.hasPermission('ADMINISTRATOR', true)) {
-		return message.reply('Kaz Bot does not have permissions enabled, please enable Adminstrator for Kaz Bot!');
-	}
+	process.on('unhandledRejection', error => {
+		message.channel.send(`Uncaught Rejection: ${error}`);
+	});
 
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
