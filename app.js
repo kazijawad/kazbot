@@ -1,3 +1,4 @@
+process.on('unhandledRejection', error => console.log(`Uncaught Rejection: ${error}`));
 require('dotenv').config();
 
 const fs = require('fs');
@@ -35,10 +36,6 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-	process.on('unhandledRejection', error => {
-		message.channel.send(`Uncaught Rejection: ${error}`);
-	});
 
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
