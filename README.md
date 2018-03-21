@@ -1,4 +1,4 @@
-<h1>Kaz Bot</h1>
+# Kaz Bot
 
 [![Discord Bots](https://discordbots.org/api/widget/status/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
 [![Discord Bots](https://discordbots.org/api/widget/servers/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
@@ -9,62 +9,69 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
+A Discord bot that can track Fortnite, Overwatch, and LoL Stats!
+
+## Getting Started
 [Server Invitation](https://discordapp.com/api/oauth2/authorize?client_id=419724462716354560&permissions=8&scope=bot)
 
-<p>A Discord bot that can track Fortnite, Overwatch, and LoL Stats!</p>
-<p>Prefix: k!</p>
+Prefix: k!
 
-<h2>Server Management Commands</h2>
-<ul>
-  	<li>ping</li>
-	<li>help</li>
-  	<li>prune [NUMBER]</li>
-  	<li>kick [MEMBER MENTION]</li>
-	<li>ban [MEMBER MENTION]</li>
-</ul>
+## Features
+A list of the available commands!
 
-<h2>Information Commands</h2>
-<ul>
-	<li>server</li>
-  	<li>user</li>
-  	<li>roles</li>
-	<li>role [ROLE NAME]</li>
-  	<li>avatar</li>
-  	<li>credit</li>
-</ul>
+### Server Management Commands
+- ping
+- help
+- prune [NUMBER]
+- kick [MEMBER MENTION]
+- ban [MEMBER MENTION]
 
-<h2>Crypto Commands</h2>
-<ul>
-	<li>crypto [SPECIFIC COIN]</li>
-	<li>crypto global</li>
-</ul>
+### Information Commands
+- server
+- user
+- roles
+- role [ROLE NAME]
+- avatar
+- credit
 
-<h2>Fortnite Commands</h2>
-<ul>
-	<li>fort [FORTNITE USERNAME] [PC/XB1/PS4]</li>
-  	<li>fortnews</li>
-  	<li>fortstatus</li>
-</ul>
+### Crypto Commands
+- crypto [SPECIFIC COIN]
+- crypto global
 
-<h2>Overwatch Commands</h2>
-<ul>
-	<li>ow [USERNAME-TAG]</li>
-</ul>
+### Fortnite Commands
+- fort [FORTNITE USERNAME] [PC/XB1/PS4]
+- fortnews
+- fortstatus
 
-<h2>LoL Commands</h2>
-<ul>
-	<li>lol [SUMMONER NAME]</li>
-</ul>
+### Overwatch Commands
+- ow [USERNAME-TAG]
 
-<h2>Fun Commands</h2>
-<ul>
-	<li>8ball [QUESTION]</li>
-  	<li>coin</li>
-  	<li>urban [WORD]</li>
-</ul>
+### LoL Commands
+- lol [SUMMONER NAME]
 
-<h2>Music Commands</h2>
-<ul>
-	<li>play [SONG NAME/URL]</li>
-  	<li>stop</li>
-</ul>
+### Fun Commands
+- 8ball [QUESTION]
+- coin
+- urban [WORD]
+
+### Music Commands
+- play [SONG NAME]
+- stop
+
+## Built With
+- [Discord API](https://discordapp.com/developers/docs/intro)
+- [Discord.js](https://discord.js.org/#/)
+
+## Author
+Kazi Jawad
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+- [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)
+- [Overwatch API Wrapper](https://github.com/gclem/overwatch-js)
+- [LoL API Wrapper](https://github.com/Colorfulstan/LeagueJS)
+- [CoinMarketCAP API Wrapper](https://github.com/tiaanduplessis/coinmarketcap-api)
+- [Urban Dictionary API Wrapper](https://github.com/SnekJS/urban.js)
+- [Youtube Download Module](https://www.npmjs.com/package/ytdl-core)
