@@ -36,7 +36,7 @@ module.exports = {
 				const songEmbed = new discord.RichEmbed()
 					.setColor('BLUE')
 					.setTitle('Song List:')
-					.setDescription('Please respond with a value!')
+					.setDescription('Please respond with a number!')
 					.addField('1: ' + songTitle[1], songAuthor[1])
 					.addField('2: ' + songTitle[2], songAuthor[2])
 					.addField('3: ' + songTitle[3], songAuthor[3])
@@ -52,7 +52,6 @@ module.exports = {
 						message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000 })
 							.then(collected => {
 								const response = collected.map(c => c.content).toString();
-								message.channel.send(`:musical_score: ${songTitle[response]} selected! :musical_score:`);
 								const song = response - 1;
 								const video = result.items[song].id.videoId;
 								const url = 'https://www.youtube.com/watch?v=' + video;

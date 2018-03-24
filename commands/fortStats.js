@@ -16,7 +16,7 @@ module.exports = {
 		fortniteAPI.login()
 			.then(() => {
 				fortniteAPI.getStatsBR(args[0], args[1] || 'pc')
-					.then((stats) => {
+					.then(stats => {
 						const fortStats = new discord.RichEmbed()
 							.setColor('PURPLE')
 							.setTitle(stats['info']['username'] + '\'s Fortnite Stats')

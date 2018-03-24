@@ -52,6 +52,7 @@ A list of the available commands!
 ### Fun Commands
 - 8ball [QUESTION]
 - coin
+- rps [ROCK/PAPER/SCISSORS]
 - urban [WORD]
 
 ### Music Commands
