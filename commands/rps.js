@@ -9,7 +9,7 @@ module.exports = {
 	guildOnly: false,
 	execute(message, args) {
 		const botChoice = choices[Math.floor(Math.random() * choices.length)];
-		const botWon = `Kaz Bot won! He chose paper! ${botChoice}`;
+		const botWon = `Kaz Bot won! He chose ${botChoice}!`;
 		const playerWon = `${message.member.displayName} won! Kaz Bot chose ${botChoice}!`;
 		const draw = `Draw! You both chose ${botChoice}!`;
 
