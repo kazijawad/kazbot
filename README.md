@@ -53,6 +53,7 @@ A list of the available commands!
 - 8ball [QUESTION]
 - coin
 - rps [ROCK/PAPER/SCISSORS]
+- reverse [PHRASE]
 - urban [WORD]
 
 ### Music Commands
