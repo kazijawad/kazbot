@@ -16,10 +16,13 @@ module.exports = {
 			.then(() => {
 				fortniteAPI.getFortniteNews('en')
 					.then((news) => {
+						console.log(news);
 						const fortNews = new discord.RichEmbed()
 							.setColor('DARK_PURPLE')
 							.setTitle('Fortnite News')
-							.addField(news['loginmessage']['title'], news['loginmessage']['body'])
+							.addField(news['br'][0]['title'], news['br'][0]['body'])
+							.addField(news['br'][1]['title'], news['br'][1]['body'])
+							.addField(news['br'][2]['title'], news['br'][2]['body'])
 							.setFooter('@Kaz-Bot')
 							.setTimestamp(new Date());
 						return message.channel.send({ embed: fortNews });
