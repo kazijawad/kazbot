@@ -22,6 +22,7 @@
     "lint": "eslint app.js"
   },
   "dependencies": {
+    "battlerite.js": "^3.1.1",
     "coinmarketcap-api": "^1.0.1",
     "dblapi.js": "^1.2.0",
     "discord.js": "^11.3.2",

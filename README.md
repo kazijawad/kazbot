@@ -39,9 +39,12 @@ A list of the available commands!
 - crypto global
 
 ### Fortnite Commands
-- fort [FORTNITE USERNAME] [PC/XB1/PS4]
+- ft [USERNAME] [PC/XB1/PS4]
 - fortnews
 - fortstatus
+
+### Battlerite Commands
+- br [USERNAME]
 
 ### Overwatch Commands
 - ow [USERNAME-TAG]
