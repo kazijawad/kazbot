@@ -1,14 +1,14 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports = {
 	name: 'user',
-	aliases: ['me', 'user-info'],
+	aliases: ['me'],
 	description: 'Discord User Information',
 	args: false,
-	cooldown: 5,
+	cooldown: 10,
 	guildOnly: true,
 	execute(message) {
-		const userEmbed = new discord.RichEmbed()
+		const userEmbed = new Discord.RichEmbed()
 			.setColor(message.member.roles.color)
 			.setTitle(message.member.displayName)
 			.setThumbnail(message.author.avatarURL)

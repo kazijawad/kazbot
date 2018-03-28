@@ -54,7 +54,7 @@ module.exports = {
 			}
 			break;
 		default:
-			message.reply('Please pass in an argument with rock/paper/scissors!');
+			return message.reply('Please pass in an argument with rock/paper/scissors!');
 		}
 	},
 };

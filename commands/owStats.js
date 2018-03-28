@@ -1,18 +1,17 @@
-const discord = require('discord.js');
-const overwatch = require('overwatch-js');
+const Discord = require('discord.js');
+const Overwatch = require('overwatch-js');
 
 module.exports = {
 	name: 'ow',
-	aliases: ['overwatch'],
 	description: 'Shows all Overwatch Player Stats',
 	args: true,
 	usage: '[USERNAME-TAG] [PC/XB1/PSN]',
 	cooldown: 10,
 	guildOnly: false,
 	execute(message, args) {
-		overwatch.getOverall('pc' || args[1], 'us', args[0])
+		Overwatch.getOverall('pc' || args[1], 'us', args[0])
 			.then((stats) => {
-				const owEmbed = new discord.RichEmbed()
+				const owEmbed = new Discord.RichEmbed()
 					.setColor('BLUE')
 					.setTitle(stats['profile']['nick'] + '\'s Competitve Overwatch Stats')
 					.setThumbnail(stats['profile']['avatar'])

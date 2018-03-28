@@ -1,6 +1,7 @@
-const coinmarketcap = require('coinmarketcap-api');
-const discord = require('discord.js');
-const crypto = new coinmarketcap();
+const Discord = require('discord.js');
+const Coinmarketcap = require('coinmarketcap-api');
+
+const crypto = new Coinmarketcap();
 
 module.exports = {
 	name: 'crypto',
@@ -13,7 +14,7 @@ module.exports = {
 		if (args[0] === 'global') {
 			crypto.getGlobal()
 				.then(data => {
-					const cryptoGlobal = new discord.RichEmbed()
+					const cryptoGlobal = new Discord.RichEmbed()
 						.setColor('GREEN')
 						.setTitle('Global Crypto Info')
 						.addField('Total USD Market Cap', data.total_market_cap_usd, true)
@@ -34,7 +35,7 @@ module.exports = {
 		else {
 			crypto.getTicker({ limit: 1, convert: 'USD', currency: args })
 				.then(data => {
-					const cryptoInfo = new discord.RichEmbed()
+					const cryptoInfo = new Discord.RichEmbed()
 						.setColor('GREEN')
 						.setTitle(data[0].name)
 						.addField('Symbol', data[0].symbol, true)

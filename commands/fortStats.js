@@ -1,12 +1,12 @@
-const discord = require('discord.js');
-const fortnite = require('fortnite-api');
+const Discord = require('discord.js');
+const Fortnite = require('fortnite-api');
 
 const fortniteAPIKey = [process.env.fortniteEmail, process.env.fortnitePass, process.env.fortniteLaunchToken, process.env.fortniteClientToken];
-const fortniteAPI = new fortnite(fortniteAPIKey);
+const fortniteAPI = new Fortnite(fortniteAPIKey);
 
 module.exports = {
 	name: 'fort',
-	aliases: ['fortnite', 'ft'],
+	aliases: ['ft'],
 	description: 'Shows all Fortnite Player Stats',
 	args: true,
 	usage: '[USERNAME] [PC/XB1/PS4]',
@@ -17,7 +17,7 @@ module.exports = {
 			.then(() => {
 				fortniteAPI.getStatsBR(args[0], args[1] || 'pc')
 					.then(stats => {
-						const fortStats = new discord.RichEmbed()
+						const fortStatsEmbed = new Discord.RichEmbed()
 							.setColor('PURPLE')
 							.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
 							.addField('Overall', `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`, true)
@@ -27,7 +27,7 @@ module.exports = {
 							.addField('Squad', `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`, true)
 							.setFooter('@Kaz-Bot')
 							.setTimestamp(new Date());
-						return message.channel.send({ embed: fortStats });
+						return message.channel.send({ embed: fortStatsEmbed });
 					})
 					.catch(err => {
 						console.log(err);

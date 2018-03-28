@@ -14,7 +14,7 @@ module.exports = {
 			return message.reply('\n' + message.guild.roles.find('name', arg).members.map(r => r.displayName).join('\n'));
 		}
 		else {
-			return message.reply('Failed to execute command!');
+			return message.reply('Failed to locate specified role!');
 		}
 	},
 };

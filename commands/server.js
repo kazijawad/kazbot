@@ -1,15 +1,15 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports = {
 	name: 'server',
-	aliases: ['guild', 'server-info', 'guild-info'],
+	aliases: ['guild'],
 	description: 'Discord Server Information',
 	args: false,
 	cooldown: 5,
 	guildOnly: true,
 	execute(message) {
-		const guildEmbed = new discord.RichEmbed()
-			.setColor('AQUA')
+		const guildEmbed = new Discord.RichEmbed()
+			.setColor('DARK_GOLD')
 			.setTitle(message.member.guild.name)
 			.setThumbnail(message.member.guild.iconURL)
 			.addField('Server Owner', message.guild.owner.displayName, true)

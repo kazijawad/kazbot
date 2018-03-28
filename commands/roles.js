@@ -1,4 +1,4 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports = {
 	name: 'roles',
@@ -8,13 +8,13 @@ module.exports = {
 	guildOnly: true,
 	execute(message) {
 		const roles = message.guild.roles.map(r => r.name).join('\n');
-		const roleEmbed = new discord.RichEmbed()
-			.setColor('ORANGE')
+		const roleEmbed = new Discord.RichEmbed()
+			.setColor('NAVY')
 			.setTitle(message.guild.name)
 			.addField('Roles:', roles)
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
 
-		message.channel.send({ embed: roleEmbed });
+		return message.channel.send({ embed: roleEmbed });
 	},
 };

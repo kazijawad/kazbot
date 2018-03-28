@@ -1,25 +1,25 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 const Youtube = require('youtube-node');
-const ytdl = require('ytdl-core');
+const Ytdl = require('ytdl-core');
 
 const youtube = new Youtube();
-
 youtube.setKey(process.env.youtubeAPIKey);
+
+const songTitle = [' '];
+const songAuthor = [' '];
 
 module.exports = {
 	name: 'play',
-	aliases: ['yt', 'youtube'],
+	aliases: ['yt'],
 	description: 'Play music from Youtube!',
 	args: true,
 	usage: '[SONG NAME]',
-	cooldown: 5,
+	cooldown: 10,
 	guildOnly: true,
 	execute(message, args) {
 		const arg = args.join(' ');
 		const memberChannel = message.member.voiceChannel;
 		const botChannel = message.guild.me.voiceChannel;
-		const songTitle = [' '];
-		const songAuthor = [' '];
 
 		if (!memberChannel) {
 			return message.reply('Please join a voice channel first!');
@@ -33,8 +33,8 @@ module.exports = {
 					songAuthor.push(element.snippet.channelTitle);
 				});
 
-				const songEmbed = new discord.RichEmbed()
-					.setColor('BLUE')
+				const songEmbed = new Discord.RichEmbed()
+					.setColor('AQUA')
 					.setTitle('Song List:')
 					.setDescription('Please respond with a number!')
 					.addField('1: ' + songTitle[1], songAuthor[1])
@@ -49,7 +49,7 @@ module.exports = {
 
 				message.channel.send(songEmbed)
 					.then(() => {
-						message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000 })
+						message.channel.awaitMessages(filter, { maxMatches: 1, time: 10000 })
 							.then(collected => {
 								const response = collected.map(c => c.content).toString();
 								const song = response - 1;
@@ -57,12 +57,12 @@ module.exports = {
 								const url = 'https://www.youtube.com/watch?v=' + video;
 								memberChannel.join()
 									.then(connection => {
-										const stream = ytdl(url, { filter: 'audioonly' });
+										const stream = Ytdl(url, { filter: 'audioonly' });
 										const dispatcher = connection.playStream(stream);
 										message.channel.send(':musical_note: Now Playing: ' + songTitle[response] + ':musical_note:');
 										dispatcher.on('end', () => {
 											memberChannel.leave();
-											message.channel.send('Kaz Bot has left ' + memberChannel.name);
+											return message.channel.send('Kaz Bot has left ' + memberChannel.name);
 										});
 									})
 									.catch(() => {

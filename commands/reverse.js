@@ -8,6 +8,6 @@ module.exports = {
 	execute(message, args) {
 		const arg = args.join(' ');
 		const reverse = arg.split('').reverse().join('');
-		message.channel.send(`${arg} ---> ${reverse}`);
+		return message.channel.send(`${arg} ---> ${reverse}`);
 	},
 };

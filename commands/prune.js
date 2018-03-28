@@ -1,16 +1,16 @@
 module.exports = {
 	name: 'prune',
-	aliases: ['cut', 'shorten', 'purge'],
+	aliases: ['cut', 'purge'],
 	description: 'Delete previous messages in the channel!',
 	args: true,
-	usage: '[VALUE]',
+	usage: '[1-99]',
 	cooldown: 3,
 	guildOnly: true,
 	execute(message, args) {
 		const amount = parseInt(args[0]) + 1;
 
 		if (!message.member.hasPermission('MANAGE_MESSAGES', true)) {
-			return message.reply('You cannot use this command!');
+			return message.reply('You do not have permission to use the prune command!');
 		}
 
 		if (isNaN(amount)) {

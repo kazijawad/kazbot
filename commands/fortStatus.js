@@ -1,11 +1,11 @@
-const fortnite = require('fortnite-api');
+const Fortnite = require('fortnite-api');
 
 const fortniteAPIKey = [process.env.fortniteEmail, process.env.fortnitePass, process.env.fortniteLaunchToken, process.env.fortniteClientToken];
-const fortniteAPI = new fortnite(fortniteAPIKey);
+const fortniteAPI = new Fortnite(fortniteAPIKey);
 
 module.exports = {
 	name: 'fortstatus',
-	aliases: ['fortniteStatus', 'ftstatus'],
+	aliases: ['ftstatus'],
 	description: 'Shows the status of Fortnite Servers',
 	args: false,
 	cooldown: 10,

@@ -1,5 +1,5 @@
-const discord = require('discord.js');
-const urban = require('relevant-urban');
+const Discord = require('discord.js');
+const Urban = require('relevant-urban');
 
 module.exports = {
 	name: 'urban',
@@ -12,9 +12,9 @@ module.exports = {
 	execute(message, args) {
 		const phrase = args.join(' ');
 
-		urban(phrase)
-			.then((term) => {
-				const phraseEmbed = new discord.RichEmbed()
+		Urban(phrase)
+			.then(term => {
+				const phraseEmbed = new Discord.RichEmbed()
 					.setColor('LIGHT_GREY')
 					.setTitle(term.word)
 					.addField('Definition', term.definition)

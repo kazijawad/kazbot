@@ -1,12 +1,12 @@
-const fortnite = require('fortnite-api');
-const discord = require('discord.js');
+const Discord = require('discord.js');
+const Fortnite = require('fortnite-api');
 
 const fortniteAPIKey = [process.env.fortniteEmail, process.env.fortnitePass, process.env.fortniteLaunchToken, process.env.fortniteClientToken];
-const fortniteAPI = new fortnite(fortniteAPIKey);
+const fortniteAPI = new Fortnite(fortniteAPIKey);
 
 module.exports = {
 	name: 'fortnews',
-	aliases: ['fortniteNews', 'ftnews'],
+	aliases: ['ftnews'],
 	description: 'Shows the latest Fortnite News!',
 	args: false,
 	cooldown: 10,
@@ -15,9 +15,8 @@ module.exports = {
 		fortniteAPI.login()
 			.then(() => {
 				fortniteAPI.getFortniteNews('en')
-					.then((news) => {
-						console.log(news);
-						const fortNews = new discord.RichEmbed()
+					.then(news => {
+						const fortNewsEmbed = new Discord.RichEmbed()
 							.setColor('DARK_PURPLE')
 							.setTitle('Fortnite News')
 							.addField(news['br'][0]['title'], news['br'][0]['body'])
@@ -25,7 +24,7 @@ module.exports = {
 							.addField(news['br'][2]['title'], news['br'][2]['body'])
 							.setFooter('@Kaz-Bot')
 							.setTimestamp(new Date());
-						return message.channel.send({ embed: fortNews });
+						return message.channel.send({ embed: fortNewsEmbed });
 					})
 					.catch(err => {
 						console.log(err);

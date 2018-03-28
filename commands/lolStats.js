@@ -1,14 +1,13 @@
 process.env.LEAGUE_API_PLATFORM_ID = 'na1';
 
-const discord = require('discord.js');
-const league = require('leaguejs');
+const Discord = require('discord.js');
+const League = require('leaguejs');
 
 const leagueAPIKey = process.env.leagueAPIKey;
-const leagueAPI = new league(leagueAPIKey);
+const leagueAPI = new League(leagueAPIKey);
 
 module.exports = {
 	name: 'lol',
-	aliases: ['league'],
 	description: 'Shows all LoL Player Stats',
 	args: true,
 	usage: '[SUMMONER-NAME]',
@@ -25,7 +24,7 @@ module.exports = {
 						leagueAPI.StaticData.gettingProfileIcons()
 							.then(icons => {
 								const profileIcon = icons['data'][profileID]['image']['full'];
-								const lolEmbed = new discord.RichEmbed()
+								const lolEmbed = new Discord.RichEmbed()
 									.setColor('RED')
 									.setTitle(stats[0]['playerOrTeamName'] + '\'s LoL Stats')
 									.setThumbnail('http://ddragon.leagueoflegends.com/cdn/8.4.1/img/profileicon/' + profileIcon)
@@ -41,18 +40,18 @@ module.exports = {
 							})
 							.catch(err => {
 								console.log(err);
-								return message.channel.send('Unable to retrieve Lol Stats!');
+								return message.channel.send('Unable to retrieve Summoner Stats!');
 							});
 					})
 					.catch(err => {
 						console.log(err);
-						return message.channel.send('Unable to retrieve Lol Stats!');
+						return message.channel.send('Unable to retrieve Summoner ID!');
 					});
 			})
 			.catch(err => {
 				'use strict';
 				console.log(err);
-				return message.channel.send('Unable to retrieve Lol Stats!');
+				return message.channel.send('Unable to retrieve Summoner!');
 			});
 	},
 };

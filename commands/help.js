@@ -5,7 +5,7 @@ module.exports = {
 	aliases: ['commands', 'support', 'info'],
 	description: 'List of all available Commands',
 	usage: '[Command Name]',
-	cooldown: 5,
+	cooldown: 3,
 	guildOnly: false,
 	execute(message, args) {
 		const { commands } = message.client;
@@ -33,7 +33,7 @@ module.exports = {
 		message.author.send(data, { split: true })
 			.then(() => {
 				if (message.channel.type !== 'dm') {
-					message.channel.send('I\'ve sent you a DM with all my commands!');
+					return message.channel.send('I\'ve sent you a DM with all my commands!');
 				}
 			})
 			.catch(() => message.reply('it seems like I can\'t DM you!'));

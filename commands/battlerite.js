@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
-const battlerite = require('battlerite.js');
+const Battlerite = require('battlerite.js');
 
-const battleriteAPI = new battlerite.Client(process.env.battleriteAPI);
+const battleriteAPI = new Battlerite.Client(process.env.battleriteAPI);
 
 module.exports = {
 	name: 'battlerite',
 	aliases: ['br'],
-	description: 'Show all Batterite Player Stats',
+	description: 'Shows all Batterite Player Stats',
 	args: true,
 	usage: '[USERNAME]',
 	cooldown: 30,
@@ -14,8 +14,8 @@ module.exports = {
 	execute(message, args) {
 		battleriteAPI.getPlayersByName(args[0])
 			.then(player => {
-				const statsEmbed = new Discord.RichEmbed()
-					.setColor('GOLD')
+				const battleriteEmbed = new Discord.RichEmbed()
+					.setColor('ORANGE')
 					.setTitle(player[0]['name'] + '\'s Battlerite Stats')
 					.addField('Total Matches', player[0]['stats']['2'] + player[0]['stats']['3'], true)
 					.addField('Total Wins', player[0]['stats']['2'], true)
@@ -25,7 +25,7 @@ module.exports = {
 					.addField('Quickmatch 3v3', player[0]['stats']['12'] + '-' + player[0]['stats']['13'], true)
 					.setFooter('@Kaz-Bot')
 					.setTimestamp(new Date());
-				return message.channel.send({ embed: statsEmbed });
+				return message.channel.send({ embed: battleriteEmbed });
 			})
 			.catch(err => {
 				console.log(err);
