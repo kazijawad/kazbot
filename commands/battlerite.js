@@ -21,6 +21,7 @@ module.exports = {
 					.addField('Total Wins', player[0]['stats']['2'], true)
 					.addField('Total Losses', player[0]['stats']['3'], true)
 					.addField('League 2v2', player[0]['stats']['14'] + '-' + player[0]['stats']['15'], true)
+					.addField('League 3v3', player[0]['stats']['16'] + '-' + player[0]['stats']['17'], true)
 					.addField('Quickmatch 2v2', player[0]['stats']['10'] + '-' + player[0]['stats']['11'], true)
 					.addField('Quickmatch 3v3', player[0]['stats']['12'] + '-' + player[0]['stats']['13'], true)
 					.setFooter('@Kaz-Bot')
