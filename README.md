@@ -71,12 +71,11 @@ A list of the available commands!
 Kazi Jawad
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kazijawad/KazBot/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 - [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)
 - [Overwatch API Wrapper](https://github.com/gclem/overwatch-js)
 - [LoL API Wrapper](https://github.com/Colorfulstan/LeagueJS)
-- [CoinMarketCAP API Wrapper](https://github.com/tiaanduplessis/coinmarketcap-api)
-- [Urban Dictionary API Wrapper](https://github.com/SnekJS/urban.js)
+- [CoinMarketCAP API](https://coinmarketcap.com/api/)
 - [Youtube Download Module](https://www.npmjs.com/package/ytdl-core)
