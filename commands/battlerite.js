@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
-const Battlerite = require('battlerite.js');
-
-const battleriteAPI = new Battlerite.Client(process.env.battleriteAPI);
+const request = require('request');
 
 module.exports = {
 	name: 'battlerite',
@@ -12,25 +10,36 @@ module.exports = {
 	cooldown: 30,
 	guildOnly: false,
 	execute(message, args) {
-		battleriteAPI.getPlayersByName(args[0])
-			.then(player => {
-				const battleriteEmbed = new Discord.RichEmbed()
-					.setColor('ORANGE')
-					.setTitle(player[0]['name'] + '\'s Battlerite Stats')
-					.addField('Total Matches', player[0]['stats']['2'] + player[0]['stats']['3'], true)
-					.addField('Total Wins', player[0]['stats']['2'], true)
-					.addField('Total Losses', player[0]['stats']['3'], true)
-					.addField('League 2v2', player[0]['stats']['14'] + '-' + player[0]['stats']['15'], true)
-					.addField('League 3v3', player[0]['stats']['16'] + '-' + player[0]['stats']['17'], true)
-					.addField('Quickmatch 2v2', player[0]['stats']['10'] + '-' + player[0]['stats']['11'], true)
-					.addField('Quickmatch 3v3', player[0]['stats']['12'] + '-' + player[0]['stats']['13'], true)
-					.setFooter('@Kaz-Bot')
-					.setTimestamp(new Date());
-				return message.channel.send({ embed: battleriteEmbed });
-			})
-			.catch(err => {
+		const options = {
+			url: 'https://api.dc01.gamelockerapp.com/shards/global/players?filter[playerNames]=' + args[0],
+			headers: {
+				'Authorization': 'Bearer ' + process.env.battleriteAPI,
+				'Accept': 'application/vnd.api+json',
+			},
+		};
+
+		request(options, (err, res, body) => {
+			if (err) {
 				console.log(err);
-				return message.channel.send('Cannot retrieve Player Stats!');
-			});
+				return message.channel.send('Failed to retrieve Battlerite player!');
+			}
+			const info = JSON.parse(body);
+			const stats = info.data[0].attributes.stats;
+
+			const battleriteEmbed = new Discord.RichEmbed()
+				.setColor('ORANGE')
+				.setTitle(`${info.data[0].attributes.name}'s Battlerite Stats`)
+				.addField('Total Matches', stats['2'] + stats['3'], true)
+				.addField('Total Wins', stats['2'], true)
+				.addField('Total Losses', stats['3'], true)
+				.addField('League 2v2', stats['14'] + '-' + stats['15'], true)
+				.addField('League 3v3', stats['16'] + '-' + stats['17'], true)
+				.addField('Quickmatch 2v2', stats['10'] + '-' + stats['11'], true)
+				.addField('Quickmatch 3v3', stats['12'] + '-' + stats['13'], true)
+				.setFooter('@Kaz-Bot')
+				.setTimestamp(new Date());
+
+			message.channel.send({ embed: battleriteEmbed });
+		});
 	},
 };
