@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
-const Coinmarketcap = require('coinmarketcap-api');
-
-const crypto = new Coinmarketcap();
+const request = require('request');
 
 module.exports = {
 	name: 'crypto',
@@ -11,49 +9,59 @@ module.exports = {
 	cooldown: 5,
 	guildOnly: false,
 	execute(message, args) {
+		const ticker = {
+			'url': `https://api.coinmarketcap.com/v1/ticker/${args[0]}/`,
+		};
+		const global = {
+			'url': `https://api.coinmarketcap.com/v1/${args[0]}/`,
+		};
+
 		if (args[0] === 'global') {
-			crypto.getGlobal()
-				.then(data => {
-					const cryptoGlobal = new Discord.RichEmbed()
-						.setColor('GREEN')
-						.setTitle('Global Crypto Info')
-						.addField('Total USD Market Cap', data.total_market_cap_usd, true)
-						.addField('Total 24HR USD Volume', data.total_24h_volume_usd, true)
-						.addField('Bitcoin % of Market Cap', data.bitcoin_percentage_of_market_cap, true)
-						.addField('Active Currencies', data.active_currencies, true)
-						.addField('Active Assets', data.active_assets, true)
-						.addField('Active Markets', data.active_markets, true)
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
-					return message.channel.send({ embed: cryptoGlobal });
-				})
-				.catch(err => {
+			request(global, (err, res, body) => {
+				if (err) {
 					console.log(err);
-					return message.channel.send('Failed to connect to CoinMarketCap!');
-				});
+					return message.channel.send('Failed to retrieve global information from CoinMarketCap!');
+				}
+				const info = JSON.parse(body);
+				const cryptoGlobal = new Discord.RichEmbed()
+					.setColor('GREEN')
+					.setTitle('Global Crypto Info')
+					.addField('Total USD Market Cap', info.total_market_cap_usd, true)
+					.addField('Total 24HR USD Volume', info.total_24h_volume_usd, true)
+					.addField('Bitcoin % of Market Cap', info.bitcoin_percentage_of_market_cap, true)
+					.addField('Active Currencies', info.active_currencies, true)
+					.addField('Active Assets', info.active_assets, true)
+					.addField('Active Markets', info.active_markets, true)
+					.setFooter('@Kaz-Bot')
+					.setTimestamp(new Date());
+				message.channel.send({ embed: cryptoGlobal });
+			});
 		}
 		else {
-			crypto.getTicker({ limit: 1, convert: 'USD', currency: args })
-				.then(data => {
-					const cryptoInfo = new Discord.RichEmbed()
-						.setColor('GREEN')
-						.setTitle(data[0].name)
-						.addField('Symbol', data[0].symbol, true)
-						.addField('Rank', data[0].rank, true)
-						.addField('USD Price', data[0].price_usd, true)
-						.addField('BTC Price', data[0].price_btc, true)
-						.addField('USD Market Cap', data[0].market_cap_usd, true)
-						.addField('Available Supply', data[0].available_supply, true)
-						.addField('Total Supply', data[0].total_supply, true)
-						.addField('Max Supply', data[0].max_supply, true)
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
-					return message.channel.send({ embed: cryptoInfo });
-				})
-				.catch(err => {
+			request(ticker, (err, res, body) => {
+				if (err) {
 					console.log(err);
-					return message.channel.send('Failed to connect to CoinMarketCap!');
-				});
+					return message.channel.send('Failed to locate cryptocurrency in CoinMarketCap!');
+				}
+				const info = JSON.parse(body);
+				const crypto = info[0];
+				if (!crypto) return message.channel.send('Failed to locate cryptocurrency in CoinMarketCap!');
+
+				const cryptoInfo = new Discord.RichEmbed()
+					.setColor('GREEN')
+					.setTitle(crypto.name)
+					.addField('Symbol', crypto.symbol, true)
+					.addField('Rank', crypto.rank, true)
+					.addField('USD Price', crypto.price_usd, true)
+					.addField('BTC Price', crypto.price_btc, true)
+					.addField('USD Market Cap', crypto.market_cap_usd, true)
+					.addField('Available Supply', crypto.available_supply, true)
+					.addField('Total Supply', crypto.total_supply, true)
+					.addField('Max Supply', crypto.max_supply, true)
+					.setFooter('@Kaz-Bot')
+					.setTimestamp(new Date());
+				message.channel.send({ embed: cryptoInfo });
+			});
 		}
 	},
 };

@@ -15,7 +15,7 @@ module.exports = {
 			'url': `http://api.urbandictionary.com/v0/define?term=${phrase}`,
 		};
 
-		request(options, (err, req, body) => {
+		request(options, (err, res, body) => {
 			if (err) {
 				console.log(err);
 				return message.channel.send('Failed to retrieve word from Urban Dictionary!');
