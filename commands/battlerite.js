@@ -11,7 +11,7 @@ module.exports = {
 	guildOnly: false,
 	execute(message, args) {
 		const options = {
-			url: 'https://api.dc01.gamelockerapp.com/shards/global/players?filter[playerNames]=' + args[0],
+			url: `https://api.dc01.gamelockerapp.com/shards/global/players?filter[playerNames]=${args[0]}`,
 			headers: {
 				'Authorization': 'Bearer ' + process.env.battleriteAPI,
 				'Accept': 'application/vnd.api+json',
