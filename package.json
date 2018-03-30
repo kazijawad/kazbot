@@ -23,6 +23,7 @@
     "lint": "eslint app.js"
   },
   "dependencies": {
+    "canvas": "^1.6.10",
     "dblapi.js": "^1.2.0",
     "discord.js": "^11.3.2",
     "dotenv": "^5.0.1",
