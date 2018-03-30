@@ -10,12 +10,12 @@ const canvas = new Canvas(1000, 800);
 const ctx = canvas.getContext('2d');
 
 module.exports = {
-	name: 'fort',
-	aliases: ['ft'],
+	name: 'fortnite',
+	aliases: ['ft', 'fort'],
 	description: 'Fortnite Commands!',
 	args: true,
-	usage: '[username] [pc/xb1/ps4] | k!fort [status] | k!fort [news]',
-	cooldown: 10,
+	usage: '[username] [pc/xb1/ps4] \n              k!fortnite [status] \n              k!fortnite [news]',
+	cooldown: 5,
 	guildOnly: false,
 	execute(message, args) {
 		fortnite.login()

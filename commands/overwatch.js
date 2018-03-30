@@ -2,11 +2,12 @@ const Discord = require('discord.js');
 const Overwatch = require('overwatch-js');
 
 module.exports = {
-	name: 'ow',
+	name: 'overwatch',
+	aliases: ['ow'],
 	description: 'Shows all Overwatch Player Stats',
 	args: true,
-	usage: '[USERNAME-TAG] [PC/XB1/PSN]',
-	cooldown: 10,
+	usage: '[username-tag] [pc/xb1/psn]',
+	cooldown: 5,
 	guildOnly: false,
 	execute(message, args) {
 		Overwatch.getOverall('pc' || args[1], 'us', args[0])

@@ -7,11 +7,12 @@ const leagueAPIKey = process.env.leagueAPIKey;
 const leagueAPI = new League(leagueAPIKey);
 
 module.exports = {
-	name: 'lol',
+	name: 'league',
+	aliases: ['lol'],
 	description: 'Shows all LoL Player Stats',
 	args: true,
-	usage: '[SUMMONER-NAME]',
-	cooldown: 30,
+	usage: '[summoner-name]',
+	cooldown: 20,
 	guildOnly: false,
 	execute(message, args) {
 		leagueAPI.Summoner.gettingByName(args[0])

@@ -22,11 +22,11 @@ module.exports = {
 
 			const command = commands.get(args[0]);
 
-			data.push(`Name: ${command.name}`);
+			data.push(`Name: ${command.name}\n`);
 
-			if (command.description) data.push(`Description: ${command.description}`);
-			if (command.aliases) data.push(`Aliases: ${command.aliases.join(', ')}`);
-			if (command.usage) data.push(`Usage: ${prefix}${command.name} ${command.usage}`);
+			if (command.description) data.push(`Description: ${command.description}\n`);
+			if (command.aliases) data.push(`Aliases: ${command.aliases.join(', ')}\n`);
+			if (command.usage) data.push(`Usage: ${prefix}${command.name} ${command.usage}\n`);
 
 			data.push(`Cooldown: ${command.cooldown || 3} second(s)`);
 		}
