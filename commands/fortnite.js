@@ -15,6 +15,7 @@ module.exports = {
 	description: 'Fortnite Commands!',
 	args: true,
 	usage: '[username] [pc/xb1/ps4] \n              k!fortnite [status] \n              k!fortnite [news]',
+	example: 'YellowJay64',
 	cooldown: 5,
 	guildOnly: false,
 	execute(message, args) {

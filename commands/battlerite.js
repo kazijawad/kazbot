@@ -6,7 +6,8 @@ module.exports = {
 	aliases: ['br'],
 	description: 'Shows all Batterite Player Stats',
 	args: true,
-	usage: '[USERNAME]',
+	usage: '[username]',
+	example: 'TimmehHD',
 	cooldown: 30,
 	guildOnly: false,
 	execute(message, args) {

@@ -12,6 +12,7 @@ module.exports = {
 	description: 'Shows all LoL Player Stats',
 	args: true,
 	usage: '[summoner-name]',
+	example: 'MaximumTilt',
 	cooldown: 20,
 	guildOnly: false,
 	execute(message, args) {

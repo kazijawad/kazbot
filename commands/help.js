@@ -5,6 +5,7 @@ module.exports = {
 	aliases: ['commands', 'support', 'info'],
 	description: 'List of all available Commands',
 	usage: '[Command Name]',
+	example: 'help',
 	cooldown: 3,
 	guildOnly: false,
 	execute(message, args) {
@@ -27,6 +28,7 @@ module.exports = {
 			if (command.description) data.push(`Description: ${command.description}\n`);
 			if (command.aliases) data.push(`Aliases: ${command.aliases.join(', ')}\n`);
 			if (command.usage) data.push(`Usage: ${prefix}${command.name} ${command.usage}\n`);
+			if (command.example) data.push(`Example: ${prefix}${command.name} ${command.example}\n`);
 
 			data.push(`Cooldown: ${command.cooldown || 3} second(s)`);
 		}

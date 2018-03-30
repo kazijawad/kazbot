@@ -39,18 +39,18 @@ A list of the available commands!
 - crypto global
 
 ### Fortnite Commands
-- ft [USERNAME] [PC/XB1/PS4]
-- fortnews
-- fortstatus
+- ft [username] [pc/xb1/ps4]
+- ft status
+- ft news
 
 ### Battlerite Commands
-- br [USERNAME]
+- br [username]
 
 ### Overwatch Commands
-- ow [USERNAME-TAG]
+- ow [username-tag]
 
 ### LoL Commands
-- lol [SUMMONER NAME]
+- lol [summoner name]
 
 ### Fun Commands
 - 8ball [QUESTION]

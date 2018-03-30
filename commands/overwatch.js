@@ -7,6 +7,7 @@ module.exports = {
 	description: 'Shows all Overwatch Player Stats',
 	args: true,
 	usage: '[username-tag] [pc/xb1/psn]',
+	example: 'YellowJay-1902',
 	cooldown: 5,
 	guildOnly: false,
 	execute(message, args) {
