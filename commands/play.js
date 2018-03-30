@@ -5,9 +5,6 @@ const Ytdl = require('ytdl-core');
 const youtube = new Youtube();
 youtube.setKey(process.env.youtubeAPIKey);
 
-const songTitle = [' '];
-const songAuthor = [' '];
-
 module.exports = {
 	name: 'play',
 	aliases: ['yt'],
@@ -20,6 +17,8 @@ module.exports = {
 		const arg = args.join(' ');
 		const memberChannel = message.member.voiceChannel;
 		const botChannel = message.guild.me.voiceChannel;
+		const songTitle = [' '];
+		const songAuthor = [' '];
 
 		if (!memberChannel) {
 			return message.reply('Please join a voice channel first!');
