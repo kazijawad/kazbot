@@ -1,4 +1,5 @@
 const fs = require('fs'),
+	Discord = require('discord.js'),
 	Canvas = require('canvas'),
 	Fortnite = require('fortnite-api');
 
@@ -11,14 +12,45 @@ const ctx = canvas.getContext('2d');
 module.exports = {
 	name: 'fort',
 	aliases: ['ft'],
-	description: 'Shows all Fortnite Player Stats',
+	description: 'Fortnite Commands!',
 	args: true,
-	usage: '[USERNAME] [PC/XB1/PS4]',
+	usage: '[username] [pc/xb1/ps4] | k!fort [status] | k!fort [news]',
 	cooldown: 10,
 	guildOnly: false,
 	execute(message, args) {
 		fortnite.login()
 			.then(() => {
+				if (args[0] === 'status') {
+					fortnite.checkFortniteStatus()
+						.then(status => {
+							if (!status) return message.channel.send('Fortnite is Down! Check https://twitter.com/FortniteGame!');
+							message.channel.send('Fortnite is Online!');
+						})
+						.catch(err => {
+							console.log(err);
+							message.channel.send('Failed to check Fortnite Status!');
+						});
+					return;
+				}
+				if (args[0] === 'news') {
+					fortnite.getFortniteNews('en')
+						.then(news => {
+							const fortNewsEmbed = new Discord.RichEmbed()
+								.setColor('DARK_PURPLE')
+								.setTitle('Fortnite News')
+								.addField(news['br'][0]['title'], news['br'][0]['body'])
+								.addField(news['br'][1]['title'], news['br'][1]['body'])
+								.addField(news['br'][2]['title'], news['br'][2]['body'])
+								.setFooter('@Kaz-Bot')
+								.setTimestamp(new Date());
+							message.channel.send({ embed: fortNewsEmbed });
+						})
+						.catch(err => {
+							console.log(err);
+							message.channel.send('Failed to find Fortnite News!');
+						});
+					return;
+				}
 				fortnite.getStatsBR(args[0], args[1] || 'pc')
 					.then(stats => {
 						ctx.fillStyle = '#000000';
