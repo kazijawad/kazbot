@@ -44,6 +44,6 @@ module.exports = class MagicCommand extends Command {
 
 	async run(message) {
 		const answer = response[Math.floor(Math.random() * response.length)];
-		return message.reply(answer);
+		message.reply(answer);
 	}
 };
