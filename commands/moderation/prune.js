@@ -8,7 +8,7 @@ module.exports = class PruneCommand extends Command {
 			group: 'moderation',
 			memberName: 'prune',
 			description: 'Prunes messages in a text channel.',
-			example: ['prune 1', 'prune 99'],
+			examples: ['prune 1', 'prune 99'],
 			guildOnly: true,
 			args: [
 				{

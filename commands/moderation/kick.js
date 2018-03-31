@@ -7,7 +7,7 @@ module.exports = class KickCommmand extends Command {
 			group: 'moderation',
 			memberName: 'kick',
 			description: 'Kicks a specific user from the server.',
-			example: ['kick @YellowJay#5984', 'kick YellowJay'],
+			examples: ['kick @YellowJay#5984', 'kick YellowJay'],
 			guildOnly: true,
 			args: [
 				{

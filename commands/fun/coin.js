@@ -10,7 +10,7 @@ module.exports = class CoinCommand extends Command {
 			group: 'fun',
 			memberName: 'coin',
 			description: 'Tosses a coin.',
-			example: ['coin', 'toss'],
+			examples: ['coin', 'toss'],
 			guildOnly: false,
 		});
 	}

@@ -30,7 +30,7 @@ module.exports = class MagicCommand extends Command {
 			group: 'fun',
 			memberName: '8ball',
 			description: 'Asks the Magic 8ball a question.',
-			example: ['8ball Will I win my Fortnite games today?'],
+			examples: ['8ball Will I win my Fortnite games today?'],
 			guildOnly: false,
 			args: [
 				{
