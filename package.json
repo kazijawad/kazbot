@@ -30,7 +30,6 @@
     "dotenv": "^5.0.1",
     "ffmpeg-binaries": "^3.2.2-3",
     "fortnite-api": "^2.6.1",
-    "leaguejs": "^1.8.0",
     "node-opus": "^0.2.7",
     "overwatch-js": "^1.6.1",
     "request": "^2.85.0",

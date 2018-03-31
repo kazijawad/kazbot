@@ -27,7 +27,7 @@ module.exports = class FortniteCommand extends Command {
 			args: [
 				{
 					key: 'option',
-					prompt: 'Which Fortnite player would you like to lookup?',
+					prompt: 'Which Fortnite option would you like to use?',
 					type: 'string',
 				},
 				{
