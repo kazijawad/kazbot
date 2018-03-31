@@ -11,6 +11,10 @@ module.exports = class BattleriteCommand extends Command {
 			memberName: 'battlerite',
 			description: 'Shows Battlerite player stats for the specified player',
 			examples: ['br TimmehHD'],
+			throttling: {
+				usages: 2,
+				duration: 10,
+			},
 			guildOnly: false,
 			args: [
 				{
