@@ -22,6 +22,7 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
 	console.log('Logged in as ' + client.user.tag + '!');
+	client.user.setPresence({ game: { name: 'k!help' } });
 	setInterval(() => {
 		dbl.postStats(client.guilds.size);
 	}, 1800000);
