@@ -22,20 +22,18 @@ A list of the available commands!
 ### Server Management Commands
 - ping
 - help
-- prune [NUMBER]
-- kick [MEMBER MENTION]
-- ban [MEMBER MENTION]
+- prune [number]
+- kick [@Discord Member]
+- ban [@Discord Member]
 
 ### Information Commands
 - server
 - user
-- roles
-- role [ROLE NAME]
 - avatar
 - credit
 
 ### Crypto Commands
-- crypto [SPECIFIC COIN]
+- crypto [coin]
 - crypto global
 
 ### Fortnite Commands
@@ -50,16 +48,16 @@ A list of the available commands!
 - ow [username-tag]
 
 ### LoL Commands
-- lol [summoner name]
+- lol [summoner]
 
 ### Fun Commands
-- 8ball [QUESTION]
+- 8ball [question]
 - coin
-- rps [ROCK/PAPER/SCISSORS]
-- reverse [PHRASE]
-- urban [WORD]
+- rps [rock/paper/scissors]
+- reverse [phrase]
+- urban [term]
 
-### Music Commands
+### Music Commands ~Currently Unavailable~
 - play [SONG NAME]
 - stop
 
