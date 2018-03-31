@@ -9,7 +9,7 @@ module.exports = class BattleriteCommand extends Command {
 			aliases: ['br'],
 			group: 'games',
 			memberName: 'battlerite',
-			description: 'Shows Battlerite player stats for the specified player',
+			description: 'Shows Battlerite player stats for the specified player.',
 			examples: ['br TimmehHD'],
 			throttling: {
 				usages: 2,
@@ -41,9 +41,7 @@ module.exports = class BattleriteCommand extends Command {
 				return message.say('Failed to retrieve Battlerite player!');
 			}
 			const info = JSON.parse(body);
-			if (info.data[0] === undefined) {
-				return message.say('Failed to retrieve Battlerite player!');
-			}
+			if (!info.data[0]) return message.say('Failed to retrieve Battlerite player!');
 
 			const stats = info.data[0].attributes.stats;
 			const battleriteEmbed = new RichEmbed()
