@@ -1,3 +1,5 @@
+const { Command } = require('discord.js-commando');
+
 const response = [
 	'It is certain',
 	'It is decidedly so',
@@ -21,15 +23,27 @@ const response = [
 	'Very doubtful',
 ];
 
-module.exports = {
-	name: '8ball',
-	description: 'Ask the magical 8ball questions!',
-	args: true,
-	usage: '[QUESTION]',
-	cooldown: 3,
-	guildOnly: false,
-	execute(message) {
+module.exports = class MagicCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: '8ball',
+			group: 'fun',
+			memberName: '8ball',
+			description: 'Asks the Magic 8ball a question.',
+			example: ['8ball Will I win my Fortnite games today?'],
+			guildOnly: false,
+			args: [
+				{
+					key: 'question',
+					prompt: 'What would you like to ask the Magic 8ball?',
+					type: 'string',
+				},
+			],
+		});
+	}
+
+	async run(message) {
 		const answer = response[Math.floor(Math.random() * response.length)];
 		return message.reply(answer);
-	},
+	}
 };
