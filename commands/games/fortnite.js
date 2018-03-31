@@ -18,7 +18,7 @@ module.exports = class FortniteCommand extends Command {
 			group: 'games',
 			memberName: 'fortnite',
 			description: 'Shows Fortnite player stats for the specified player.',
-			examples: ['ft YellowJay64'],
+			examples: ['ft YellowJay64', 'ft YellowJay64 pc', 'ft status', 'ft news'],
 			throttling: {
 				usages: 2,
 				duration: 10,
