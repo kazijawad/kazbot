@@ -57,8 +57,8 @@ A list of the available commands!
 - reverse [phrase]
 - urban [term]
 
-### Music Commands (Currently Unavailable)
-- play [SONG NAME]
+### Music Commands
+- play [song]
 - stop
 
 ## Built With
