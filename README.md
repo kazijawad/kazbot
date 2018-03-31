@@ -57,7 +57,7 @@ A list of the available commands!
 - reverse [phrase]
 - urban [term]
 
-### Music Commands ~Currently Unavailable~
+### Music Commands (Currently Unavailable)
 - play [SONG NAME]
 - stop
 
