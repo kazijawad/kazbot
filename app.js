@@ -38,11 +38,6 @@ client
 		setInterval(() => {
 			dbl.postStats(client.guilds.size);
 		}, 1800000);
-	})
-	.on('guildMemberAdd', member => {
-		const channel = member.guild.channels.find('name', 'general');
-		if (!channel) return;
-		channel.say(`Welcome to the server, ${member}!`);
 	});
 
 client.login(token);
