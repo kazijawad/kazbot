@@ -42,7 +42,7 @@ client
 	.on('guildMemberAdd', member => {
 		const channel = member.guild.channels.find('name', 'general');
 		if (!channel) return;
-		channel.send(`Welcome to the server, ${member}!`);
+		channel.say(`Welcome to the server, ${member}!`);
 	});
 
 client.login(token);
