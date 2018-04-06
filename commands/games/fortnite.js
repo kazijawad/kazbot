@@ -4,7 +4,7 @@ const { RichEmbed } = require('discord.js');
 const Canvas = require('canvas');
 const Fortnite = require('fortnite-api');
 
-const fortniteAPIKey = [process.env.fortniteEmail, process.env.fortnitePass, process.env.fortniteLaunchToken, process.env.fortniteClientToken];
+const fortniteAPIKey = [process.env.FORTNITE_EMAIL, process.env.FORTNITE_PASS, process.env.FORTNITE_LAUNCH, process.env.FORTNITE_CLIENT];
 const fortnite = new Fortnite(fortniteAPIKey);
 
 const canvas = new Canvas(1000, 800);

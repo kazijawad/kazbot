@@ -6,8 +6,8 @@ const sqlite = require('sqlite');
 const Commando = require('discord.js-commando');
 const DBL = require('dblapi.js');
 
-const token = process.env.token;
-const dbl = new DBL(process.env.botAPIKey);
+const token = process.env.TOKEN;
+const dbl = new DBL(process.env.DBL_API);
 
 const client = new Commando.Client({
 	owner: '221449635254894594',
