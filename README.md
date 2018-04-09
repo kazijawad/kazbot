@@ -30,6 +30,7 @@ A list of the available commands!
 - server
 - user
 - avatar
+- role
 - credit
 
 ### Crypto Commands
