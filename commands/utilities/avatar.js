@@ -16,12 +16,17 @@ module.exports = class AvatarCommand extends Command {
 					key: 'user',
 					prompt: 'What user avatar would you like to see?',
 					type: 'user',
+					default: 'undefined',
 				},
 			],
 		});
 	}
 
 	async run(message, { user }) {
+		if (user === 'undefined') {
+			user = message.author;
+		}
+
 		const avatarEmbed = new RichEmbed()
 			.setTitle(user.username)
 			.setImage(user.avatarURL);
