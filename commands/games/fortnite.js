@@ -126,7 +126,9 @@ module.exports = class FortniteCommand extends Command {
 						const dataURL = canvas.toDataURL();
 						const data = dataURL.replace(/^data:image\/\w+;base64,/, '');
 						const buf = new Buffer(data, 'base64');
-						fs.writeFile('./views/fortnite.png', buf);
+						fs.writeFile('./views/fortnite.png', buf, (err) => {
+							if (err) throw err;
+						});
 
 						message.say({
 							files: [{
