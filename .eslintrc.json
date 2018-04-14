@@ -10,10 +10,8 @@
     "rules": {
         "brace-style": [
             "error",
-            "stroustrup",
-            {
-                "allowSingleLine": true
-            }
+            "1tbs",
+            { "allowSingleLine": true }
         ],
         "comma-dangle": [
             "error",
@@ -30,7 +28,7 @@
             "error",
             "property"
         ],
-        "handle-callback-err": "off",
+        "handle-callback-err": "error",
         "indent": [
             "error",
             "tab",
@@ -38,20 +36,16 @@
         ],
         "max-nested-callbacks": [
             "error",
-            {
-                "max": 4
-            }
+            { "max": 4 }
         ],
         "max-statements-per-line": [
             "error",
-            {
-                "max": 2
-            }
+            { "max": 2 }
         ],
         "no-console": "off",
         "no-empty-function": "error",
         "no-floating-decimal": "error",
-        "no-inline-comments": "error",
+        "no-inline-comments": "off",
         "no-lonely-if": "error",
         "no-multi-spaces": "error",
         "no-multiple-empty-lines": [
@@ -63,14 +57,7 @@
             }
         ],
         "no-shadow": [
-            "error",
-            {
-                "allow": [
-                    "err",
-                    "resolve",
-                    "reject"
-                ]
-            }
+            "error"
         ],
         "no-trailing-spaces": [
             "error"
@@ -95,13 +82,22 @@
             {
                 "anonymous": "never",
                 "named": "never",
-                "asyncArrow": "always"
+                "asyncArrow": "never"
             }
         ],
         "space-in-parens": "error",
         "space-infix-ops": "error",
-        "space-unary-ops": "error",
-        "spaced-comment": "error",
+        "space-unary-ops": [
+            "error",
+            {
+                "words": true, 
+                "nonwords": false
+            }
+        ],
+        "spaced-comment": [
+            "error",
+            "always"
+        ],
         "yoda": "error"
     }
 }

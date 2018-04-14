@@ -57,8 +57,8 @@ module.exports = class LeagueEmbed extends Command {
 				},
 			};
 
-			request(summonerID, (err, resTwo, data) => {
-				if (err) throw err;
+			request(summonerID, (error, resTwo, data) => {
+				if (error) throw err;
 				const stats = JSON.parse(data);
 				if (!stats[0]) return message.say('Failed to retrieve Summoner!');
 

@@ -53,8 +53,7 @@ module.exports = class CryptoCommand extends Command {
 					.setTimestamp(new Date());
 				message.embed(cryptoGlobal);
 			});
-		}
-		else {
+		} else {
 			request(ticker, (err, res, body) => {
 				if (err) {
 					console.log(err);

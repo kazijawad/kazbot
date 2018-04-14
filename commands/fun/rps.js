@@ -28,47 +28,47 @@ module.exports = class CoinCommand extends Command {
 		const draw = `Draw! You both chose ${botChoice}!`;
 
 		switch (playerChoice) {
-		case 'rock':
-			switch (botChoice) {
 			case 'rock':
-				message.say(draw);
+				switch (botChoice) {
+					case 'rock':
+						message.say(draw);
+						break;
+					case 'paper':
+						message.say(botWon);
+						break;
+					case 'scissors':
+						message.say(playerWon);
+						break;
+				}
 				break;
 			case 'paper':
-				message.say(botWon);
+				switch (botChoice) {
+					case 'rock':
+						message.say(playerWon);
+						break;
+					case 'paper':
+						message.say(draw);
+						break;
+					case 'scissors':
+						message.say(botWon);
+						break;
+				}
 				break;
 			case 'scissors':
-				message.say(playerWon);
+				switch (botChoice) {
+					case 'rock':
+						message.say(botWon);
+						break;
+					case 'paper':
+						message.say(playerWon);
+						break;
+					case 'scissors':
+						message.say(draw);
+						break;
+				}
 				break;
-			}
-			break;
-		case 'paper':
-			switch (botChoice) {
-			case 'rock':
-				message.say(playerWon);
-				break;
-			case 'paper':
-				message.say(draw);
-				break;
-			case 'scissors':
-				message.say(botWon);
-				break;
-			}
-			break;
-		case 'scissors':
-			switch (botChoice) {
-			case 'rock':
-				message.say(botWon);
-				break;
-			case 'paper':
-				message.say(playerWon);
-				break;
-			case 'scissors':
-				message.say(draw);
-				break;
-			}
-			break;
-		default:
-			return message.reply('Please pass in an argument with rock/paper/scissors!');
+			default:
+				return message.reply('Please pass in an argument with rock/paper/scissors!');
 		}
 	}
 };

@@ -35,6 +35,9 @@ module.exports = class StopCommand extends Command {
 
 		if (!botChannel) {
 			youtube.search(song, 5, (err, result) => {
+				if (err) {
+					return message.say('Failed to search Youtube!');
+				}
 				const data = result.items;
 				data.forEach((element) => {
 					songTitle.push(element.snippet.title);
@@ -82,8 +85,7 @@ module.exports = class StopCommand extends Command {
 							});
 					});
 			});
-		}
-		else {
+		} else {
 			message.reply('Kaz Bot is already in a voice channel!');
 		}
 	}
