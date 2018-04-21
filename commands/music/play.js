@@ -6,7 +6,7 @@ const ytdl = require('ytdl-core');
 const youtube = new Youtube();
 youtube.setKey(process.env.YOUTUBE_API);
 
-module.exports = class StopCommand extends Command {
+module.exports = class PlayCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'play',
