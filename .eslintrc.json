@@ -98,6 +98,10 @@
             "error",
             "always"
         ],
-        "yoda": "error"
+        "yoda": "error",
+        "eol-last": [
+            "error",
+            "always"
+        ]
     }
 }
