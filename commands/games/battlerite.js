@@ -37,7 +37,7 @@ module.exports = class BattleriteCommand extends Command {
 
 		request(options, (err, res, body) => {
 			if (err) {
-				console.log(err);
+				console.error(err);
 				return message.say('Failed to retrieve Battlerite player!');
 			}
 			const info = JSON.parse(body);

@@ -28,7 +28,7 @@ module.exports = class ReverseCommand extends Command {
 
 		request(options, (err, res, body) => {
 			if (err) {
-				console.log(err);
+				console.error(err);
 				return message.channel.send('Failed to retrieve word from Urban Dictionary!');
 			}
 			const info = JSON.parse(body);

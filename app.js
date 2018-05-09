@@ -1,4 +1,4 @@
-process.on('unhandledRejection', error => console.log(`Uncaught Rejection: ${error}`));
+process.on('unhandledRejection', error => console.warn(`Uncaught Rejection: ${error}`));
 require('dotenv').config();
 
 const path = require('path');
@@ -33,7 +33,7 @@ client.registry
 
 client
 	.on('ready', () => {
-		console.log(`Logged in as ${client.user.tag}!`);
+		console.info(`Logged in as ${client.user.tag}!`);
 		client.user.setPresence({ game: { name: 'k!help' } });
 		setInterval(() => {
 			dbl.postStats(client.guilds.size);

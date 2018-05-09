@@ -39,7 +39,7 @@ module.exports = class WarframeCommand extends Command {
 
 		request(params, (err, res, body) => {
 			if (err) {
-				console.log(err);
+				console.error(err);
 				return message.say('Failed to connect to the Warframe API!');
 			}
 			const feed = JSON.parse(body);

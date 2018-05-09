@@ -36,7 +36,7 @@ module.exports = class CryptoCommand extends Command {
 		if (coin === 'global') {
 			request(global, (err, res, body) => {
 				if (err) {
-					console.log(err);
+					console.error(err);
 					return message.say('Failed to retrieve global information from CoinMarketCap!');
 				}
 				const info = JSON.parse(body);
@@ -56,7 +56,7 @@ module.exports = class CryptoCommand extends Command {
 		} else {
 			request(ticker, (err, res, body) => {
 				if (err) {
-					console.log(err);
+					console.error(err);
 					return message.say('Failed to locate cryptocurrency in CoinMarketCap!');
 				}
 				const info = JSON.parse(body);

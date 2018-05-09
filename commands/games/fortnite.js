@@ -4,8 +4,13 @@ const { RichEmbed } = require('discord.js');
 const Canvas = require('canvas');
 const Fortnite = require('fortnite-api');
 
-const fortniteAPIKey = [process.env.FORTNITE_EMAIL, process.env.FORTNITE_PASS, process.env.FORTNITE_LAUNCH, process.env.FORTNITE_CLIENT];
-const fortnite = new Fortnite(fortniteAPIKey);
+const fortniteAPIKey = [
+	process.env.FORTNITE_EMAIL,
+	process.env.FORTNITE_PASS,
+	process.env.FORTNITE_LAUNCH,
+	process.env.FORTNITE_CLIENT,
+];
+const fortnite = new Fortnite(fortniteAPIKey, { debug: true });
 
 const canvas = new Canvas(1000, 800);
 const ctx = canvas.getContext('2d');
@@ -50,7 +55,7 @@ module.exports = class FortniteCommand extends Command {
 							message.say('Fortnite is Online!');
 						})
 						.catch(err => {
-							console.log(err);
+							console.error(err);
 							message.say('Failed to check Fortnite Status.');
 						});
 					return;
@@ -69,7 +74,7 @@ module.exports = class FortniteCommand extends Command {
 							message.embed(fortNewsEmbed);
 						})
 						.catch(err => {
-							console.log(err);
+							console.error(err);
 							message.say('Failed to find Fortnite News.');
 						});
 					return;
@@ -138,12 +143,12 @@ module.exports = class FortniteCommand extends Command {
 						});
 					})
 					.catch(err => {
-						console.log(err);
+						console.warn(err);
 						message.say('Failed to locate Fortnite Username.');
 					});
 			})
 			.catch(err => {
-				console.log(err);
+				console.error(err);
 				message.say('Failed to connect to Fortnite Servers.');
 			});
 	}

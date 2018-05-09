@@ -40,7 +40,7 @@ module.exports = class LeagueEmbed extends Command {
 
 		request(summonerName, (err, resOne, body) => {
 			if (err) {
-				console.log(err);
+				console.error(err);
 				return message.say('Failed to retrieve Summoner!');
 			}
 

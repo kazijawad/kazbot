@@ -26,10 +26,10 @@
     "canvas": "^1.6.10",
     "dblapi.js": "^1.2.1",
     "discord.js": "^11.3.2",
-    "discord.js-commando": "github:discordjs/Commando#11.2",
+    "discord.js-commando": "^0.10.0",
     "dotenv": "^5.0.1",
     "ffmpeg-binaries": "^3.2.2-3",
-    "fortnite-api": "^2.6.1",
+    "fortnite-api": "^2.11.0",
     "node-opus": "^0.2.7",
     "overwatch-js": "^1.6.1",
     "request": "^2.85.0",
@@ -40,8 +40,5 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "nodemon": "^1.17.2"
-  },
-  "peerDependencies": {
-    "eslint": "^4.18.2"
   }
 }

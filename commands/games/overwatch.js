@@ -52,7 +52,7 @@ module.exports = class OverwatchCommand extends Command {
 				message.embed(owEmbed);
 			})
 			.catch(err => {
-				console.log(err);
+				console.error(err);
 				message.say('Unable to retrieve Overwatch Play Stats!');
 			});
 	}
