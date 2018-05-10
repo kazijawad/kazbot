@@ -28,7 +28,7 @@ module.exports = class BattleriteCommand extends Command {
 
 	async run(message, { username }) {
 		const options = {
-			url: `https://api.dc01.gamelockerapp.com/shards/global/players?filter[playerNames]=${username}`,
+			url: `https://api.developer.battlerite.com/shards/global/players?filter[playerNames]=${username}`,
 			headers: {
 				'Authorization': 'Bearer ' + process.env.BATTLERITE_API,
 				'Accept': 'application/vnd.api+json',
