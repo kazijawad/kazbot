@@ -4,11 +4,8 @@ require('dotenv').config();
 const path = require('path');
 const sqlite = require('sqlite');
 const Commando = require('discord.js-commando');
-const DBL = require('dblapi.js');
 
 const token = process.env.TOKEN;
-const dbl = new DBL(process.env.DBL_API);
-
 const client = new Commando.Client({
 	owner: '221449635254894594',
 	commandPrefix: 'k!',
@@ -35,9 +32,6 @@ client
 	.on('ready', () => {
 		console.info(`Logged in as ${client.user.tag}!`);
 		client.user.setPresence({ game: { name: 'k!help' } });
-		setInterval(() => {
-			dbl.postStats(client.guilds.size);
-		}, 1800000);
 	});
 
 client.login(token);
