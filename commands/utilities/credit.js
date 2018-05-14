@@ -23,7 +23,6 @@ module.exports = class CreditCommand extends Command {
 			.addField('Overwatch API Wrapper', 'https://github.com/gclem/overwatch-js')
 			.addField('League of Legends API', 'https://developer.riotgames.com/api-methods/')
 			.addField('CoinMarketCap API', 'https://coinmarketcap.com/api/')
-			.addField('Urban Dictionary Wrapper', 'https://github.com/SnekJS/urban.js')
 			.addField('Youtube Download Module', 'https://github.com/fent/node-ytdl-core')
 			.addField('Github Repository', 'https://github.com/kazijawad/kaz-bot')
 			.setFooter('@Kaz-Bot')
