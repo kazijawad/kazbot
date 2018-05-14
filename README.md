@@ -39,6 +39,9 @@ A list of the available commands!
 ### Battlerite Commands
 - br [username]
 
+### Warframe Commands
+- wf news [pc/xb1/ps4]
+
 ### Overwatch Commands
 - ow [username-tag]
 

@@ -10,7 +10,7 @@ module.exports = class WarframeCommand extends Command {
 			group: 'games',
 			memberName: 'warframe',
 			description: 'Provides various information on the Warframe World State',
-			examples: ['wf sortie', 'wf news ps4', 'wf alerts xb1'],
+			examples: ['wf news ps4'],
 			throttling: {
 				usages: 5,
 				duration: 20,
@@ -62,7 +62,6 @@ module.exports = class WarframeCommand extends Command {
 				default: {
 					message.say('Invalid warframe option!');
 				}
-					break;
 			}
 		});
 	}
