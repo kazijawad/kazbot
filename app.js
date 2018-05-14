@@ -10,6 +10,7 @@ const client = new Commando.Client({
 	owner: '221449635254894594',
 	commandPrefix: 'k!',
 	disableEveryone: true,
+	unknownCommandResponse: false,
 });
 
 client.setProvider(
@@ -32,6 +33,9 @@ client.registry
 client
 	.on('ready', () => {
 		console.info(`Logged in as ${client.user.tag}!`);
+		setInterval(() => {
+			console.info(client.guilds.size);
+		}, 3600000);
 		client.user.setPresence({ game: { name: 'k!help' } });
 	});
 
