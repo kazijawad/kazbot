@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 
 module.exports = class PlayCommand extends Command {
@@ -28,7 +29,7 @@ module.exports = class PlayCommand extends Command {
 		const voiceChannel = message.member.voiceChannel;
 		const songInfo = await ytdl.getInfo(arg);
 		const song = {
-			title: songInfo.title,
+			title: Util.escapeMarkdown(songInfo.title),
 			url: songInfo.video_url,
 		};
 
