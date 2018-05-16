@@ -6,7 +6,7 @@ module.exports = class SkipCommand extends Command {
 			name: 'skip',
 			group: 'music',
 			memberName: 'skip',
-			description: 'Kaz Bot will skip the music currently playing.',
+			description: 'Skips the music currently playing.',
 			examples: ['skip'],
 			guildOnly: true,
 		});

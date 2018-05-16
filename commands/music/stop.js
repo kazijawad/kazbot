@@ -6,7 +6,7 @@ module.exports = class StopCommand extends Command {
 			name: 'stop',
 			group: 'music',
 			memberName: 'stop',
-			description: 'Kaz Bot will stop the music and leave the voice channel.',
+			description: 'Stops the music and leave the voice channel.',
 			examples: ['stop'],
 			guildOnly: true,
 		});

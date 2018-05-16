@@ -7,7 +7,7 @@ module.exports = class PlayCommand extends Command {
 			name: 'play',
 			group: 'music',
 			memberName: 'play',
-			description: 'Kaz Bot will play music from Youtube.',
+			description: 'Plays music from Youtube.',
 			examples: ['play https://www.youtube.com/watch?v=mOKqNxN4jWM'],
 			guildOnly: true,
 			clientPermissions: ['CONNECT', 'SPEAK'],
@@ -65,12 +65,16 @@ module.exports = class PlayCommand extends Command {
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
+			guildQueue.textChannel.send(`Kaz Bot has left ${guildQueue.voiceChannel.name}`);
 			this.queue.delete(guild.id);
 			return;
 		}
 
 		const stream = ytdl(song.url, { filter: 'audioonly' });
 		const dispatcher = guildQueue.connection.playStream(stream)
+			.on('start', () => {
+				guildQueue.textChannel.send(`Start Playing: ${song.title}`);
+			})
 			.on('end', () => {
 				guildQueue.songs.shift();
 				this.play(guild, guildQueue.songs[0]);
