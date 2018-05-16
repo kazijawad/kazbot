@@ -1,13 +1,13 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class StopCommand extends Command {
+module.exports = class SkipCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'stop',
+			name: 'skip',
 			group: 'music',
-			memberName: 'stop',
-			description: 'Kaz Bot will stop the music and leave the voice channel.',
-			examples: ['stop'],
+			memberName: 'skip',
+			description: 'Kaz Bot will skip the music currently playing.',
+			examples: ['skip'],
 			guildOnly: true,
 		});
 	}
@@ -19,7 +19,6 @@ module.exports = class StopCommand extends Command {
 		if (!queue) return message.reply('There is no music playing right now.');
 		if (!voiceChannel) return message.say('Please join a voice channel first!');
 
-		queue.songs = [];
 		queue.connection.dispatcher.end();
 	}
 
