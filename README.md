@@ -57,6 +57,9 @@ A list of the available commands!
 
 ### Music Commands
 - play [url]
+- queue
+- song
+- volume
 - skip
 - stop
 
