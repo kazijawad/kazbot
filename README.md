@@ -59,7 +59,9 @@ A list of the available commands!
 - play [url]
 - queue
 - song
-- volume
+- volume [value]
+- resume
+- pause
 - skip
 - stop
 
