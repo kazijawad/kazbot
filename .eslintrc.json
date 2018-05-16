@@ -62,7 +62,6 @@
         "no-trailing-spaces": [
             "error"
         ],
-        "no-var": "error",
         "object-curly-spacing": [
             "error",
             "always"

@@ -56,7 +56,7 @@ A list of the available commands!
 - urban [term]
 
 ### Music Commands
-- play [song]
+- play [url]
 - stop
 
 ## Built With

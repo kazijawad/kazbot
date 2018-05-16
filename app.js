@@ -34,7 +34,7 @@ client
 	.on('ready', () => {
 		console.info(`Logged in as ${client.user.tag}!`);
 		setInterval(() => {
-			console.info(client.guilds.size);
+			console.info(`Server Count: ${client.guilds.size}`);
 		}, 3600000);
 		client.user.setPresence({ game: { name: 'k!help' } });
 	});

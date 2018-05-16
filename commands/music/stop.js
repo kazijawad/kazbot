@@ -6,16 +6,26 @@ module.exports = class StopCommand extends Command {
 			name: 'stop',
 			group: 'music',
 			memberName: 'stop',
-			description: 'Stops the music playing.',
+			description: 'Kaz Bot will stop the music and leave the voice channel.',
 			examples: ['stop'],
 			guildOnly: true,
 		});
 	}
 
 	async run(message) {
-		const voiceChannel = message.guild.me.voiceChannel;
-		if (!voiceChannel) return message.say('Kaz Bot is not in a Voice Channel!');
+		const queue = this.queue.get(message.guild.id);
+		const voiceChannel = message.member.voiceChannel;
 
+		if (!queue) return message.reply('There is no music playing right now.');
+		if (!voiceChannel) return message.say('Please join a voice channel first!');
+
+		this.queue.delete(message.guild.id);
 		voiceChannel.leave();
+		message.say(`Kaz Bot has left ${voiceChannel.name}`);
+	}
+
+	get queue() {
+		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
+		return this._queue;
 	}
 };
