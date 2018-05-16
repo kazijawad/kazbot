@@ -31,8 +31,8 @@ module.exports = class VolumeCommand extends Command {
 		if (level === '') {
 			return message.say(`Current Volume: ${queue.volume}`);
 		} else {
-			queue.volume = level;
 			queue.connection.dispatcher.setVolumeLogarithmic(level / 5);
+			queue.volume = level;
 			message.say(`Current Volume: ${queue.volume}`);
 		}
 	}
