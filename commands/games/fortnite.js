@@ -4,13 +4,13 @@ const { RichEmbed } = require('discord.js');
 const Canvas = require('canvas');
 const Fortnite = require('fortnite-api');
 
-const fortniteAPIKey = [
+const fortniteAPI = [
 	process.env.FORTNITE_EMAIL,
 	process.env.FORTNITE_PASS,
 	process.env.FORTNITE_LAUNCH,
 	process.env.FORTNITE_CLIENT,
 ];
-const fortnite = new Fortnite(fortniteAPIKey, { debug: true });
+const fortnite = new Fortnite(fortniteAPI, { debug: true });
 
 const canvas = new Canvas(1000, 800);
 const ctx = canvas.getContext('2d');
@@ -132,7 +132,7 @@ module.exports = class FortniteCommand extends Command {
 						const data = dataURL.replace(/^data:image\/\w+;base64,/, '');
 						const buf = new Buffer(data, 'base64');
 						fs.writeFile('./views/fortnite.png', buf, (err) => {
-							if (err) throw err;
+							if (err) console.error(err);
 						});
 
 						message.say({
