@@ -28,20 +28,33 @@ module.exports = class PlayCommand extends Command {
 	}
 
 	async run(message, { arg }) {
+		const url = arg.replace(/<(.+)>/g, '$1');
+		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+			const playlist = await youtube.getPlaylist(url);
+			const videos = await playlist.getVideos();
+			for (const video of Object.values(videos)) {
+				const videoID = await youtube.getVideoByID(video.id);
+				await this.handleVideo(message, videoID, true);
+			}
+			return message.say(`Playlist: ${playlist.title} has been added to the queue.`);
+		} else {
+			try {
+				var video = await youtube.getVideo(url);
+			} catch (error) {
+				try {
+					var videos = await youtube.searchVideos(url, 1);
+					video = await youtube.getVideoByID(videos[0].id);
+				} catch (err) {
+					return message.say('Failed to find Youtube video.');
+				}
+			}
+			return this.handleVideo(message, video);
+		}
+	}
+
+	async handleVideo(message, video, playlist = false) {
 		const guildQueue = this.queue.get(message.guild.id);
 		const voiceChannel = message.member.voiceChannel;
-
-		const url = arg.replace(/<(.+)>/g, '$1');
-		try {
-			var video = await youtube.getVideo(url);
-		} catch (error) {
-			try {
-				var videos = await youtube.searchVideos(url, 1);
-				video = await youtube.getVideoByID(videos[0].id);
-			} catch (err) {
-				return message.say('Failed to find Youtube video.');
-			}
-		}
 		const song = {
 			id: video.id,
 			title: Util.escapeMarkdown(video.title),
@@ -72,9 +85,9 @@ module.exports = class PlayCommand extends Command {
 			}
 		} else {
 			guildQueue.songs.push(song);
+			if (playlist) return;
 			message.say(`${song.title} has been added to the queue.`);
 		}
-		return undefined;
 	}
 
 	async play(guild, song) {
