@@ -1,6 +1,9 @@
 const { Command } = require('discord.js-commando');
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
+const Youtube = require('simple-youtube-api');
+
+const youtube = new Youtube(process.env.YOUTUBE_API);
 
 module.exports = class PlayCommand extends Command {
 	constructor(client) {
@@ -27,10 +30,22 @@ module.exports = class PlayCommand extends Command {
 	async run(message, { arg }) {
 		const guildQueue = this.queue.get(message.guild.id);
 		const voiceChannel = message.member.voiceChannel;
-		const songInfo = await ytdl.getInfo(arg);
+
+		const url = arg.replace(/<(.+)>/g, '$1');
+		try {
+			var video = await youtube.getVideo(url);
+		} catch (error) {
+			try {
+				var videos = await youtube.searchVideos(url, 1);
+				video = await youtube.getVideoByID(videos[0].id);
+			} catch (err) {
+				return message.say('Failed to find Youtube video.');
+			}
+		}
 		const song = {
-			title: Util.escapeMarkdown(songInfo.title),
-			url: songInfo.video_url,
+			id: video.id,
+			title: Util.escapeMarkdown(video.title),
+			url: `https://www.youtube.com/watch?v=${video.id}`,
 		};
 
 		if (!voiceChannel) return message.reply('Please join a voice channel first!');
