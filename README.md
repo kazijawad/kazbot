@@ -55,8 +55,8 @@ A list of the available commands!
 - reverse [phrase]
 - urban [term]
 
-### Music Commands
-- play [url]
+### Music Commands - Supports Youtube Playlists
+- play [name/url]
 - queue
 - song
 - volume [value]

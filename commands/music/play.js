@@ -1,5 +1,5 @@
 const { Command } = require('discord.js-commando');
-const { Util } = require('discord.js');
+const { Util, RichEmbed } = require('discord.js');
 const ytdl = require('ytdl-core');
 const Youtube = require('simple-youtube-api');
 
@@ -42,8 +42,35 @@ module.exports = class PlayCommand extends Command {
 				var video = await youtube.getVideo(url);
 			} catch (error) {
 				try {
-					var videos = await youtube.searchVideos(url, 1);
-					video = await youtube.getVideoByID(videos[0].id);
+					var videos = await youtube.searchVideos(url, 5);
+					const songTitle = [];
+					const songChannel = [];
+					videos.forEach(element => {
+						songTitle.push(element.title);
+						songChannel.push(element.channel.title);
+					});
+
+					const songEmbed = new RichEmbed()
+						.setColor('AQUA')
+						.setTitle('Song Selection')
+						.setDescription('Please respond with a number.')
+						.addField(`1: ${songTitle[0]}`, songChannel[0])
+						.addField(`2: ${songTitle[1]}`, songChannel[1])
+						.addField(`3: ${songTitle[2]}`, songChannel[2])
+						.addField(`4: ${songTitle[3]}`, songChannel[3])
+						.addField(`5: ${songTitle[4]}`, songChannel[4])
+						.setFooter('@Kaz-Bot')
+						.setTimestamp(new Date());
+					message.embed(songEmbed);
+
+					try {
+						const filter = response => response.content.match(/1|2|3|4|5/);
+						var response = await message.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] });
+					} catch (err) {
+						return message.say('Failed to receive a value from the user.');
+					}
+					const videoIndex = parseInt(response.first().content);
+					video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					return message.say('Failed to find Youtube video.');
 				}
