@@ -31,8 +31,8 @@ A list of the available commands!
 - crypto [coin]
 - crypto global
 
-### Fortnite Commands
-- ft [username] [pc/xb1/ps4]
+### Fortnite Commands - PC set to default platform
+- ft [pc/xb1/ps4] [username]
 - ft status
 - ft news
 
