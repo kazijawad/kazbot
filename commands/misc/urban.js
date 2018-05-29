@@ -26,13 +26,18 @@ module.exports = class ReverseCommand extends Command {
 			'url': `http://api.urbandictionary.com/v0/define?term=${phrase}`,
 		};
 
-		request(options, (err, res, body) => {
-			if (err) {
-				console.error(err);
-				return message.channel.send('Failed to retrieve word from Urban Dictionary!');
+		request(options, (error, res, body) => {
+			if (error) {
+				console.error(`URBAN DICTIONARY API: ${error}`);
+				return message.say('Failed to retrieve word from Urban Dictionary.');
 			}
 			const info = JSON.parse(body);
 			const term = info.list[0];
+
+			if (!term) {
+				return message.say('This word does not exist in Urban Dictionary.');
+			}
+
 			const termEmbed = new RichEmbed()
 				.setColor('LIGHT_GREY')
 				.setTitle(term.word)
