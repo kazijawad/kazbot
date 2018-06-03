@@ -41,8 +41,13 @@ module.exports = class ReverseCommand extends Command {
 			const termEmbed = new RichEmbed()
 				.setColor('LIGHT_GREY')
 				.setTitle(term.word)
-				.addField('Definition', term.definition)
-				.addField('Example', term.example)
+				.addField('Definition', term.definition);
+
+			if (term.example !== undefined && term.example !== null) {
+				termEmbed.addField('Example', term.example);
+			}
+
+			termEmbed
 				.addField('Author', term.author, true)
 				.addField('Thumbs Up', term.thumbs_up, true)
 				.addField('Thumbs Down', term.thumbs_down, true)
