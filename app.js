@@ -4,6 +4,7 @@ require('dotenv').config();
 const path = require('path');
 const sqlite = require('sqlite');
 const Commando = require('discord.js-commando');
+const DBL = require('dblapi.js');
 
 const token = process.env.TOKEN;
 const client = new Commando.Client({
@@ -12,6 +13,7 @@ const client = new Commando.Client({
 	disableEveryone: true,
 	unknownCommandResponse: false,
 });
+const dbl = new DBL(process.env.DBL_API, client); // eslint-disable-line
 
 client.setProvider(
 	sqlite.open(path.join(__dirname, 'settings.sqlite3'))

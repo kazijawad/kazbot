@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "canvas": "^1.6.10",
+    "dblapi.js": "^2.0.1",
     "discord.js": "^11.3.2",
     "discord.js-commando": "^0.10.0",
     "dotenv": "^5.0.1",
