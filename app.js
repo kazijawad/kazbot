@@ -2,23 +2,17 @@ process.on('unhandledRejection', error => console.warn(`Uncaught Rejection: ${er
 require('dotenv').config();
 
 const path = require('path');
-const sqlite = require('sqlite');
-const Commando = require('discord.js-commando');
+const { CommandoClient } = require('discord.js-commando');
 const DBL = require('dblapi.js');
 
 const token = process.env.TOKEN;
-const client = new Commando.Client({
+const client = new CommandoClient({
 	owner: '221449635254894594',
 	commandPrefix: 'k!',
 	disableEveryone: true,
 	unknownCommandResponse: false,
 });
 const dbl = new DBL(process.env.DBL_API, client); // eslint-disable-line
-
-client.setProvider(
-	sqlite.open(path.join(__dirname, 'settings.sqlite3'))
-		.then(db => new Commando.SQLiteProvider(db))
-).catch(console.error);
 
 client.registry
 	.registerDefaults()

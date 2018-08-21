@@ -1,7 +1,7 @@
 const { Command } = require('discord.js-commando');
 const { RichEmbed } = require('discord.js');
 
-module.exports = class AvatarCommand extends Command {
+module.exports = class ServerCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'server',
@@ -17,15 +17,15 @@ module.exports = class AvatarCommand extends Command {
 	async run(message) {
 		const guildEmbed = new RichEmbed()
 			.setColor('DARK_GOLD')
-			.setTitle(message.member.guild.name)
-			.setThumbnail(message.member.guild.iconURL)
+			.setTitle(message.guild.name)
+			.setThumbnail(message.guild.iconURL)
+			.addField('Guild ID', message.guild.id, true)
 			.addField('Server Owner', message.guild.owner.displayName, true)
 			.addField('Total Members', message.guild.memberCount, true)
 			.addField('Server Region', message.guild.region, true)
-			.addField('AFK Channel', message.guild.afkChannel.name, true)
 			.setFooter('@Kaz-Bot')
 			.setTimestamp(new Date());
-
+		if (message.guild.afkChannel) { guildEmbed.addField('AFK Channel', message.guild.afkChannel.name, true); }
 		message.embed(guildEmbed);
 	}
 };
