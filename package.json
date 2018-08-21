@@ -29,12 +29,12 @@
     "discord.js-commando": "^0.10.0",
     "dotenv": "^6.0.0",
     "ffmpeg-binaries": "^4.0.0",
-    "fortnite-api": "^2.11.0",
+    "fortnite-api": "^2.13.0",
     "node-opus": "^0.3.0",
-    "overwatch-js": "^1.6.1",
+    "overwatch-js": "^1.8.0",
     "request": "^2.85.0",
     "simple-youtube-api": "^5.0.2",
-    "ytdl-core": "^0.20.4"
+    "ytdl-core": "^0.24.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
