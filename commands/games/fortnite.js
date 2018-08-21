@@ -1,7 +1,5 @@
-const fs = require('fs');
 const { Command } = require('discord.js-commando');
 const { RichEmbed } = require('discord.js');
-const Canvas = require('canvas');
 const Fortnite = require('fortnite-api');
 
 const fortniteAPI = [
@@ -11,9 +9,6 @@ const fortniteAPI = [
 	process.env.FORTNITE_CLIENT,
 ];
 const fortnite = new Fortnite(fortniteAPI, { debug: true });
-
-const canvas = new Canvas(1000, 800);
-const ctx = canvas.getContext('2d');
 
 module.exports = class FortniteCommand extends Command {
 	constructor(client) {
@@ -78,13 +73,17 @@ module.exports = class FortniteCommand extends Command {
 						default:
 							fortnite.getStatsBR(arg, 'pc')
 								.then(stats => {
-									this.handleFile(stats);
-									message.say({
-										files: [{
-											attachment: './views/fortnite.png',
-											name: 'fortnite.png',
-										}],
-									});
+									const fortStatsEmbed = new RichEmbed()
+										.setColor('PURPLE')
+										.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
+										.addField('Overall', `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`, true)
+										.addField('Solo', `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`, true)
+										.addBlankField()
+										.addField('Duo', `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`, true)
+										.addField('Squad', `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`, true)
+										.setFooter('@Kaz-Bot')
+										.setTimestamp(new Date());
+									message.embed(fortStatsEmbed);
 								})
 								.catch(error => {
 									console.warn(`FORTNITE STATS: ${error}`);
@@ -103,13 +102,17 @@ module.exports = class FortniteCommand extends Command {
 				.then(() => {
 					fortnite.getStatsBR(player, platform[0])
 						.then(stats => {
-							this.handleFile(stats);
-							message.say({
-								files: [{
-									attachment: './views/fortnite.png',
-									name: 'fortnite.png',
-								}],
-							});
+							const fortStatsEmbed = new RichEmbed()
+								.setColor('PURPLE')
+								.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
+								.addField('Overall', `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`, true)
+								.addField('Solo', `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`, true)
+								.addBlankField()
+								.addField('Duo', `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`, true)
+								.addField('Squad', `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`, true)
+								.setFooter('@Kaz-Bot')
+								.setTimestamp(new Date());
+							message.embed(fortStatsEmbed);
 						})
 						.catch(error => {
 							console.warn(`FORTNITE STATS: ${error}`);
@@ -117,61 +120,5 @@ module.exports = class FortniteCommand extends Command {
 						});
 				});
 		}
-	}
-
-	async handleFile(stats) {
-		ctx.fillStyle = '#000000';
-		ctx.fillRect(0, 0, 1000, 150);
-		ctx.fillStyle = '#743c87';
-		ctx.fillRect(0, 150, 1000, 650);
-		ctx.font = '50px sans-serif';
-		ctx.textAlign = 'left';
-		ctx.fillStyle = '#ffffff';
-
-		ctx.fillText(`${stats['info']['username']}`, 70, 70);
-		ctx.font = '30px sans-serif';
-		ctx.fillText(`${stats['lifetimeStats']['wins']} Wins`, 500, 60);
-		ctx.fillText(`${stats['lifetimeStats']['matches']} Matches`, 700, 60);
-		ctx.fillText(`${stats['lifetimeStats']['win%']} Win %`, 70, 130);
-		ctx.fillText(`${stats['lifetimeStats']['kills']} Kills`, 400, 130);
-		ctx.fillText(`${stats['lifetimeStats']['k/d']} K/D`, 730, 130);
-
-		ctx.fillStyle = '#000000';
-		ctx.font = '40px sans-serif';
-		ctx.fillText('Solo', 70, 200);
-		ctx.font = '30px sans-serif';
-		ctx.fillText(`${stats['group']['solo']['wins']} Wins`, 70, 260);
-		ctx.fillText(`${stats['group']['solo']['matches']} Matches`, 400, 260);
-		ctx.fillText(`${stats['group']['solo']['kills']} Kills`, 730, 260);
-		ctx.fillText(`${stats['group']['solo']['win%']} Win %`, 70, 300);
-		ctx.fillText(`${stats['group']['solo']['timePlayed']} Playtime`, 400, 300);
-		ctx.fillText(`${stats['group']['solo']['k/d']} K/D`, 730, 300);
-
-		ctx.font = '40px sans-serif';
-		ctx.fillText('Duo', 70, 400);
-		ctx.font = '30px sans-serif';
-		ctx.fillText(`${stats['group']['duo']['wins']} Wins`, 70, 460);
-		ctx.fillText(`${stats['group']['duo']['matches']} Matches`, 400, 460);
-		ctx.fillText(`${stats['group']['duo']['kills']} Kills`, 730, 460);
-		ctx.fillText(`${stats['group']['duo']['win%']} Win %`, 70, 500);
-		ctx.fillText(`${stats['group']['duo']['timePlayed']} Playtime`, 400, 500);
-		ctx.fillText(`${stats['group']['duo']['k/d']} K/D`, 730, 500);
-
-		ctx.font = '40px sans-serif';
-		ctx.fillText('Squad', 70, 600);
-		ctx.font = '30px sans-serif';
-		ctx.fillText(`${stats['group']['squad']['wins']} Wins`, 70, 660);
-		ctx.fillText(`${stats['group']['squad']['matches']} Matches`, 400, 660);
-		ctx.fillText(`${stats['group']['squad']['kills']} Kills`, 730, 660);
-		ctx.fillText(`${stats['group']['squad']['win%']} Win %`, 70, 700);
-		ctx.fillText(`${stats['group']['squad']['timePlayed']} Playtime`, 400, 700);
-		ctx.fillText(`${stats['group']['squad']['k/d']} K/D`, 730, 700);
-
-		const dataURL = canvas.toDataURL();
-		const data = dataURL.replace(/^data:image\/\w+;base64,/, '');
-		const buf = new Buffer(data, 'base64');
-		fs.writeFile('./views/fortnite.png', buf, (error) => {
-			if (error) console.error(`FORTNITE CANVAS: ${error}`);
-		});
 	}
 };
