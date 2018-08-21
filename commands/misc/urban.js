@@ -1,8 +1,12 @@
 const { Command } = require('discord.js-commando');
 const { RichEmbed } = require('discord.js');
-const request = require('request');
+const axios = require('axios');
 
-module.exports = class ReverseCommand extends Command {
+const instance = axios.create({
+	baseURL: 'http://api.urbandictionary.com/v0',
+});
+
+class UrbanCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'urban',
@@ -22,39 +26,34 @@ module.exports = class ReverseCommand extends Command {
 	}
 
 	async run(message, { phrase }) {
-		const options = {
-			'url': `http://api.urbandictionary.com/v0/define?term=${phrase}`,
-		};
+		instance.get('/define', { params: { term: phrase } })
+			.then(response => {
+				const term = response['data']['list'][0];
+				if (!term) {
+					return message.say(`${phrase} cannot be found on Urban Dictionary`);
+				}
 
-		request(options, (error, res, body) => {
-			if (error) {
-				console.error(`URBAN DICTIONARY API: ${error}`);
-				return message.say('Failed to retrieve word from Urban Dictionary.');
-			}
-			const info = JSON.parse(body);
-			const term = info.list[0];
+				const termEmbed = new RichEmbed()
+					.setColor('LIGHT_GREY')
+					.setTitle(term['word'])
+					.addField('Definition', term['definition']);
 
-			if (!term) {
-				return message.say('This word does not exist in Urban Dictionary.');
-			}
+				if (term['example'] !== undefined && term['example'] !== null) {
+					termEmbed.addField('Example', term['example']);
+				}
 
-			const termEmbed = new RichEmbed()
-				.setColor('LIGHT_GREY')
-				.setTitle(term.word)
-				.addField('Definition', term.definition);
-
-			if (term.example !== undefined && term.example !== null) {
-				termEmbed.addField('Example', term.example);
-			}
-
-			termEmbed
-				.addField('Author', term.author, true)
-				.addField('Thumbs Up', term.thumbs_up, true)
-				.addField('Thumbs Down', term.thumbs_down, true)
-				.setFooter('@Kaz-Bot')
-				.setTimestamp(new Date());
-
-			message.embed(termEmbed);
-		});
+				termEmbed
+					.addField('Author', term['author'], true)
+					.addField('Thumbs Up', term['thumbs_up'], true)
+					.addField('Thumbs Down', term['thumbs_down'], true)
+					.setFooter('@Kaz-Bot')
+					.setTimestamp(new Date());
+				message.embed(termEmbed);
+			})
+			.catch(() => {
+				message.say('Failed to retrieve word from Urban Dictionary.');
+			});
 	}
-};
+}
+
+module.exports = UrbanCommand;
