@@ -12,7 +12,11 @@ const client = new CommandoClient({
 	disableEveryone: true,
 	unknownCommandResponse: false,
 });
-const dbl = new DBL(process.env.DBL_API, client); // eslint-disable-line
+
+const dbl = new DBL(process.env.DBL_API, client);
+dbl.on('posted', () => {
+	console.info('Server count posted to DBL');
+});
 
 client.registry
 	.registerDefaults()
@@ -26,13 +30,12 @@ client.registry
 	])
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 
-client
-	.on('ready', () => {
-		console.info(`Logged in as ${client.user.tag}!`);
-		setInterval(() => {
-			console.info(`Server Count: ${client.guilds.size}`);
-		}, 3600000);
-		client.user.setPresence({ game: { name: 'k!help' } });
-	});
+client.on('ready', () => {
+	console.info(`Logged in as ${client.user.tag}!`);
+	setInterval(() => {
+		console.info(`Server Count: ${client.guilds.size}`);
+	}, 3600000);
+	client.user.setPresence({ game: { name: 'k!help' } });
+});
 
 client.login(token);
