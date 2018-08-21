@@ -23,7 +23,7 @@ const response = [
 	'Very doubtful',
 ];
 
-module.exports = class MagicCommand extends Command {
+class MagicCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: '8ball',
@@ -46,4 +46,6 @@ module.exports = class MagicCommand extends Command {
 		const answer = response[Math.floor(Math.random() * response.length)];
 		message.reply(answer);
 	}
-};
+}
+
+module.exports = MagicCommand;

@@ -2,7 +2,7 @@ const { Command } = require('discord.js-commando');
 
 const coins = ['Heads', 'Tails'];
 
-module.exports = class CoinCommand extends Command {
+class CoinCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'coin',
@@ -19,4 +19,6 @@ module.exports = class CoinCommand extends Command {
 		const winner = coins[Math.floor(Math.random() * coins.length)];
 		message.reply(winner);
 	}
-};
+}
+
+module.exports = CoinCommand;

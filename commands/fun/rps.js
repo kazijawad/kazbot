@@ -2,19 +2,19 @@ const { Command } = require('discord.js-commando');
 
 const choices = ['rock', 'paper', 'scissors'];
 
-module.exports = class CoinCommand extends Command {
+class RPSCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'rps',
 			group: 'fun',
 			memberName: 'rps',
-			description: 'Plays Rock, Paper, Scissors with the bot.',
+			description: 'Plays Rock, Paper, Scissors with KazBot.',
 			examples: ['rps rock', 'rps paper', 'rps scissors'],
 			guildOnly: false,
 			args: [
 				{
 					key: 'playerChoice',
-					prompt: 'What would you like to choose?',
+					prompt: 'What would you like to play?',
 					type: 'string',
 				},
 			],
@@ -71,4 +71,6 @@ module.exports = class CoinCommand extends Command {
 				return message.reply('Please pass in an argument with rock/paper/scissors!');
 		}
 	}
-};
+}
+
+module.exports = RPSCommand;
