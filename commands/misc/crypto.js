@@ -1,83 +1,89 @@
 const { Command } = require('discord.js-commando');
 const { RichEmbed } = require('discord.js');
-const request = require('request');
+const axios = require('axios');
 
-module.exports = class CryptoCommand extends Command {
+const instance = axios.create({
+	baseURL: 'https://pro-api.coinmarketcap.com',
+	headers: { 'X-CMC_PRO_API_KEY': process.env.COIN_API },
+});
+
+class CryptoCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'crypto',
 			group: 'misc',
 			memberName: 'crypto',
 			description: 'Retrieves CryptoCurrency information from CoinMarketCap',
-			examples: ['crypto bitcoin', 'crypto global'],
+			examples: ['crypto BTC', 'crypto global'],
+			guildOnly: false,
 			throttling: {
 				usages: 2,
 				duration: 10,
 			},
-			guildOnly: false,
 			args: [
 				{
 					key: 'coin',
 					prompt: 'Which crypto would you like to lookup?',
 					type: 'string',
 				},
+				{
+					key: 'market',
+					prompt: 'What currency would you like market quotes in?',
+					type: 'string',
+					default: 'USD',
+				},
 			],
 		});
 	}
 
-	async run(message, { coin }) {
-		const ticker = {
-			'url': `https://api.coinmarketcap.com/v1/ticker/${coin}/`,
-		};
-		const global = {
-			'url': `https://api.coinmarketcap.com/v1/${coin}/`,
-		};
-
+	async run(message, { coin, market }) {
 		if (coin === 'global') {
-			request(global, (err, res, body) => {
-				if (err) {
-					console.error(err);
-					return message.say('Failed to retrieve global information from CoinMarketCap!');
-				}
-				const info = JSON.parse(body);
-				const cryptoGlobal = new RichEmbed()
-					.setColor('GREEN')
-					.setTitle('Global Crypto Info')
-					.addField('Total USD Market Cap', info.total_market_cap_usd, true)
-					.addField('Total 24HR USD Volume', info.total_24h_volume_usd, true)
-					.addField('Bitcoin % of Market Cap', info.bitcoin_percentage_of_market_cap, true)
-					.addField('Active Currencies', info.active_currencies, true)
-					.addField('Active Assets', info.active_assets, true)
-					.addField('Active Markets', info.active_markets, true)
-					.setFooter('@Kaz-Bot')
-					.setTimestamp(new Date());
-				message.embed(cryptoGlobal);
-			});
+			instance.get('/v1/global-metrics/quotes/latest', { params: { convert: market } })
+				.then(response => {
+					const global = response['data']['data'];
+					const cryptoGlobal = new RichEmbed()
+						.setColor('GREEN')
+						.setTitle('Global Crypto Info')
+						.addField('Bitcoin Dominance', global['btc_dominance'], true)
+						.addField('Ethereum Dominance', global['eth_dominance'], true)
+						.addField('Active Cryptocurrencies', global['active_cryptocurrencies'], true)
+						.addField('Active Market Pairs', global['active_market_pairs'], true)
+						.addField('Active Exchanges', global['active_exchanges'], true)
+						.addField('Total Market Cap', global['quote'][market]['total_market_cap'], true)
+						.addField('Total 24hr Volume', global['quote'][market]['total_volume_24h'], true)
+						.setFooter('@Kaz-Bot')
+						.setTimestamp(new Date());
+					message.embed(cryptoGlobal);
+				})
+				.catch(error => {
+					console.warn(`COIN API: ${error}`);
+					message.say('Failed to locate cryptocurrency in CoinMarketCap!');
+				});
 		} else {
-			request(ticker, (err, res, body) => {
-				if (err) {
-					console.error(err);
-					return message.say('Failed to locate cryptocurrency in CoinMarketCap!');
-				}
-				const info = JSON.parse(body);
-				const crypto = info[0];
-				if (!crypto) return message.say('Failed to locate cryptocurrency in CoinMarketCap!');
-
-				const cryptoInfo = new RichEmbed()
-					.setColor('GREEN')
-					.setTitle(crypto.name)
-					.addField('Symbol', crypto.symbol, true)
-					.addField('Rank', crypto.rank, true)
-					.addField('USD Price', crypto.price_usd, true)
-					.addField('BTC Price', crypto.price_btc, true)
-					.addField('USD Market Cap', crypto.market_cap_usd, true)
-					.addField('Available Supply', crypto.available_supply, true)
-					.addField('Total Supply', crypto.total_supply, true)
-					.addField('Max Supply', crypto.max_supply, true)
-					.setFooter('@Kaz-Bot')
-					.setTimestamp(new Date());
-				message.embed(cryptoInfo);
-			});
+			instance.get('/v1/cryptocurrency/quotes/latest', { params: { symbol: coin, convert: market } })
+				.then(response => {
+					const crypto = response['data']['data'][coin];
+					console.log(crypto);
+					const cryptoInfo = new RichEmbed()
+						.setColor('GREEN')
+						.setTitle(crypto['name'])
+						.addField('Symbol', crypto['symbol'], true)
+						.addField('Rank', crypto['cmc_rank'], true)
+						.addField('Price', crypto['quote'][market]['price'], true)
+						.addField('Market Cap', crypto['quote'][market]['market_cap'], true)
+						.addField('Circulating Supply', crypto['circulating_supply'], true)
+						.addField('Total Supply', crypto['total_supply'], true)
+						.addField('Max Supply', crypto['max_supply'], true)
+						.setFooter('@Kaz-Bot')
+						.setTimestamp(new Date());
+					message.embed(cryptoInfo);
+				})
+				.catch(error => {
+					console.warn(`COIN API: ${error}`);
+					message.say('Failed to retrieve global information from CoinMarketCap!');
+				});
 		}
 	}
-};
+}
+
+module.exports = CryptoCommand;
