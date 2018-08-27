@@ -1,10 +1,10 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 
-module.exports = class RoleCommand extends Command {
+class RoleCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'role',
+			aliases: ['roles'],
 			group: 'utilities',
 			memberName: 'role',
 			description: 'Retrieves role of the specified user.',
@@ -22,20 +22,54 @@ module.exports = class RoleCommand extends Command {
 	}
 
 	async run(message, { member }) {
-		if (member === 'undefined') {
-			member = message.member;
-		}
+		if (member === 'undefined') { member = message.member; }
+		const memberColor = member.colorRole ? member.colorRole.color : 0xff0055;
+		const hoistRole = member.hoistRole ? member.hoistRole.name : 'N/A';
+		const colorRole = member.colorRole ? member.colorRole.name : 'N/A';
 
 		const roles = member.roles.map(r => r.name).join(' | ');
-		const roleEmbed = new RichEmbed()
-			.setColor(member.hoistRole.color)
-			.setTitle(message.guild.name)
-			.addField('Highest Role', member.highestRole.name, true)
-			.addField('Hoist Role', member.hoistRole.name, true)
-			.addField('Roles:', roles)
-			.setFooter('@Kaz-Bot')
-			.setTimestamp(new Date());
+		const roleEmbed = {
+			color: memberColor,
+			title: message.guild.name,
+			author: {
+				name: 'YellowJay',
+				icon_url: process.env.AVATAR_URL,
+				url: 'https://kazijawad.github.io/',
+			},
+			thumbnail: {
+				url: message.author.avatarURL,
+			},
+			fields: [
+				{
+					name: 'Highest Role',
+					value: member.highestRole.name,
+					inline: true,
+				},
+				{
+					name: 'Hoist Role',
+					value: hoistRole,
+					inline: true,
+				},
+				{
+					name: 'Color Role',
+					value: colorRole,
+					inline: true,
+				},
+				{
+					name: 'Roles:',
+					value: roles,
+					inline: true,
+				},
+			],
+			timestamp: new Date(),
+			footer: {
+				text: '@KazBot',
+				icon_url: message.client.user.avatarURL,
+			},
+		};
 
 		message.embed(roleEmbed);
 	}
-};
+}
+
+module.exports = RoleCommand;
