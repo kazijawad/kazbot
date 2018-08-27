@@ -1,8 +1,18 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
-const request = require('request');
+const axios = require('axios');
 
-module.exports = class LeagueEmbed extends Command {
+const instance = axios.create({
+	baseURL: 'https://na1.api.riotgames.com/lol',
+	headers: {
+		'Origin': 'https://developer.riotgames.com',
+		'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
+		'X-Riot-Token': process.env.LEAGUE_API,
+		'Accept-Language': 'en-US,en;q=0.9',
+		'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
+	},
+});
+
+class LeagueEmbed extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'league',
@@ -27,54 +37,75 @@ module.exports = class LeagueEmbed extends Command {
 	}
 
 	async run(message, { summoner }) {
-		const summonerName = {
-			url: `https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/${summoner}`,
-			headers: {
-				'Origin': 'https://developer.riotgames.com',
-				'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
-				'X-Riot-Token': process.env.LEAGUE_API,
-				'Accept-Language': 'en-US,en;q=0.9',
-				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
-			},
-		};
+		instance.get(`/summoner/v3/summoners/by-name/${summoner}`)
+			.then(response => {
+				const id = response['data']['id'];
+				instance.get(`/league/v3/positions/by-summoner/${id}`)
+					.then(res => {
+						const lolEmbed = {
+							color: 0xd63031,
+							title: `${res['data'][0]['playerOrTeamName']}'s LoL Stats`,
+							author: {
+								name: 'YellowJay',
+								icon_url: process.env.AVATAR_URL,
+								url: 'https://kazijawad.github.io/',
+							},
+							fields: [
+								{
+									name: 'League Name',
+									value: res['data'][0]['leagueName'],
+									inline: true,
+								},
+								{
+									name: 'League Points',
+									value: res['data'][0]['leaguePoints'],
+									inline: true,
+								},
+								{
+									name: 'Tier',
+									value: res['data'][0]['tier'],
+									inline: true,
+								},
+								{
+									name: 'Rank',
+									value: res['data'][0]['rank'],
+									inline: true,
+								},
+								{
+									name: 'Queue Type',
+									value: res['data'][0]['queueType'],
+									inline: true,
+								},
+								{
+									name: 'Total Wins',
+									value: res['data'][0]['wins'],
+									inline: true,
+								},
+								{
+									name: 'Total Losses',
+									value: res['data'][0]['losses'],
+									inline: true,
+								},
+							],
+							timestamp: new Date(),
+							footer: {
+								text: '@KazBot',
+								icon_url: message.client.user.avatarURL,
+							},
+						};
 
-		request(summonerName, (err, resOne, body) => {
-			if (err) {
-				console.error(err);
-				return message.say('Failed to retrieve Summoner!');
-			}
-
-			const info = JSON.parse(body);
-			const id = info.id;
-			const summonerID = {
-				url: `https://na1.api.riotgames.com/lol/league/v3/positions/by-summoner/${id}`,
-				headers: {
-					'Origin': 'https://developer.riotgames.com',
-					'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
-					'X-Riot-Token': process.env.LEAGUE_API,
-					'Accept-Language': 'en-US,en;q=0.9',
-					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
-				},
-			};
-
-			request(summonerID, (error, resTwo, data) => {
-				if (error) throw err;
-				const stats = JSON.parse(data);
-				if (!stats[0]) return message.say('Failed to retrieve Summoner!');
-
-				const lolEmbed = new RichEmbed()
-					.setColor('RED')
-					.setTitle(stats[0]['playerOrTeamName'] + '\'s LoL Stats')
-					.addField('Level', info['summonerLevel'], true)
-					.addField('Tier', stats[0]['tier'], true)
-					.addField('Rank', stats[0]['rank'], true)
-					.addField('Queue Type', stats[0]['queueType'], true)
-					.addField('Total Wins', stats[0]['wins'], true)
-					.addField('Total Losses', stats[0]['losses'], true)
-					.setTimestamp(new Date())
-					.setFooter('@Kaz-Bot');
-				message.embed(lolEmbed);
+						message.embed(lolEmbed);
+					})
+					.catch(error => {
+						console.error(`LEAGUE API ${error}`);
+						message.say('Failed to retrieve Summoner ID!');
+					});
+			})
+			.catch(error => {
+				console.error(`LEAGUE API ${error}`);
+				message.say('Failed to retrieve Summoner Name!');
 			});
-		});
 	}
-};
+}
+
+module.exports = LeagueEmbed;
