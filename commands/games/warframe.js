@@ -1,8 +1,11 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
-const request = require('request');
+const axios = require('axios');
 
-module.exports = class WarframeCommand extends Command {
+const instance = axios.create({
+	baseURL: 'https://api.warframestat.us',
+});
+
+class WarframeCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'warframe',
@@ -33,36 +36,47 @@ module.exports = class WarframeCommand extends Command {
 	}
 
 	async run(message, { option, platform }) {
-		const params = {
-			url: `https://api.warframestat.us/${platform}`,
-		};
+		instance.get(`/${platform}`)
+			.then(response => {
+				const data = response['data'];
+				switch (option) {
+					case 'news': {
+						const feed = data['news'][0];
+						const newsEmbed = {
+							color: 0xffd700,
+							title: 'Warframe News',
+							author: {
+								name: 'YellowJay',
+								icon_url: process.env.AVATAR_URL,
+								url: 'https://kazijawad.github.io/',
+							},
+							description: feed.message,
+							fields: [
+								{
+									name: 'ETA',
+									value: feed.eta,
+								},
+							],
+							timestamp: new Date(),
+							footer: {
+								text: '@KazBot',
+								icon_url: message.client.user.avatarURL,
+							},
+						};
 
-		request(params, (err, res, body) => {
-			if (err) {
-				console.error(err);
-				return message.say('Failed to connect to the Warframe API!');
-			}
-			const feed = JSON.parse(body);
-
-			switch (option) {
-				case 'news': {
-					const info = feed.news[feed.news.length - 1];
-
-					const newsEmbed = new RichEmbed()
-						.setColor('GOLD')
-						.setTitle('Warframe News')
-						.setDescription(info.message)
-						.addField('ETA', info.eta)
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
-
-					message.embed(newsEmbed);
-					break;
+						message.embed(newsEmbed);
+						break;
+					}
+					default: {
+						message.say('Invalid warframe option!');
+					}
 				}
-				default: {
-					message.say('Invalid warframe option!');
-				}
-			}
-		});
+			})
+			.catch(error => {
+				console.error(`WARFRAME API: ${error}`);
+				message.say('Failed to connect to the Warframe API!');
+			});
 	}
-};
+}
+
+module.exports = WarframeCommand;
