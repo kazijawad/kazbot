@@ -1,7 +1,6 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 
-module.exports = class ServerCommand extends Command {
+class ServerCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'server',
@@ -15,17 +14,65 @@ module.exports = class ServerCommand extends Command {
 	}
 
 	async run(message) {
-		const guildEmbed = new RichEmbed()
-			.setColor('DARK_GOLD')
-			.setTitle(message.guild.name)
-			.setThumbnail(message.guild.iconURL)
-			.addField('Guild ID', message.guild.id, true)
-			.addField('Server Owner', message.guild.owner.displayName, true)
-			.addField('Total Members', message.guild.memberCount, true)
-			.addField('Server Region', message.guild.region, true)
-			.setFooter('@Kaz-Bot')
-			.setTimestamp(new Date());
-		if (message.guild.afkChannel) { guildEmbed.addField('AFK Channel', message.guild.afkChannel.name, true); }
+		const afkChannel = message.guild.afkChannel ? message.guild.afkChannel.name : 'N/A';
+
+		const guildEmbed = {
+			color: 0xb8860b,
+			title: message.guild.name,
+			author: {
+				name: 'YellowJay',
+				icon_url: process.env.AVATAR_URL,
+				url: 'https://kazijawad.github.io/',
+				thumbnail: {
+					url: message.guild.iconURL,
+				},
+				fields: [
+					{
+						name: 'Guild ID',
+						value: message.guild.id,
+						inline: true,
+					},
+					{
+						name: 'Guild Owner',
+						value: message.guild.owner.displayName,
+						inline: true,
+					},
+					{
+						name: 'Member Count',
+						value: message.guild.memberCount,
+						inline: true,
+					},
+					{
+						name: 'Guild Region',
+						value: message.guild.region,
+						inline: true,
+					},
+					{
+						name: 'AFK Channel',
+						value: afkChannel,
+						inline: true,
+					},
+					{
+						name: 'Creation',
+						value: message.guild.createdAt,
+						inline: true,
+					},
+					{
+						name: 'Default Role',
+						value: message.guild.defaultRole,
+						inline: true,
+					},
+				],
+				timestamp: new Date(),
+				footer: {
+					text: '@KazBot',
+					icon_url: message.client.user.avatarURL,
+				},
+			},
+		};
+
 		message.embed(guildEmbed);
 	}
-};
+}
+
+module.exports = ServerCommand;
