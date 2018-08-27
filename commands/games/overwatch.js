@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 const Overwatch = require('overwatch-js');
 
 module.exports = class OverwatchCommand extends Command {
@@ -35,24 +34,70 @@ module.exports = class OverwatchCommand extends Command {
 	async run(message, { username, platform }) {
 		Overwatch.getOverall(platform, 'us', username)
 			.then(stats => {
-				const owEmbed = new RichEmbed()
-					.setColor('BLUE')
-					.setTitle(stats['profile']['nick'] + '\'s Competitve Overwatch Stats')
-					.setThumbnail(stats['profile']['avatar'])
-					.addField('Level', stats['profile']['level'], true)
-					.addField('Rank', stats['profile']['ranking'] + ' | ' + stats['profile']['rank'], true)
-					.addField('Total Wins', stats['competitive']['global']['games_won'], true)
-					.addField('Total Kills', stats['competitive']['global']['eliminations'], true)
-					.addField('Total Deaths', stats['competitive']['global']['deaths'], true)
-					.addField('Best MultiKill', stats['competitive']['global']['multikill_best'], true)
-					.addField('Most Gold Medals', stats['competitive']['global']['medals_gold'])
-					.addField('Total Playtime', stats['competitive']['global']['time_played'])
-					.setTimestamp(new Date())
-					.setFooter('@Kaz-Bot');
+				const owEmbed = {
+					color: 0xff9f43,
+					title: `${stats['profile']['nick']}'s Competitve Overwatch Stats`,
+					author: {
+						name: 'YellowJay',
+						icon_url: process.env.AVATAR_URL,
+						url: 'https://kazijawad.github.io/',
+					},
+					thumbnail: {
+						url: stats['profile']['avatar'],
+					},
+					fields: [
+						{
+							name: 'Level',
+							value: stats['profile']['level'],
+							inline: true,
+						},
+						{
+							name: 'Rank',
+							value: `${stats['profile']['ranking']} | ${stats['profile']['rank']}`,
+							inline: true,
+						},
+						// {
+						// 	name: 'Total Wins',
+						// 	value: stats['competitive']['global']['games_won'],
+						// 	inline: true,
+						// },
+						// {
+						// 	name: 'Total Kills',
+						// 	value: stats['competitive']['global']['eliminations'],
+						// 	inline: true,
+						// },
+						// {
+						// 	name: 'Total Deaths',
+						// 	value: stats['competitive']['global']['deaths'],
+						// 	inline: true,
+						// },
+						// {
+						// 	name: 'Best MultiKill',
+						// 	value: stats['competitive']['global']['multikill_best'],
+						// 	inline: true,
+						// },
+						// {
+						// 	name: 'Most Gold Medals',
+						// 	value: stats['competitive']['global']['medals_gold'],
+						// 	inline: true,
+						// },
+						// {
+						// 	name: 'Total Playtime',
+						// 	value: stats['competitive']['global']['time_played'],
+						// 	inline: true,
+						// },
+					],
+					timestamp: new Date(),
+					footer: {
+						text: '@KazBot',
+						icon_url: message.client.user.avatarURL,
+					},
+				};
+
 				message.embed(owEmbed);
 			})
-			.catch(err => {
-				console.error(err);
+			.catch(error => {
+				console.error(`OVERWATCH API: ${error}`);
 				message.say('Unable to retrieve Overwatch Play Stats!');
 			});
 	}
