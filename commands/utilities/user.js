@@ -1,7 +1,6 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 
-module.exports = class UserCommand extends Command {
+class UserCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'user',
@@ -15,17 +14,48 @@ module.exports = class UserCommand extends Command {
 	}
 
 	async run(message) {
-		const userEmbed = new RichEmbed()
-			.setColor(message.member.roles.color)
-			.setTitle(message.member.displayName)
-			.setThumbnail(message.author.avatarURL)
-			.addField('Discord ID', message.author.id, true)
-			.addField('Discord Tag', message.author.tag, true)
-			.addField('Role Name', message.member.highestRole.name, true)
-			.addField('Role Position', message.member.highestRole.position, true)
-			.setFooter('@Kaz-Bot')
-			.setTimestamp(new Date());
+		const userEmbed = {
+			color: message.member.roles.color,
+			title: message.member.displayName,
+			author: {
+				name: 'YellowJay',
+				icon_url: process.env.AVATAR_URL,
+				url: 'https://kazijawad.github.io/',
+			},
+			thumbnail: {
+				url: message.author.avatarURL,
+			},
+			fields: [
+				{
+					name: 'Discord ID',
+					value: message.author.id,
+					inline: true,
+				},
+				{
+					name: 'Discord Tag',
+					value: message.author.tag,
+					inline: true,
+				},
+				{
+					name: 'Role Name',
+					value: message.member.highestRole.name,
+					inline: true,
+				},
+				{
+					name: 'Role Position',
+					value: message.member.highestRole.position,
+					inline: true,
+				},
+			],
+			timestamp: new Date(),
+			footer: {
+				text: '@KazBot',
+				icon_url: message.client.user.avatarURL,
+			},
+		};
 
 		message.embed(userEmbed);
 	}
-};
+}
+
+module.exports = UserCommand;
