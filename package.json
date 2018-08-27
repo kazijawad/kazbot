@@ -32,7 +32,6 @@
     "fortnite-api": "^2.13.0",
     "node-opus": "^0.3.0",
     "overwatch-js": "^1.8.0",
-    "request": "^2.85.0",
     "simple-youtube-api": "^5.0.2",
     "ytdl-core": "^0.24.0"
   },
