@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class ReverseCommand extends Command {
+class ReverseCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'reverse',
@@ -23,4 +23,6 @@ module.exports = class ReverseCommand extends Command {
 		const reverse = string.split('').reverse().join('');
 		message.say(`${string} ---> ${reverse}`);
 	}
-};
+}
+
+module.exports = ReverseCommand;
