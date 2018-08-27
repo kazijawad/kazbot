@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 const axios = require('axios');
 
 const instance = axios.create({
@@ -41,18 +40,58 @@ class CryptoCommand extends Command {
 			instance.get('/v1/global-metrics/quotes/latest', { params: { convert: market } })
 				.then(response => {
 					const global = response['data']['data'];
-					const cryptoGlobal = new RichEmbed()
-						.setColor('GREEN')
-						.setTitle('Global Crypto Info')
-						.addField('Bitcoin Dominance', global['btc_dominance'], true)
-						.addField('Ethereum Dominance', global['eth_dominance'], true)
-						.addField('Active Cryptocurrencies', global['active_cryptocurrencies'], true)
-						.addField('Active Market Pairs', global['active_market_pairs'], true)
-						.addField('Active Exchanges', global['active_exchanges'], true)
-						.addField('Total Market Cap', global['quote'][market]['total_market_cap'], true)
-						.addField('Total 24hr Volume', global['quote'][market]['total_volume_24h'], true)
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
+					const cryptoGlobal = {
+						color: 0x008000,
+						title: 'Global Crypto Info',
+						author: {
+							name: 'YellowJay',
+							icon_url: process.env.AVATAR_URL,
+							url: 'https://kazijawad.github.io/',
+						},
+						fields: [
+							{
+								name: 'Bitcoin Dominance',
+								value: global['btc_dominance'].toString(),
+								inline: true,
+							},
+							{
+								name: 'Ethereum Dominance',
+								value: global['eth_dominance'].toString(),
+								inline: true,
+							},
+							{
+								name: 'Active Cryptocurrencies',
+								value: global['active_cryptocurrencies'],
+								inline: true,
+							},
+							{
+								name: 'Active Market Pairs',
+								value: global['active_market_pairs'],
+								inline: true,
+							},
+							{
+								name: 'Active Exchanges',
+								value: global['active_exchanges'],
+								inline: true,
+							},
+							{
+								name: 'Total Market Cap',
+								value: global['quote'][market]['total_market_cap'].toString(),
+								inline: true,
+							},
+							{
+								name: 'Total 24hr Volume',
+								value: global['quote'][market]['total_volume_24h'].toString(),
+								inline: true,
+							},
+						],
+						timestamp: new Date(),
+						footer: {
+							text: '@KazBot',
+							icon_url: message.client.user.avatarURL,
+						},
+					};
+
 					message.embed(cryptoGlobal);
 				})
 				.catch(error => {
@@ -63,19 +102,58 @@ class CryptoCommand extends Command {
 			instance.get('/v1/cryptocurrency/quotes/latest', { params: { symbol: coin, convert: market } })
 				.then(response => {
 					const crypto = response['data']['data'][coin];
-					console.log(crypto);
-					const cryptoInfo = new RichEmbed()
-						.setColor('GREEN')
-						.setTitle(crypto['name'])
-						.addField('Symbol', crypto['symbol'], true)
-						.addField('Rank', crypto['cmc_rank'], true)
-						.addField('Price', crypto['quote'][market]['price'], true)
-						.addField('Market Cap', crypto['quote'][market]['market_cap'], true)
-						.addField('Circulating Supply', crypto['circulating_supply'], true)
-						.addField('Total Supply', crypto['total_supply'], true)
-						.addField('Max Supply', crypto['max_supply'], true)
-						.setFooter('@Kaz-Bot')
-						.setTimestamp(new Date());
+					const cryptoInfo = {
+						color: 0x008000,
+						title: crypto['name'],
+						author: {
+							name: 'YellowJay',
+							icon_url: process.env.AVATAR_URL,
+							url: 'https://kazijawad.github.io/',
+						},
+						fields: [
+							{
+								name: 'Symbol',
+								value: crypto['symbol'],
+								inline: true,
+							},
+							{
+								name: 'Rank',
+								value: crypto['cmc_rank'],
+								inline: true,
+							},
+							{
+								name: 'Price',
+								value: crypto['quote'][market]['price'].toString(),
+								inline: true,
+							},
+							{
+								name: 'Market Cap',
+								value: crypto['quote'][market]['market_cap'].toString(),
+								inline: true,
+							},
+							{
+								name: 'Circulating Supply',
+								value: crypto['circulating_supply'],
+								inline: true,
+							},
+							{
+								name: 'Total Supply',
+								value: crypto['total_supply'],
+								inline: true,
+							},
+							{
+								name: 'Max Supply',
+								value: crypto['max_supply'],
+								inline: true,
+							},
+						],
+						timestamp: new Date(),
+						footer: {
+							text: '@KazBot',
+							icon_url: message.client.user.avatarURL,
+						},
+					};
+
 					message.embed(cryptoInfo);
 				})
 				.catch(error => {
