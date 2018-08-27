@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class KickCommmand extends Command {
+class KickCommmand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'kick',
@@ -9,6 +9,8 @@ module.exports = class KickCommmand extends Command {
 			description: 'Kicks a specific user from the server.',
 			examples: ['kick @YellowJay#5984', 'kick YellowJay'],
 			guildOnly: true,
+			clientPermissions: ['KICK_MEMBERS'],
+			userPermissions: ['KICK_MEMBERS'],
 			args: [
 				{
 					key: 'member',
@@ -19,16 +21,11 @@ module.exports = class KickCommmand extends Command {
 		});
 	}
 
-	hasPermission(message) {
-		return message.member.hasPermission('ADMINISTRATOR');
-	}
-
 	async run(message, { member }) {
 		member.kick()
 			.then(() => message.say(`Kicked ${member.displayName}`))
-			.catch(() => {
-				console.error();
-				message.say(`Failed to kick ${member.displayName}.`);
-			});
+			.catch(() => { message.say(`Failed to kick ${member.displayName}.`); });
 	}
-};
+}
+
+module.exports = KickCommmand;

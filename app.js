@@ -8,6 +8,7 @@ const DBL = require('dblapi.js');
 const token = process.env.TOKEN;
 const client = new CommandoClient({
 	owner: '221449635254894594',
+	invite: 'https://discord.gg/kuESm95',
 	commandPrefix: 'k!',
 	disableEveryone: true,
 	unknownCommandResponse: false,
