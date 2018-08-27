@@ -1,7 +1,6 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 
-module.exports = class AvatarCommand extends Command {
+class AvatarCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'avatar',
@@ -23,14 +22,27 @@ module.exports = class AvatarCommand extends Command {
 	}
 
 	async run(message, { user }) {
-		if (user === 'undefined') {
-			user = message.author;
-		}
+		if (user === 'undefined') { user = message.author; }
 
-		const avatarEmbed = new RichEmbed()
-			.setTitle(user.username)
-			.setImage(user.avatarURL);
+		const avatarEmbed = {
+			title: `${user.username}'s Avatar`,
+			author: {
+				name: 'YellowJay',
+				icon_url: process.env.AVATAR_URL,
+				url: 'https://kazijawad.github.io/',
+			},
+			image: {
+				url: user.avatarURL,
+			},
+			timestamp: new Date(),
+			footer: {
+				text: '@KazBot',
+				icon_url: message.client.user.avatarURL,
+			},
+		};
 
 		message.embed(avatarEmbed);
 	}
-};
+}
+
+module.exports = AvatarCommand;
