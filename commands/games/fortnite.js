@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 const Fortnite = require('fortnite-api');
 
 const fortniteAPI = [
@@ -10,7 +9,7 @@ const fortniteAPI = [
 ];
 const fortnite = new Fortnite(fortniteAPI, { debug: true });
 
-module.exports = class FortniteCommand extends Command {
+class FortniteCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'fortnite',
@@ -55,14 +54,35 @@ module.exports = class FortniteCommand extends Command {
 						case 'news':
 							fortnite.getFortniteNews('en')
 								.then(news => {
-									const fortNewsEmbed = new RichEmbed()
-										.setColor('DARK_PURPLE')
-										.setTitle('Fortnite News')
-										.addField(news['br'][0]['title'], news['br'][0]['body'])
-										.addField(news['br'][1]['title'], news['br'][1]['body'])
-										.addField(news['br'][2]['title'], news['br'][2]['body'])
-										.setFooter('@Kaz-Bot')
-										.setTimestamp(new Date());
+									const fortNewsEmbed = {
+										color: 0x8e44ad,
+										title: 'Fornite News',
+										author: {
+											name: 'YellowJay',
+											icon_url: process.env.AVATAR_URL,
+											url: 'https://kazijawad.github.io/',
+										},
+										fields: [
+											{
+												name: news['br'][0]['title'],
+												value: news['br'][0]['body'],
+											},
+											{
+												name: news['br'][1]['title'],
+												value: news['br'][1]['body'],
+											},
+											{
+												name: news['br'][2]['title'],
+												value: news['br'][2]['body'],
+											},
+										],
+										timestamp: new Date(),
+										footer: {
+											text: '@KazBot',
+											icon_url: message.client.user.avatarURL,
+										},
+									};
+
 									message.embed(fortNewsEmbed);
 								})
 								.catch(error => {
@@ -73,15 +93,39 @@ module.exports = class FortniteCommand extends Command {
 						default:
 							fortnite.getStatsBR(arg, 'pc')
 								.then(stats => {
-									const fortStatsEmbed = new RichEmbed()
-										.setColor('PURPLE')
-										.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
-										.addField('Overall', `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`)
-										.addField('Solo', `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`)
-										.addField('Duo', `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`)
-										.addField('Squad', `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`)
-										.setFooter('@Kaz-Bot')
-										.setTimestamp(new Date());
+									const fortStatsEmbed = {
+										color: 0x8e44ad,
+										title: `${stats['info']['username']}'s Fortnite Stats`,
+										author: {
+											name: 'YellowJay',
+											icon_url: process.env.AVATAR_URL,
+											url: 'https://kazijawad.github.io/',
+										},
+										fields: [
+											{
+												name: 'Overall',
+												value: `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`,
+											},
+											{
+												name: 'Solo',
+												value: `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`,
+											},
+											{
+												name: 'Duo',
+												value: `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`,
+											},
+											{
+												name: 'Squad',
+												value: `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`,
+											},
+										],
+										timestamp: new Date(),
+										footer: {
+											text: '@KazBot',
+											icon_url: message.client.user.avatarURL,
+										},
+									};
+
 									message.embed(fortStatsEmbed);
 								})
 								.catch(error => {
@@ -101,16 +145,39 @@ module.exports = class FortniteCommand extends Command {
 				.then(() => {
 					fortnite.getStatsBR(player, platform[0])
 						.then(stats => {
-							const fortStatsEmbed = new RichEmbed()
-								.setColor('PURPLE')
-								.setTitle(stats['info']['username'] + '\'s Fortnite Stats')
-								.addField('Overall', `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`, true)
-								.addField('Solo', `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`, true)
-								.addBlankField()
-								.addField('Duo', `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`, true)
-								.addField('Squad', `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`, true)
-								.setFooter('@Kaz-Bot')
-								.setTimestamp(new Date());
+							const fortStatsEmbed = {
+								color: 0x8e44ad,
+								title: `${stats['info']['username']}'s Fortnite Stats`,
+								author: {
+									name: 'YellowJay',
+									icon_url: process.env.AVATAR_URL,
+									url: 'https://kazijawad.github.io/',
+								},
+								fields: [
+									{
+										name: 'Overall',
+										value: `Wins: ${stats['lifetimeStats']['wins']} | Win %: ${stats['lifetimeStats']['win%']}\nKills: ${stats['lifetimeStats']['kills']} | K/D: ${stats['lifetimeStats']['k/d']}\nKills Per Minute: ${stats['lifetimeStats']['killsPerMin']}\nMatches: ${stats['lifetimeStats']['matches']}\nPlaytime: ${stats['lifetimeStats']['timePlayed']}`,
+									},
+									{
+										name: 'Solo',
+										value: `Wins: ${stats['group']['solo']['wins']} | Win %: ${stats['group']['solo']['win%']}\nTop 10: ${stats['group']['solo']['top10']} | Top 25: ${stats['group']['solo']['top25']}\nKills: ${stats['group']['solo']['kills']} | K/D: ${stats['group']['solo']['k/d']}\nKills Per Match: ${stats['group']['solo']['killsPerMatch']}\nMatches: ${stats['group']['solo']['matches']} | Playtime: ${stats['group']['solo']['timePlayed']}`,
+									},
+									{
+										name: 'Duo',
+										value: `Wins: ${stats['group']['duo']['wins']} | Win%: ${stats['group']['duo']['win%']}\nTop 5: ${stats['group']['duo']['top5']} | Top 12: ${stats['group']['duo']['top12']}\nKills: ${stats['group']['duo']['kills']} | K/D: ${stats['group']['duo']['k/d']}\nKills Per Match: ${stats['group']['duo']['killsPerMatch']}\nMatches: ${stats['group']['duo']['matches']} | Playtime: ${stats['group']['duo']['timePlayed']}`,
+									},
+									{
+										name: 'Squad',
+										value: `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`,
+									},
+								],
+								timestamp: new Date(),
+								footer: {
+									text: '@KazBot',
+									icon_url: message.client.user.avatarURL,
+								},
+							};
+
 							message.embed(fortStatsEmbed);
 						})
 						.catch(error => {
@@ -120,4 +187,6 @@ module.exports = class FortniteCommand extends Command {
 				});
 		}
 	}
-};
+}
+
+module.exports = FortniteCommand;
