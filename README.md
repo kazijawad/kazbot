@@ -42,6 +42,9 @@ A list of the available commands!
 - ft status
 - ft news
 
+### LoL Commands
+- lol [summoner]
+
 ### Battlerite Commands
 - br [username]
 
@@ -51,8 +54,8 @@ A list of the available commands!
 ### Overwatch Commands
 - ow [username-tag]
 
-### LoL Commands
-- lol [summoner]
+### CSGO Commands
+- csgo [username]
 
 ### Fun Commands
 - 8ball [question]
