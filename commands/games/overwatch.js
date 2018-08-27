@@ -1,7 +1,7 @@
 const { Command } = require('discord.js-commando');
 const Overwatch = require('overwatch-js');
 
-module.exports = class OverwatchCommand extends Command {
+class OverwatchCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'overwatch',
@@ -101,4 +101,6 @@ module.exports = class OverwatchCommand extends Command {
 				message.say('Unable to retrieve Overwatch Play Stats!');
 			});
 	}
-};
+}
+
+module.exports = OverwatchCommand;

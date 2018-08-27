@@ -1,8 +1,15 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
-const request = require('request');
+const axios = require('axios');
 
-module.exports = class BattleriteCommand extends Command {
+const instance = axios.create({
+	baseURL: 'https://api.developer.battlerite.com/shards/global',
+	headers: {
+		'Authorization': `Bearer ${process.env.BATTLERITE_API}`,
+		'Accept': 'application/vnd.api+json',
+	},
+});
+
+class BattleriteCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'battlerite',
@@ -27,37 +34,72 @@ module.exports = class BattleriteCommand extends Command {
 	}
 
 	async run(message, { username }) {
-		const options = {
-			url: `https://api.developer.battlerite.com/shards/global/players?filter[playerNames]=${username}`,
-			headers: {
-				'Authorization': 'Bearer ' + process.env.BATTLERITE_API,
-				'Accept': 'application/vnd.api+json',
-			},
-		};
+		instance.get(`/players?filter[playerNames]=${username}`)
+			.then(response => {
+				if (!response['data']['data'][0]['attributes']['stats']['2']) {
+					return message.say('Failed to retrieve Battlerite player!');
+				}
+				const data = response['data']['data'][0]['attributes'];
 
-		request(options, (err, res, body) => {
-			if (err) {
-				console.error(err);
-				return message.say('Failed to retrieve Battlerite player!');
-			}
-			const info = JSON.parse(body);
-			if (!info.data[0]) return message.say('Failed to retrieve Battlerite player!');
+				const battleriteEmbed = {
+					color: 0xe67e22,
+					title: `${data['name']}'s Battlerite Stats`,
+					author: {
+						name: 'YellowJay',
+						icon_url: process.env.AVATAR_URL,
+						url: 'https://kazijawad.github.io/',
+					},
+					fields: [
+						{
+							name: 'Total Matches',
+							value: data['stats']['2'] + data['stats']['3'],
+							inline: true,
+						},
+						{
+							name: 'Total Wins',
+							value: data['stats']['2'],
+							inline: true,
+						},
+						{
+							name: 'Total Losses',
+							value: data['stats']['3'],
+							inline: true,
+						},
+						{
+							name: 'League 2v2',
+							value: `${data['stats']['14']}-${data['stats']['15']}`,
+							inline: true,
+						},
+						{
+							name: 'League 3v3',
+							value: `${data['stats']['16']}-${data['stats']['17']}`,
+							inline: true,
+						},
+						{
+							name: 'Quickmatch 2v2',
+							value: `${data['stats']['10']}-${data['stats']['11']}`,
+							inline: true,
+						},
+						{
+							name: 'Quickmatch 3v3',
+							value: `${data['stats']['12']}-${data['stats']['13']}`,
+							inline: true,
+						},
+					],
+					timestamp: new Date(),
+					footer: {
+						text: '@KazBot',
+						icon_url: message.client.user.avatarURL,
+					},
+				};
 
-			const stats = info.data[0].attributes.stats;
-			const battleriteEmbed = new RichEmbed()
-				.setColor('ORANGE')
-				.setTitle(`${info.data[0].attributes.name}'s Battlerite Stats`)
-				.addField('Total Matches', stats['2'] + stats['3'], true)
-				.addField('Total Wins', stats['2'], true)
-				.addField('Total Losses', stats['3'], true)
-				.addField('League 2v2', stats['14'] + '-' + stats['15'], true)
-				.addField('League 3v3', stats['16'] + '-' + stats['17'], true)
-				.addField('Quickmatch 2v2', stats['10'] + '-' + stats['11'], true)
-				.addField('Quickmatch 3v3', stats['12'] + '-' + stats['13'], true)
-				.setFooter('@Kaz-Bot')
-				.setTimestamp(new Date());
-
-			message.embed(battleriteEmbed);
-		});
+				message.embed(battleriteEmbed);
+			})
+			.catch(error => {
+				console.error(`BATTLERITE API: ${error}`);
+				message.say('Failed to access Battlerite!');
+			});
 	}
-};
+}
+
+module.exports = BattleriteCommand;
