@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { RichEmbed } = require('discord.js');
 const axios = require('axios');
 
 const instance = axios.create({
@@ -32,22 +31,48 @@ class UrbanCommand extends Command {
 				if (!term) {
 					return message.say(`${phrase} cannot be found on Urban Dictionary`);
 				}
+				const termExample = term['example'] ? term['example'] : 'N/A';
 
-				const termEmbed = new RichEmbed()
-					.setColor('LIGHT_GREY')
-					.setTitle(term['word'])
-					.addField('Definition', term['definition']);
+				const termEmbed = {
+					color: 0xd3d3d3,
+					title: term['word'],
+					author: {
+						name: 'YellowJay',
+						icon_url: process.env.AVATAR_URL,
+						url: 'https://kazijawad.github.io/',
+					},
+					fields: [
+						{
+							name: 'Definition',
+							value: term['definition'],
+						},
+						{
+							name: 'Example',
+							value: termExample,
+						},
+						{
+							name: 'Author',
+							value: term['author'],
+							inline: true,
+						},
+						{
+							name: 'Thumbs Up',
+							value: term['thumbs_up'],
+							inline: true,
+						},
+						{
+							name: 'Thumbs Down',
+							value: term['thumbs_down'],
+							inline: true,
+						},
+					],
+					timestamp: new Date(),
+					footer: {
+						text: '@KazBot',
+						icon_url: message.client.user.avatarURL,
+					},
+				};
 
-				if (term['example'] !== undefined && term['example'] !== null) {
-					termEmbed.addField('Example', term['example']);
-				}
-
-				termEmbed
-					.addField('Author', term['author'], true)
-					.addField('Thumbs Up', term['thumbs_up'], true)
-					.addField('Thumbs Down', term['thumbs_down'], true)
-					.setFooter('@Kaz-Bot')
-					.setTimestamp(new Date());
 				message.embed(termEmbed);
 			})
 			.catch(() => {
