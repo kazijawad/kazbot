@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class PruneCommand extends Command {
+class PruneCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'prune',
@@ -10,6 +10,8 @@ module.exports = class PruneCommand extends Command {
 			description: 'Prunes messages in a text channel.',
 			examples: ['prune 1', 'prune 99'],
 			guildOnly: true,
+			clientPermissions: ['MANAGE_MESSAGES'],
+			userPermissions: ['MANAGE_MESSAGES'],
 			args: [
 				{
 					key: 'amount',
@@ -20,20 +22,15 @@ module.exports = class PruneCommand extends Command {
 		});
 	}
 
-	hasPermission(message) {
-		return message.member.hasPermission('ADMINISTRATOR');
-	}
-
 	async run(message, { amount }) {
 		let number = parseInt(amount) + 1;
-
-		if (number > 100) {
-			number = 100;
-		}
+		if (number > 100) { number = 100; }
 
 		message.channel.bulkDelete(number, true)
 			.catch(() => {
 				message.say('Failed to prune messages in this channel.');
 			});
 	}
-};
+}
+
+module.exports = PruneCommand;
