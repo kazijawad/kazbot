@@ -31,7 +31,12 @@ class CSGOCommand extends Command {
 				const steamId = response['data']['response']['steamid'];
 				instance.get('/ISteamUserStats/GetUserStatsForGame/v2/', { params: { key: process.env.STEAM_API, appid: 730, steamid: steamId } })
 					.then(res => {
-						const stats = res['data']['playerstats']['stats'];
+						const rawStats = res['data']['playerstats']['stats'];
+						const stats = {};
+						for (let i = 0; i < rawStats.length; i++) {
+							stats[rawStats[i]['name']] = rawStats[i]['value'];
+						}
+
 						const csgoEmbed = {
 							color: 0xf1c40f,
 							title: `${player}'s CSGO Stats`,
@@ -42,43 +47,108 @@ class CSGOCommand extends Command {
 							},
 							fields: [
 								{
-									name: 'Total Wins',
-									value: stats[5]['value'],
+									name: 'Playtime',
+									value: stats['total_time_played'],
 									inline: true,
 								},
 								{
-									name: 'Total Playtime',
-									value: stats[2]['value'],
+									name: 'Matches',
+									value: stats['total_matches_played'],
 									inline: true,
 								},
 								{
-									name: 'Total Money Earned',
-									value: stats[7]['value'],
+									name: 'Rounds',
+									value: stats['total_rounds_played'],
 									inline: true,
 								},
 								{
-									name: 'Total Kills',
-									value: stats[0]['value'],
+									name: 'Wins',
+									value: stats['total_wins'],
 									inline: true,
 								},
 								{
-									name: 'Total Deaths',
-									value: stats[1]['value'],
+									name: 'Match Wins',
+									value: stats['total_matches_won'],
 									inline: true,
 								},
 								{
-									name: 'Total Damage Done',
-									value: stats[6]['value'],
+									name: 'Money Earned',
+									value: stats['total_money_earned'],
 									inline: true,
 								},
 								{
-									name: 'Total Planted Bombs',
-									value: stats[3]['value'],
+									name: 'Kills',
+									value: stats['total_kills'],
 									inline: true,
 								},
 								{
-									name: 'Total Defused Bombs',
-									value: stats[4]['value'],
+									name: 'Knife Kills',
+									value: stats['total_kills_knife_fight'],
+									inline: true,
+								},
+								{
+									name: 'Kills Against Snipers',
+									value: stats['total_kills_against_zoomed_sniper'],
+									inline: true,
+								},
+								{
+									name: 'Deaths',
+									value: stats['total_deaths'],
+									inline: true,
+								},
+								{
+									name: 'Dominations',
+									value: stats['total_dominations'],
+									inline: true,
+								},
+								{
+									name: 'Revenges',
+									value: stats['total_revenges'],
+									inline: true,
+								},
+								{
+									name: 'Damage Done',
+									value: stats['total_damage_done'],
+									inline: true,
+								},
+								{
+									name: 'Shots Hit',
+									value: stats['total_shots_hit'],
+									inline: true,
+								},
+								{
+									name: 'Shots Fired',
+									value: stats['total_shots_fired'],
+									inline: true,
+								},
+								{
+									name: 'MVPS',
+									value: stats['total_mvps'],
+									inline: true,
+								},
+								{
+									name: 'Planted Bombs',
+									value: stats['total_planted_bombs'],
+									inline: true,
+								},
+								{
+									name: 'Defused Bombs',
+									value: stats['total_defused_bombs'],
+									inline: true,
+								},
+								{
+									name: 'Weapons Donated',
+									value: stats['total_weapons_donated'],
+									inline: true,
+								},
+								{
+									name: 'Broken Windows',
+									value: stats['total_broken_windows'],
+									inline: true,
+								},
+								{
+									name: 'Rescued Hostages',
+									value: stats['total_rescued_hostages'],
 									inline: true,
 								},
 							],
@@ -93,7 +163,7 @@ class CSGOCommand extends Command {
 					})
 					.catch(error => {
 						console.error(`STEAM USER STATS: ${error}`);
-						message.say('Failed to retrieve player stats.');
+						message.say('Failed to retrieve player stats. Game stats must be set to public on the player\'s Steam profile.');
 					});
 			})
 			.catch(error => {
