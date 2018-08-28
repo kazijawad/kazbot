@@ -18,7 +18,7 @@ class CreditCommand extends Command {
 			color: 0xffd700,
 			title: 'Credit',
 			author: {
-				name: 'YellowJay',
+				name: 'KazBot',
 				icon_url: process.env.AVATAR_URL,
 				url: 'https://kazijawad.github.io/',
 			},

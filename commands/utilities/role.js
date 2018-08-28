@@ -32,7 +32,7 @@ class RoleCommand extends Command {
 			color: memberColor,
 			title: message.guild.name,
 			author: {
-				name: 'YellowJay',
+				name: 'KazBot',
 				icon_url: process.env.AVATAR_URL,
 				url: 'https://kazijawad.github.io/',
 			},

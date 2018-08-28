@@ -41,7 +41,7 @@ class CSGOCommand extends Command {
 							color: 0xf1c40f,
 							title: `${player}'s CSGO Stats`,
 							author: {
-								name: 'YellowJay',
+								name: 'KazBot',
 								icon_url: process.env.AVATAR_URL,
 								url: 'https://kazijawad.github.io/',
 							},

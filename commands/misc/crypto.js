@@ -44,7 +44,7 @@ class CryptoCommand extends Command {
 						color: 0x008000,
 						title: 'Global Crypto Info',
 						author: {
-							name: 'YellowJay',
+							name: 'KazBot',
 							icon_url: process.env.AVATAR_URL,
 							url: 'https://kazijawad.github.io/',
 						},
@@ -106,7 +106,7 @@ class CryptoCommand extends Command {
 						color: 0x008000,
 						title: crypto['name'],
 						author: {
-							name: 'YellowJay',
+							name: 'KazBot',
 							icon_url: process.env.AVATAR_URL,
 							url: 'https://kazijawad.github.io/',
 						},

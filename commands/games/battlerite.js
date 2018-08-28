@@ -45,7 +45,7 @@ class BattleriteCommand extends Command {
 					color: 0xe67e22,
 					title: `${data['name']}'s Battlerite Stats`,
 					author: {
-						name: 'YellowJay',
+						name: 'KazBot',
 						icon_url: process.env.AVATAR_URL,
 						url: 'https://kazijawad.github.io/',
 					},

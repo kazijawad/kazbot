@@ -58,7 +58,7 @@ class FortniteCommand extends Command {
 										color: 0x8e44ad,
 										title: 'Fornite News',
 										author: {
-											name: 'YellowJay',
+											name: 'KazBot',
 											icon_url: process.env.AVATAR_URL,
 											url: 'https://kazijawad.github.io/',
 										},
@@ -97,7 +97,7 @@ class FortniteCommand extends Command {
 										color: 0x8e44ad,
 										title: `${stats['info']['username']}'s Fortnite Stats`,
 										author: {
-											name: 'YellowJay',
+											name: 'KazBot',
 											icon_url: process.env.AVATAR_URL,
 											url: 'https://kazijawad.github.io/',
 										},
@@ -149,7 +149,7 @@ class FortniteCommand extends Command {
 								color: 0x8e44ad,
 								title: `${stats['info']['username']}'s Fortnite Stats`,
 								author: {
-									name: 'YellowJay',
+									name: 'KazBot',
 									icon_url: process.env.AVATAR_URL,
 									url: 'https://kazijawad.github.io/',
 								},

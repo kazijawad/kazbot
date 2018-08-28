@@ -38,7 +38,7 @@ class OverwatchCommand extends Command {
 					color: 0xff9f43,
 					title: `${stats['profile']['nick']}'s Competitve Overwatch Stats`,
 					author: {
-						name: 'YellowJay',
+						name: 'KazBot',
 						icon_url: process.env.AVATAR_URL,
 						url: 'https://kazijawad.github.io/',
 					},

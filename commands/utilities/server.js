@@ -20,7 +20,7 @@ class ServerCommand extends Command {
 			color: 0xb8860b,
 			title: message.guild.name,
 			author: {
-				name: 'YellowJay',
+				name: 'KazBot',
 				icon_url: process.env.AVATAR_URL,
 				url: 'https://kazijawad.github.io/',
 			},

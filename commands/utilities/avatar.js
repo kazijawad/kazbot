@@ -27,7 +27,7 @@ class AvatarCommand extends Command {
 		const avatarEmbed = {
 			title: `${user.username}'s Avatar`,
 			author: {
-				name: 'YellowJay',
+				name: 'KazBot',
 				icon_url: process.env.AVATAR_URL,
 				url: 'https://kazijawad.github.io/',
 			},

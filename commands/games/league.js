@@ -46,7 +46,7 @@ class LeagueEmbed extends Command {
 							color: 0xd63031,
 							title: `${res['data'][0]['playerOrTeamName']}'s LoL Stats`,
 							author: {
-								name: 'YellowJay',
+								name: 'KazBot',
 								icon_url: process.env.AVATAR_URL,
 								url: 'https://kazijawad.github.io/',
 							},

@@ -37,7 +37,7 @@ class UrbanCommand extends Command {
 					color: 0xd3d3d3,
 					title: term['word'],
 					author: {
-						name: 'YellowJay',
+						name: 'KazBot',
 						icon_url: process.env.AVATAR_URL,
 						url: 'https://kazijawad.github.io/',
 					},
