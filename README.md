@@ -42,19 +42,19 @@ A list of the available commands!
 - ft status
 - ft news
 
-### LoL Commands
+### LoL Command
 - lol [summoner]
 
-### Battlerite Commands
+### Battlerite Command
 - br [username]
 
 ### Warframe Commands
 - wf news [pc/xb1/ps4]
 
-### Overwatch Commands
+### Overwatch Command
 - ow [username-tag]
 
-### CSGO Commands
+### CSGO Command
 - csgo [username]
 
 ### Fun Commands
@@ -82,7 +82,7 @@ A list of the available commands!
 Kazi Jawad
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kazijawad/KazBot/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kazijawad/KazBot/blob/master/LICENSE.md) file for details
 
 ## Acknowledgments
 - [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)

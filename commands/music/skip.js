@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class SkipCommand extends Command {
+class SkipCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'skip',
@@ -26,4 +26,6 @@ module.exports = class SkipCommand extends Command {
 		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
 		return this._queue;
 	}
-};
+}
+
+module.exports = SkipCommand;

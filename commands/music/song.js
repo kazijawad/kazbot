@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class SongCommand extends Command {
+class SongCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'song',
@@ -23,4 +23,6 @@ module.exports = class SongCommand extends Command {
 		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
 		return this._queue;
 	}
-};
+}
+
+module.exports = SongCommand;

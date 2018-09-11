@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class VolumeCommand extends Command {
+class VolumeCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'volume',
@@ -41,4 +41,6 @@ module.exports = class VolumeCommand extends Command {
 		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
 		return this._queue;
 	}
-};
+}
+
+module.exports = VolumeCommand;

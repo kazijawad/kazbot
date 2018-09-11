@@ -5,7 +5,7 @@ const Youtube = require('simple-youtube-api');
 
 const youtube = new Youtube(process.env.YOUTUBE_API);
 
-module.exports = class PlayCommand extends Command {
+class PlayCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'play',
@@ -138,4 +138,6 @@ module.exports = class PlayCommand extends Command {
 			.on('error', error => console.error(`Dispatcher Error: ${error}`));
 		dispatcher.setVolumeLogarithmic(guildQueue.volume / 5);
 	}
-};
+}
+
+module.exports = PlayCommand;
