@@ -9,7 +9,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
-A multipurpose Discord chatbot that focuses on displaying game stats from Fortnite, LoL, Battlerite, and more!
+A multipurpose bot that focuses on retrieving data from various video games.
 
 ## Getting Started
 [Server Invitation](https://discordapp.com/api/oauth2/authorize?client_id=419724462716354560&permissions=8&scope=bot)
@@ -50,6 +50,13 @@ A list of the available commands!
 
 ### Warframe Commands
 - wf news [pc/xb1/ps4]
+- wf baro [pc/xb1/ps4]
+- wf sortie [pc/xb1/ps4]
+- wf daily [pc/xb1/ps4]
+- wf simaris [pc/xb1/ps4]
+- wf earth [pc/xb1/ps4]
+- wf cetus [pc/xb1/ps4]
+- wf construction [pc/xb1/ps4]
 
 ### Overwatch Command
 - ow [username-tag]
