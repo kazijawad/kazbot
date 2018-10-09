@@ -94,13 +94,10 @@ For certain video game commands, PC is the default platform and does not need to
 
 ### Misc. Game Commands
 
-**NOT CURRENTLY WORKING**: Overwatch Command
-
 | Command                      | Description                                    | Example                  | Aliases     |
 | ---------------------------- | ---------------------------------------------- | ------------------------ | ----------- |
 | k!csgo [username]            | Retrives specified player's CSGO stats.        | k!csgo YellowJay         | cs          |
 | k!lol [summoner]             | Retrives specified player's LoL stats.         | k!lol MaximumTilt        |             |
-| k!ow [username-tag]          | Retrives specified player's Overwatch stats.   | k!ow YellowJay-1902      |             |
 | k!br [username]              | Retrives specified player's Battlerite stats.  | k!br TimmehHD            |             |
 
 ## Built With
