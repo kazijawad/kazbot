@@ -106,6 +106,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## Acknowledgments
 - [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)
-- [Overwatch API Wrapper](https://github.com/gclem/overwatch-js)
 - [CoinMarketCap API](https://pro.coinmarketcap.com)
-- [Youtube Download Module](https://www.npmjs.com/package/ytdl-core)
