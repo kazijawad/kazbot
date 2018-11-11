@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
-const DBL = require('dblapi.js');
 
 const token = process.env.TOKEN;
 const client = new CommandoClient({
@@ -12,11 +11,6 @@ const client = new CommandoClient({
 	commandPrefix: 'k!',
 	disableEveryone: true,
 	unknownCommandResponse: false,
-});
-
-const dbl = new DBL(process.env.DBL_API, client);
-dbl.on('posted', () => {
-	console.info('Server count posted to DBL');
 });
 
 client.registry

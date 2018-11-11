@@ -1,7 +1,7 @@
 {
   "name": "kaz-bot",
   "version": "1.0.0",
-  "description": "Kaz Bot is a multifunction Discord Bot!",
+  "description": "KazBot is a multifunction Discord Chatbot.",
   "homepage": "https://github.com/kazijawad/KazBot",
   "bugs": {
     "url": "https://github.com/kazijawad/KazBot"
@@ -24,17 +24,16 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "dblapi.js": "^2.2.0",
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
     "dotenv": "^6.1.0",
     "ffmpeg-binaries": "^4.0.0",
     "fortnite-api": "^2.13.0",
-    "node-opus": "^0.3.0",
-    "simple-youtube-api": "^5.0.2",
+    "node-opus": "^0.3.1",
+    "simple-youtube-api": "^5.1.1",
     "ytdl-core": "^0.24.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.6"
   }
 }
