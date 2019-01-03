@@ -4,8 +4,8 @@ const Fortnite = require('fortnite-api');
 const fortniteAPI = [
 	process.env.FORTNITE_EMAIL,
 	process.env.FORTNITE_PASS,
-	process.env.FORTNITE_LAUNCH,
 	process.env.FORTNITE_CLIENT,
+	process.env.FORTNITE_LAUNCH,
 ];
 const fortnite = new Fortnite(fortniteAPI, { debug: true });
 
