@@ -17,7 +17,7 @@ class CryptoCommand extends Command {
 			guildOnly: false,
 			throttling: {
 				usages: 2,
-				duration: 10,
+				duration: 1000,
 			},
 			args: [
 				{
