@@ -21,6 +21,7 @@ class UrbanCommand extends Command {
 					type: 'string',
 				},
 			],
+			nsfw: true,
 		});
 	}
 
