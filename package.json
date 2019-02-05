@@ -1,40 +1,40 @@
 {
-  "name": "kaz-bot",
-  "version": "1.0.0",
-  "description": "KazBot is a multifunction Discord Chatbot.",
-  "homepage": "https://github.com/kazijawad/KazBot",
-  "bugs": {
-    "url": "https://github.com/kazijawad/KazBot"
-  },
-  "author": "Kazi Jawad",
-  "license": "MIT",
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kazijawad/KazBot"
-  },
-  "engines": {
-    "node": "8.x",
-    "npm": "5.x"
-  },
-  "scripts": {
-    "start": "node app.js",
-    "test": "nodemon app.js",
-    "lint": "eslint . --fix"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "dblapi.js": "^2.3.0",
-    "discord.js": "^11.4.2",
-    "discord.js-commando": "^0.10.0",
-    "dotenv": "^6.2.0",
-    "ffmpeg-binaries": "^4.0.0",
-    "fortnite-api": "^3.0.0",
-    "node-opus": "^0.3.1",
-    "simple-youtube-api": "^5.1.1",
-    "ytdl-core": "^0.28.3"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.9"
-  }
+	"name": "kaz-bot",
+	"version": "1.0.0",
+	"description": "KazBot is a multifunction Discord Chatbot.",
+	"homepage": "https://github.com/kazijawad/KazBot",
+	"bugs": {
+		"url": "https://github.com/kazijawad/KazBot"
+	},
+	"author": "Kazi Jawad",
+	"license": "MIT",
+	"main": "app.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kazijawad/KazBot"
+	},
+	"engines": {
+		"node": "10.x",
+		"npm": "6.x"
+	},
+	"scripts": {
+		"start": "node app.js",
+		"test": "nodemon app.js",
+		"lint": "eslint . --fix"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"dblapi.js": "^2.3.0",
+		"discord.js": "^11.4.2",
+		"discord.js-commando": "^0.10.0",
+		"dotenv": "^6.2.0",
+		"ffmpeg-binaries": "^4.0.0",
+		"fortnite-api": "^3.0.0",
+		"node-opus": "^0.3.1",
+		"simple-youtube-api": "^5.1.1",
+		"ytdl-core": "^0.28.3"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.9"
+	}
 }
