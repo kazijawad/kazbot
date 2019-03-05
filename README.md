@@ -102,7 +102,7 @@ For certain video game commands, PC is the default platform and does not need to
 Kazi Jawad
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kazijawad/KazBot/blob/master/LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 - [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)
