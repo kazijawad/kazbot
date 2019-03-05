@@ -88,7 +88,7 @@ class PlayCommand extends Command {
 			url: `https://www.youtube.com/watch?v=${video.id}`,
 		};
 
-		if (!voiceChannel) return message.reply('Please join a voice channel first!');
+		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
 		if (!guildQueue) {
 			const queueConstruct = {
 				textChannel: message.channel,
@@ -112,7 +112,7 @@ class PlayCommand extends Command {
 			}
 		} else {
 			guildQueue.songs.push(song);
-			if (playlist) return;
+			if (playlist) { return; }
 			message.say(`${song.title} has been added to the queue.`);
 		}
 	}

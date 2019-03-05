@@ -16,9 +16,9 @@ class ResumeCommand extends Command {
 		const queue = this.queue.get(message.guild.id);
 		const voiceChannel = message.member.voiceChannel;
 
-		if (!queue) return message.reply('There is no queue available right now.');
-		if (queue.playing) return message.reply('The song is playing!');
-		if (!voiceChannel) return message.reply('Please join a voice channel first!');
+		if (!queue) { return message.reply('There is no queue available right now.'); }
+		if (queue.playing) { return message.reply('The song is playing!'); }
+		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
 
 		queue.connection.dispatcher.resume();
 		queue.playing = true;
@@ -26,7 +26,7 @@ class ResumeCommand extends Command {
 	}
 
 	get queue() {
-		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
+		if (!this._queue) { this._queue = this.client.registry.resolveCommand('music:play').queue; }
 		return this._queue;
 	}
 }

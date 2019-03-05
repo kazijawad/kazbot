@@ -43,7 +43,7 @@ class FortniteCommand extends Command {
 						case 'status':
 							fortnite.checkFortniteStatus()
 								.then(status => {
-									if (!status) return message.say('Fortnite is Down! Check https://twitter.com/FortniteGame!');
+									if (!status) { return message.say('Fortnite is Down! Check https://twitter.com/FortniteGame!'); }
 									message.say('Fortnite is Online!');
 								})
 								.catch(error => {

@@ -25,8 +25,8 @@ class VolumeCommand extends Command {
 		const queue = this.queue.get(message.guild.id);
 		const voiceChannel = message.member.voiceChannel;
 
-		if (!queue) return message.reply('There is no music playing right now.');
-		if (!voiceChannel) return message.say('Please join a voice channel first!');
+		if (!queue) { return message.reply('There is no music playing right now.'); }
+		if (!voiceChannel) { return message.say('Please join a voice channel first!'); }
 
 		if (level === '') {
 			return message.say(`Current Volume: ${queue.volume}`);
@@ -38,7 +38,7 @@ class VolumeCommand extends Command {
 	}
 
 	get queue() {
-		if (!this._queue) this._queue = this.client.registry.resolveCommand('music:play').queue;
+		if (!this._queue) { this._queue = this.client.registry.resolveCommand('music:play').queue; }
 		return this._queue;
 	}
 }

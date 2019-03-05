@@ -39,6 +39,8 @@ class RPSCommand extends Command {
 					case 'scissors':
 						message.say(playerWon);
 						break;
+					default:
+						break;
 				}
 				break;
 			case 'paper':
@@ -52,6 +54,8 @@ class RPSCommand extends Command {
 					case 'scissors':
 						message.say(botWon);
 						break;
+					default:
+						break;
 				}
 				break;
 			case 'scissors':
@@ -64,6 +68,8 @@ class RPSCommand extends Command {
 						break;
 					case 'scissors':
 						message.say(draw);
+						break;
+					default:
 						break;
 				}
 				break;
