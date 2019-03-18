@@ -4,7 +4,7 @@
 	"description": "KazBot is a multifunction Discord Chatbot.",
 	"homepage": "https://github.com/kazijawad/KazBot",
 	"bugs": {
-		"url": "https://github.com/kazijawad/KazBot"
+		"url": "https://github.com/kazijawad/KazBot/issues"
 	},
 	"author": "Kazi Jawad",
 	"license": "MIT",
