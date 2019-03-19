@@ -103,7 +103,8 @@ class PlayCommand extends Command {
 			this.queue.set(message.guild.id, queueConstruct);
 			queueConstruct.songs.push(song);
 
-			console.log(`QUEUE CONSTRUCT PUSH: ${queueConstruct}`);
+			console.log(`QUEUE CONSTRUCT PUSH: ${queueConstruct.songs}`);
+			console.log(`QUEUE CONSTRUCT PUSH: ${queueConstruct.songs[0]}`);
 
 			try {
 				var connection = await voiceChannel.join();
