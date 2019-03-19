@@ -88,6 +88,8 @@ class PlayCommand extends Command {
 			url: `https://www.youtube.com/watch?v=${video.id}`,
 		};
 
+		console.log(`SONG VARIABLE INITIALIZATION: ${song}`);
+
 		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
 		if (!guildQueue) {
 			const queueConstruct = {
@@ -100,6 +102,8 @@ class PlayCommand extends Command {
 			};
 			this.queue.set(message.guild.id, queueConstruct);
 			queueConstruct.songs.push(song);
+
+			console.log(`QUEUE CONSTRUCT PUSH: ${queueConstruct}`);
 
 			try {
 				var connection = await voiceChannel.join();
@@ -118,6 +122,8 @@ class PlayCommand extends Command {
 	}
 
 	async play(guild, song) {
+		console.log(`PLAY FUNCTION: ${song}`);
+
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
