@@ -5,7 +5,6 @@ const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
 const DBL = require('dblapi.js');
 
-const token = process.env.TOKEN;
 const client = new CommandoClient({
 	owner: '221449635254894594',
 	invite: 'https://discord.gg/kuESm95',
@@ -38,4 +37,4 @@ client.on('ready', () => {
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
 
-client.login(token);
+client.login(process.env.TOKEN);

@@ -121,7 +121,7 @@ class PlayCommand extends Command {
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
-			guildQueue.textChannel.send(`Kaz Bot has left ${guildQueue.voiceChannel.name}`);
+			guildQueue.textChannel.send(`KazBot has left ${guildQueue.voiceChannel.name}`);
 			this.queue.delete(guild.id);
 			return;
 		}

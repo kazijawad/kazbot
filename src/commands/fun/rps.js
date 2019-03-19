@@ -23,8 +23,8 @@ class RPSCommand extends Command {
 
 	async run(message, { playerChoice }) {
 		const botChoice = choices[Math.floor(Math.random() * choices.length)];
-		const botWon = `Kaz Bot won! He chose ${botChoice}!`;
-		const playerWon = `${message.member.displayName} won! Kaz Bot chose ${botChoice}!`;
+		const botWon = `KazBot won! He chose ${botChoice}!`;
+		const playerWon = `${message.member.displayName} won! KazBot chose ${botChoice}!`;
 		const draw = `Draw! You both chose ${botChoice}!`;
 
 		switch (playerChoice) {

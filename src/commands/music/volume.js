@@ -7,7 +7,7 @@ class VolumeCommand extends Command {
 			aliases: ['vol'],
 			group: 'music',
 			memberName: 'volume',
-			description: 'Sets the current volume for Kaz Bot.',
+			description: 'Sets the current volume for KazBot.',
 			examples: ['volume'],
 			guildOnly: true,
 			args: [

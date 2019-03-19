@@ -18,9 +18,9 @@
 		"npm": "6.x"
 	},
 	"scripts": {
-		"start": "node app.js",
+		"start": "node ./src/app.js",
 		"lint": "eslint . --fix",
-		"test": "nodemon app.js"
+		"test": "nodemon ./src/app.js"
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
