@@ -119,7 +119,7 @@ class PlayCommand extends Command {
 
 	async play(guild, song) {
 		const guildQueue = this.queue.get(guild.id);
-		if (typeof song === 'undefined') {
+		if (!song) {
 			guildQueue.voiceChannel.leave();
 			guildQueue.textChannel.send(`KazBot has left ${guildQueue.voiceChannel.name}`);
 			this.queue.delete(guild.id);
