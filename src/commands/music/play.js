@@ -127,7 +127,7 @@ class PlayCommand extends Command {
 		}
 
 		const stream = ytdl(song.url, { filter: 'audioonly' });
-		const dispatcher = guildQueue.connection.playStream(stream)
+		const dispatcher = guildQueue.connection.playOpusStream(stream, { passes: 3 })
 			.on('start', () => {
 				guildQueue.textChannel.send(`Start Playing: ${song.title}`);
 			})
