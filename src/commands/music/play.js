@@ -104,9 +104,6 @@ class PlayCommand extends Command {
 			try {
 				var connection = await voiceChannel.join();
 				queueConstruct.connection = connection;
-
-				console.log(queueConstruct);
-
 				this.play(message.guild, queueConstruct.songs[0]);
 			} catch (error) {
 				console.error(`Play Error: ${error}`);
@@ -121,6 +118,8 @@ class PlayCommand extends Command {
 	}
 
 	async play(guild, song) {
+		console.log(guild, song);
+
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
