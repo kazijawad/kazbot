@@ -1,6 +1,6 @@
 const { Command } = require('discord.js-commando');
 const { Util, RichEmbed } = require('discord.js');
-const ytdl = require('ytdl-core');
+const ytdlDiscord = require('ytdl-core-discord');
 const Youtube = require('simple-youtube-api');
 
 const youtube = new Youtube(process.env.YOUTUBE_API);
@@ -126,7 +126,7 @@ class PlayCommand extends Command {
 			return;
 		}
 
-		const stream = ytdl(song.url, { filter: 'audioonly' });
+		const stream = await ytdlDiscord(song.url);
 		const dispatcher = guildQueue.connection.playOpusStream(stream, { passes: 3 })
 			.on('start', () => {
 				guildQueue.textChannel.send(`Start Playing: ${song.title}`);

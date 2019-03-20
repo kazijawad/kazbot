@@ -32,7 +32,7 @@
 		"fortnite-api": "^3.2.0",
 		"node-opus": "^0.3.1",
 		"simple-youtube-api": "^5.1.1",
-		"ytdl-core": "^0.29.1"
+		"ytdl-core-discord": "^1.0.3"
 	},
 	"devDependencies": {
 		"nodemon": "^1.18.10"
