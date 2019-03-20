@@ -2,8 +2,16 @@ process.on('unhandledRejection', error => console.warn(`Uncaught Rejection: ${er
 require('dotenv').config();
 
 const path = require('path');
+const http = require('http');
 const { CommandoClient } = require('discord.js-commando');
 const DBL = require('dblapi.js');
+
+// Zeit Now Serverless Deployment
+http.createServer((req, res) => {
+	res.writeHead(200, { 'Content-Type': 'text/plain' });
+	res.write('KazBot HTTP Server');
+	res.end();
+}).listen(3000);
 
 const client = new CommandoClient({
 	owner: '221449635254894594',
