@@ -118,8 +118,6 @@ class PlayCommand extends Command {
 	}
 
 	async play(guild, song) {
-		console.log(guild, song);
-
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
