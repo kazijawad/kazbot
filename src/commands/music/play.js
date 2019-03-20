@@ -59,7 +59,7 @@ class PlayCommand extends Command {
 						.addField(`3: ${songTitle[2]}`, songChannel[2])
 						.addField(`4: ${songTitle[3]}`, songChannel[3])
 						.addField(`5: ${songTitle[4]}`, songChannel[4])
-						.setFooter('@Kaz-Bot')
+						.setFooter('@KazBot')
 						.setTimestamp(new Date());
 					message.embed(songEmbed);
 
