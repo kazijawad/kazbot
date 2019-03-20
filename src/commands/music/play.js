@@ -88,8 +88,6 @@ class PlayCommand extends Command {
 			url: `https://www.youtube.com/watch?v=${video.id}`,
 		};
 
-		console.log(song);
-
 		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
 		if (!guildQueue) {
 			const queueConstruct = {
@@ -102,9 +100,6 @@ class PlayCommand extends Command {
 			};
 			this.queue.set(message.guild.id, queueConstruct);
 			queueConstruct.songs.push(song);
-
-			console.log(queueConstruct.songs);
-			console.log(queueConstruct.songs[0]);
 
 			try {
 				var connection = await voiceChannel.join();
@@ -123,10 +118,8 @@ class PlayCommand extends Command {
 	}
 
 	async play(guild, song) {
-		console.log(song);
-
 		const guildQueue = this.queue.get(guild.id);
-		if (!song) {
+		if (typeof song === 'undefined') {
 			guildQueue.voiceChannel.leave();
 			guildQueue.textChannel.send(`KazBot has left ${guildQueue.voiceChannel.name}`);
 			this.queue.delete(guild.id);
