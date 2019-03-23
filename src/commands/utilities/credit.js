@@ -5,7 +5,7 @@ class CreditCommand extends Command {
 		super(client, {
 			name: 'credit',
 			aliases: ['source'],
-			group: 'misc',
+			group: 'utilities',
 			memberName: 'credit',
 			description: 'Credit to KazBot\'s Resources.',
 			examples: ['credit'],

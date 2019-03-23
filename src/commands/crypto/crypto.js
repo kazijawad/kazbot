@@ -10,7 +10,7 @@ class CryptoCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'crypto',
-			group: 'misc',
+			group: 'crypto',
 			memberName: 'crypto',
 			description: 'Retrieves CryptoCurrency information from CoinMarketCap',
 			examples: ['crypto BTC', 'crypto global'],

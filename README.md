@@ -86,11 +86,15 @@ For certain video game commands, PC is the default platform and does not need to
 | k!wf cetus [pc/xb1/ps4]         | Shows information on the Cetus cycle.        | k!wf cetus               |             |
 | k!wf construction [pc/xb1/ps4]  | Shows information on construction progress.  | k!wf construction        |             |
 
-### Misc. Game Commands
+### CSGO Commands
 
 | Command                      | Description                                    | Example                  | Aliases     |
 | ---------------------------- | ---------------------------------------------- | ------------------------ | ----------- |
 | k!csgo [username]            | Retrives specified player's CSGO stats.        | k!csgo YellowJay         | cs          |
+
+### League of Legends Commands
+| Command                      | Description                                    | Example                  | Aliases     |
+| ---------------------------- | ---------------------------------------------- | ------------------------ | ----------- |
 | k!lol [summoner]             | Retrives specified player's LoL stats.         | k!lol MaximumTilt        |             |
 
 ## Built With

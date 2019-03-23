@@ -17,12 +17,12 @@ const dblClient = new DBL(process.env.DBL_TOKEN, client);
 client.registry
 	.registerDefaults()
 	.registerGroups([
-		['moderation', 'Moderation'],
-		['utilities', 'Utility'],
-		['games', 'Game Stats'],
-		['music', 'Music'],
+		['crypto', 'Crypto'],
 		['fun', 'Fun'],
-		['misc', 'Misc'],
+		['games', 'Game Stats'],
+		['moderation', 'Moderation'],
+		['music', 'Music'],
+		['utilities', 'Utility'],
 	])
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 

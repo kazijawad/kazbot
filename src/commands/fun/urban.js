@@ -9,7 +9,7 @@ class UrbanCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'urban',
-			group: 'misc',
+			group: 'fun',
 			memberName: 'urban',
 			description: 'Retrieves a word from Urban Dictionary.',
 			examples: ['urban Discord'],
