@@ -16,8 +16,8 @@ class CryptoCommand extends Command {
 			examples: ['crypto BTC', 'crypto global'],
 			guildOnly: false,
 			throttling: {
-				usages: 2,
-				duration: 1000,
+				usages: 30,
+				duration: 60,
 			},
 			args: [
 				{
@@ -99,9 +99,9 @@ class CryptoCommand extends Command {
 					message.say('Failed to locate cryptocurrency in CoinMarketCap!');
 				});
 		} else {
-			instance.get('/v1/cryptocurrency/quotes/latest', { params: { symbol: coin, convert: market } })
+			instance.get('/v1/cryptocurrency/quotes/latest', { params: { symbol: coin.toUpperCase(), convert: market } })
 				.then(response => {
-					const crypto = response['data']['data'][coin];
+					const crypto = response['data']['data'][coin.toUpperCase()];
 					const cryptoInfo = {
 						color: 0x008000,
 						title: crypto['name'],
