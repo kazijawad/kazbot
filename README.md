@@ -92,7 +92,6 @@ For certain video game commands, PC is the default platform and does not need to
 | ---------------------------- | ---------------------------------------------- | ------------------------ | ----------- |
 | k!csgo [username]            | Retrives specified player's CSGO stats.        | k!csgo YellowJay         | cs          |
 | k!lol [summoner]             | Retrives specified player's LoL stats.         | k!lol MaximumTilt        |             |
-| k!br [username]              | Retrives specified player's Battlerite stats.  | k!br TimmehHD            |             |
 
 ## Built With
 - [Discord API](https://discordapp.com/developers/docs/intro)
