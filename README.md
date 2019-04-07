@@ -83,7 +83,6 @@ For certain video game commands, PC is the default platform and does not need to
 
 | Command                         | Description                                  | Example                  | Aliases     |
 | ------------------------------- | -------------------------------------------- | ------------------------ | ----------- |
-| k!wf news [pc/xb1/ps4]          | Shows news on Warframe.                      | k!wf news                |             |
 | k!wf baro [pc/xb1/ps4]          | Shows information on the Void Trader.        | k!wf baro                |             |
 | k!wf sortie [pc/xb1/ps4]        | Shows information on the current sortie.     | k!wf sortie              |             |
 | k!wf daily [pc/xb1/ps4]         | Shows information on the daily deal.         | k!wf daily               |             |
