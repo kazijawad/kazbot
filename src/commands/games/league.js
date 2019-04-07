@@ -37,74 +37,72 @@ class LeagueEmbed extends Command {
 	}
 
 	async run(message, { summoner }) {
-		instance.get(`/summoner/v3/summoners/by-name/${summoner}`)
-			.then(response => {
-				const id = response['data']['id'];
-				instance.get(`/league/v3/positions/by-summoner/${id}`)
-					.then(res => {
-						const lolEmbed = {
-							color: 0xd63031,
-							title: `${res['data'][0]['playerOrTeamName']}'s LoL Stats`,
-							author: {
-								name: 'KazBot',
-								icon_url: process.env.AVATAR_URL,
-								url: 'https://kazijawad.github.io/',
-							},
-							fields: [
-								{
-									name: 'League Name',
-									value: res['data'][0]['leagueName'],
-									inline: true,
-								},
-								{
-									name: 'League Points',
-									value: res['data'][0]['leaguePoints'],
-									inline: true,
-								},
-								{
-									name: 'Tier',
-									value: res['data'][0]['tier'],
-									inline: true,
-								},
-								{
-									name: 'Rank',
-									value: res['data'][0]['rank'],
-									inline: true,
-								},
-								{
-									name: 'Queue Type',
-									value: res['data'][0]['queueType'],
-									inline: true,
-								},
-								{
-									name: 'Total Wins',
-									value: res['data'][0]['wins'],
-									inline: true,
-								},
-								{
-									name: 'Total Losses',
-									value: res['data'][0]['losses'],
-									inline: true,
-								},
-							],
-							timestamp: new Date(),
-							footer: {
-								text: '@KazBot',
-								icon_url: message.client.user.avatarURL,
-							},
-						};
+		try {
+			const response = await instance.get(`/summoner/v4/summoners/by-name/${summoner}`);
+			const ID = response['data']['id'];
 
-						message.embed(lolEmbed);
-					})
-					.catch(error => {
-						console.error(`LEAGUE API ${error}`);
-						message.say('Failed to retrieve Summoner ID!');
-					});
-			})
-			.catch(error => {
-				console.error(`LEAGUE API ${error}`);
-				message.say('Failed to retrieve Summoner Name!');
-			});
+			try {
+				const player = await instance.get(`/league/v4/positions/by-summoner/${ID}`);
+				const lolEmbed = {
+					color: 0xd63031,
+					title: `${player['data'][0]['summonerName']}'s LoL Stats`,
+					author: {
+						name: 'KazBot',
+						icon_url: process.env.AVATAR_URL,
+						url: 'https://kazijawad.github.io/',
+					},
+					fields: [
+						{
+							name: 'League Name',
+							value: player['data'][0]['leagueName'],
+							inline: true,
+						},
+						{
+							name: 'League Points',
+							value: player['data'][0]['leaguePoints'],
+							inline: true,
+						},
+						{
+							name: 'Tier',
+							value: player['data'][0]['tier'],
+							inline: true,
+						},
+						{
+							name: 'Rank',
+							value: player['data'][0]['rank'],
+							inline: true,
+						},
+						{
+							name: 'Queue Type',
+							value: player['data'][0]['queueType'],
+							inline: true,
+						},
+						{
+							name: 'Total Wins',
+							value: player['data'][0]['wins'],
+							inline: true,
+						},
+						{
+							name: 'Total Losses',
+							value: player['data'][0]['losses'],
+							inline: true,
+						},
+					],
+					timestamp: new Date(),
+					footer: {
+						text: '@KazBot',
+						icon_url: message.client.user.avatarURL,
+					},
+				};
+				message.embed(lolEmbed);
+			} catch (error) {
+				console.error(`LEAGUE API ${error.message}`);
+				message.say('Failed to retrieve Summoner ID.');
+			}
+		} catch (error) {
+			console.error(`LEAGUE API ${error.message}`);
+			message.say('Failed to retrieve Summoner name.');
+		}
 	}
 }
 
