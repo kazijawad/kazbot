@@ -47,7 +47,7 @@ class FortniteCommand extends Command {
 							message.say('Fortnite is online!');
 						}
 					} catch (error) {
-						console.error(`FORTNITE STATUS: ${error.message}`);
+						console.error(`[FORTNITE STATUS] ${error.message}`);
 						message.say('Failed to check Fortnite status.');
 					}
 					break;
@@ -84,7 +84,7 @@ class FortniteCommand extends Command {
 						};
 						message.embed(fortNewsEmbed);
 					} catch (error) {
-						console.error(`FORTNITE NEWS: ${error.message}`);
+						console.error(`[FORTNITE NEWS] ${error.message}`);
 						message.say('Failed to find Fortnite news.');
 					}
 					break;
@@ -132,12 +132,12 @@ class FortniteCommand extends Command {
 						};
 						message.embed(fortStatsEmbed);
 					} catch (error) {
-						console.warn(`FORTNITE STATS: ${error.message}`);
+						console.warn(`[FORTNITE STATS] ${error.message}`);
 						message.say('Failed to locate Fortnite username.');
 					}
 			}
 		}).catch(error => {
-			console.error(`FORTNITE LOGIN: ${error.message}`);
+			console.error(`[FORTNITE LOGIN] ${error.message}`);
 		});
 	}
 }

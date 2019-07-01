@@ -294,7 +294,7 @@ class WarframeCommand extends Command {
 				}
 			}
 		} catch (error) {
-			console.error(`WARFRAME API: ${error.message}`);
+			console.error(`[WARFRAME API] ${error.message}`);
 			message.say('Failed to connect to the Warframe API.');
 		}
 	}

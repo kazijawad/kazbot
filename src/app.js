@@ -1,4 +1,4 @@
-process.on('unhandledRejection', error => console.warn(`Uncaught Rejection: ${error}`));
+process.on('unhandledRejection', error => console.warn(`[UNCAUGHT REJECTION] ${error}`));
 require('dotenv').config();
 
 const path = require('path');

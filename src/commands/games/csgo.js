@@ -162,11 +162,11 @@ class CSGOCommand extends Command {
 				};
 				message.embed(csgoEmbed);
 			} catch (error) {
-				console.error(`STEAM USER STATS: ${error.message}`);
+				console.error(`[STEAM USER STATS] ${error.message}`);
 				message.say('Failed to retrieve player stats. Game details must be set to public on the player\'s privacy settings.');
 			}
 		} catch (error) {
-			console.error(`STEAM VANITY URL: ${error.message}`);
+			console.error(`[STEAM VANITY URL] ${error.message}`);
 			message.say('Failed to retrieve player.');
 		}
 	}

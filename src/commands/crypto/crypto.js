@@ -94,7 +94,7 @@ class CryptoCommand extends Command {
 				};
 				message.embed(cryptoGlobal);
 			} catch (error) {
-				console.warn(`COIN API: ${error.message}`);
+				console.warn(`[COIN API] ${error.message}`);
 				message.say('Failed to locate cryptocurrency in CoinMarketCap.');
 			}
 		} else {
@@ -155,7 +155,7 @@ class CryptoCommand extends Command {
 				};
 				message.embed(cryptoInfo);
 			} catch (error) {
-				console.warn(`COIN API: ${error.message}`);
+				console.warn(`[COIN API] ${error.message}`);
 				message.say('Failed to retrieve global information from CoinMarketCap.');
 			}
 		}

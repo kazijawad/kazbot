@@ -106,7 +106,7 @@ class PlayCommand extends Command {
 				queueConstruct.connection = connection;
 				this.play(message.guild, queueConstruct.songs[0]);
 			} catch (error) {
-				console.error(`Play Error: ${error}`);
+				console.error(`[PLAY] ${error}`);
 				this.queue.delete(message.guild.id);
 				return message.say('Failed to join the voice channel.');
 			}
@@ -135,7 +135,7 @@ class PlayCommand extends Command {
 				guildQueue.songs.shift();
 				this.play(guild, guildQueue.songs[0]);
 			})
-			.on('error', error => console.error(`Dispatcher Error: ${error}`));
+			.on('error', error => console.error(`[DISPATCHER] ${error}`));
 		dispatcher.setVolumeLogarithmic(guildQueue.volume / 5);
 	}
 }
