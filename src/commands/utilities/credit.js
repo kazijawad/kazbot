@@ -35,18 +35,6 @@ class CreditCommand extends Command {
 					value: 'https://github.com/qlaffont/fortnite-api',
 				},
 				{
-					name: 'Battlerite API',
-					value: 'https://developer.battlerite.com',
-				},
-				{
-					name: 'Overwatch API Wrapper',
-					value: 'https://github.com/gclem/overwatch-js',
-				},
-				{
-					name: 'League of Legends API',
-					value: 'https://developer.riotgames.com/api-methods',
-				},
-				{
 					name: 'CoinMarketCap API',
 					value: 'https://coinmarketcap.com/api',
 				},
@@ -57,6 +45,10 @@ class CreditCommand extends Command {
 				{
 					name: 'Github Repository',
 					value: 'https://github.com/kazijawad/KazBot',
+				},
+				{
+					name: 'Website',
+					value: 'https://kazbot.js.org/',
 				},
 			],
 			timestamp: new Date(),
