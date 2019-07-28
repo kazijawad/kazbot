@@ -13,7 +13,7 @@ class WarframeCommand extends Command {
 			group: 'games',
 			memberName: 'warframe',
 			description: 'Provides various information on the Warframe World State',
-			examples: ['wf news ps4'],
+			examples: ['wf baro ps4'],
 			throttling: {
 				usages: 5,
 				duration: 20,
