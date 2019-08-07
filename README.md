@@ -41,7 +41,7 @@ For certain video game commands, PC is the default platform and does not need to
 | k!role [@Discord Member]   | Retrives the specified user's role(s).       | k!role @YellowJay#5984   | roles       |
 | k!credit                   | Displays the credit for KazBot.              | k!credit                 |             |
 
-### Music Commands - Supports Youtube Playlists
+### Music Commands
 
 | Command                    | Description                                  | Example                  | Aliases     |
 | -------------------------- | -------------------------------------------- | ------------------------ | ----------- |
@@ -71,7 +71,7 @@ For certain video game commands, PC is the default platform and does not need to
 | k!crypto [coin]                       | Retrieves data on the specified crypto.      | k!crypto BTC             |             |
 | k!crypto global [conversion currency] | Retrieves data on the global market.         | k!crypto global          |             |
 
-### Fortnite Commands - PC set to default platform
+### Fortnite Commands
 
 | Command                      | Description                                  | Example                  | Aliases     |
 | ---------------------------- | -------------------------------------------- | ------------------------ | ----------- |
@@ -79,7 +79,7 @@ For certain video game commands, PC is the default platform and does not need to
 | k!ft status                  | Displays the status of Fortnite.             | k!ft status              |             |
 | k!ft news                    | Retrives Fortnite news.                      | k!ft news                |             |
 
-### Warframe Commands - PC set to default platform
+### Warframe Commands
 
 | Command                         | Description                                  | Example                  | Aliases     |
 | ------------------------------- | -------------------------------------------- | ------------------------ | ----------- |
