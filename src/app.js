@@ -27,13 +27,11 @@ client.registry
 client.on('ready', () => {
 	console.info(`Logged in as ${client.user.tag}!`);
 	if (process.env.NODE_ENV === 'production') {
-		setInterval(() => {
-			const dblClient = new DBL(process.env.DBL_TOKEN, client);
+		const dblClient = new DBL(process.env.DBL_TOKEN, client);
 
-			dblClient.on('posted', () => {
-				console.info(`Server Count: ${client.guilds.size}`);
-			});
-		}, 1800000);
+		dblClient.on('posted', () => {
+			console.info(`Server Count: ${client.guilds.size}`);
+		});
 	}
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
