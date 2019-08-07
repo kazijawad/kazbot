@@ -19,8 +19,8 @@
 	},
 	"scripts": {
 		"start": "node ./src/app.js",
-		"lint": "eslint . --fix",
-		"test": "nodemon ./src/app.js"
+		"watch": "nodemon ./src/app.js",
+		"lint": "eslint . --fix"
 	},
 	"dependencies": {
 		"axios": "^0.19.0",
