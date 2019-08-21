@@ -36,7 +36,7 @@ class FortniteCommand extends Command {
 	async run(message, { arg }) {
 		const platformRegex = /^pc|xb1|ps4\s/;
 		const platform = arg.match(platformRegex);
-		fortnite.login().then(async() => {
+		fortnite.login().then(async () => {
 			switch (arg) {
 				case 'status':
 					try {

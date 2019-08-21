@@ -39,14 +39,8 @@ class CSGOCommand extends Command {
 					stats[rawStats[i]['name']] = rawStats[i]['value'];
 				}
 
-				const csgoEmbed = {
+				message.embed({
 					color: 0xf1c40f,
-					title: `${player}'s CSGO Stats`,
-					author: {
-						name: 'KazBot',
-						icon_url: process.env.AVATAR_URL,
-						url: 'https://kazijawad.github.io/',
-					},
 					fields: [
 						{
 							name: 'Playtime',
@@ -154,20 +148,38 @@ class CSGOCommand extends Command {
 							inline: true,
 						},
 					],
-					timestamp: new Date(),
 					footer: {
 						text: '@KazBot',
-						icon_url: message.client.user.avatarURL,
+						icon_url: process.env.AVATAR_URL,
 					},
-				};
-				message.embed(csgoEmbed);
+					timestamp: new Date(),
+					title: `${player}'s CSGO Stats`,
+				});
 			} catch (error) {
 				console.error(`[STEAM USER STATS] ${error.message}`);
-				message.say('Failed to retrieve player stats. Game details must be set to public on the player\'s privacy settings.');
+				message.embed({
+					color: 0xf1c40f,
+					description: 'Failed to retrieve player stats. Game details must be set to public on the player\'s privacy settings.',
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Steam User Stats',
+				});
 			}
 		} catch (error) {
 			console.error(`[STEAM VANITY URL] ${error.message}`);
-			message.say('Failed to retrieve player.');
+			message.embed({
+				color: 0xf1c40f,
+				description: 'Failed to retrieve player.',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Steam User Stats',
+			});
 		}
 	}
 }
