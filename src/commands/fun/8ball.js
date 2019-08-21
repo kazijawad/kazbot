@@ -29,7 +29,7 @@ class MagicCommand extends Command {
 			name: '8ball',
 			group: 'fun',
 			memberName: '8ball',
-			description: 'Asks the Magic 8ball a question.',
+			description: 'Asks the Magic 8-Ball a question.',
 			examples: ['8ball Will I win my Fortnite games today?'],
 			guildOnly: false,
 			args: [
@@ -44,7 +44,16 @@ class MagicCommand extends Command {
 
 	async run(message) {
 		const answer = response[Math.floor(Math.random() * response.length)];
-		message.reply(answer);
+		message.embed({
+			color: 0x3498db,
+			description: answer,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Magic 8-Ball',
+		});
 	}
 }
 
