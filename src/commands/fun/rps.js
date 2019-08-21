@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { RichEmbed } = require('discord.js');
 
 const choices = ['rock', 'paper', 'scissors'];
 
@@ -23,21 +24,31 @@ class RPSCommand extends Command {
 
 	async run(message, { playerChoice }) {
 		const botChoice = choices[Math.floor(Math.random() * choices.length)];
-		const botWon = `KazBot won! He chose ${botChoice}!`;
-		const playerWon = `${message.member.displayName} won! KazBot chose ${botChoice}!`;
-		const draw = `Draw! You both chose ${botChoice}!`;
+		const botWon = `KazBot won by choosing ${botChoice}!`;
+		const playerWon = `${message.member.displayName} won because KazBot chose ${botChoice}!`;
+		const draw = `Draw, you both chose ${botChoice}!`;
+
+		const embed = new RichEmbed({
+			color: 0x3498db,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Rock, Paper, Scissors',
+		});
 
 		switch (playerChoice) {
 			case 'rock':
 				switch (botChoice) {
 					case 'rock':
-						message.say(draw);
+						embed.setDescription(draw);
 						break;
 					case 'paper':
-						message.say(botWon);
+						embed.setDescription(botWon);
 						break;
 					case 'scissors':
-						message.say(playerWon);
+						embed.setDescription(playerWon);
 						break;
 					default:
 						break;
@@ -46,13 +57,13 @@ class RPSCommand extends Command {
 			case 'paper':
 				switch (botChoice) {
 					case 'rock':
-						message.say(playerWon);
+						embed.setDescription(playerWon);
 						break;
 					case 'paper':
-						message.say(draw);
+						embed.setDescription(draw);
 						break;
 					case 'scissors':
-						message.say(botWon);
+						embed.setDescription(botWon);
 						break;
 					default:
 						break;
@@ -61,21 +72,23 @@ class RPSCommand extends Command {
 			case 'scissors':
 				switch (botChoice) {
 					case 'rock':
-						message.say(botWon);
+						embed.setDescription(botWon);
 						break;
 					case 'paper':
-						message.say(playerWon);
+						embed.setDescription(playerWon);
 						break;
 					case 'scissors':
-						message.say(draw);
+						embed.setDescription(draw);
 						break;
 					default:
 						break;
 				}
 				break;
 			default:
-				return message.reply('Please pass in an argument with rock/paper/scissors!');
+				embed.setDescription('Please pass in an argument with rock/paper/scissors!');
 		}
+
+		message.embed(embed);
 	}
 }
 

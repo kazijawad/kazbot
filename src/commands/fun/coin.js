@@ -17,7 +17,16 @@ class CoinCommand extends Command {
 
 	async run(message) {
 		const winner = coins[Math.floor(Math.random() * coins.length)];
-		message.reply(winner);
+		message.embed({
+			color: 0x3498db,
+			description: winner,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Coin Toss',
+		});
 	}
 }
 

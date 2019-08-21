@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
 const axios = require('axios');
+const { Command } = require('discord.js-commando');
 
 const instance = axios.create({
 	baseURL: 'http://api.urbandictionary.com/v0',
@@ -29,19 +29,24 @@ class UrbanCommand extends Command {
 		try {
 			const response = await instance.get('/define', { params: { term: phrase } });
 			const term = response['data']['list'][0];
+
 			if (!term) {
-				return message.say(`${phrase} cannot be found on Urban Dictionary.`);
+				return message.embed({
+					color: 0x3498db,
+					description: `${phrase} cannot be found on Urban Dictionary.`,
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Urban Dictionary',
+				});
 			}
+
 			const termExample = term['example'] ? term['example'] : 'N/A';
 
-			const termEmbed = {
-				color: 0xd3d3d3,
-				title: term['word'],
-				author: {
-					name: 'KazBot',
-					icon_url: process.env.AVATAR_URL,
-					url: 'https://kazijawad.github.io/',
-				},
+			message.embed({
+				color: 0x3498db,
 				fields: [
 					{
 						name: 'Definition',
@@ -67,16 +72,24 @@ class UrbanCommand extends Command {
 						inline: true,
 					},
 				],
-				timestamp: new Date(),
 				footer: {
 					text: '@KazBot',
-					icon_url: message.client.user.avatarURL,
+					icon_url: process.env.AVATAR_URL,
 				},
-			};
-
-			message.embed(termEmbed);
+				timestamp: new Date(),
+				title: 'Urban Dictionary',
+			});
 		} catch (error) {
-			message.say('Failed to retrieve word from Urban Dictionary.');
+			message.embed({
+				color: 0x3498db,
+				description: 'Failed to retrieve word from Urban Dictionary',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Urban Dictionary',
+			});
 		}
 	}
 }
