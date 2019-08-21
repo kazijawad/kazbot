@@ -41,23 +41,17 @@ class CryptoCommand extends Command {
 				const response = await instance.get('/v1/global-metrics/quotes/latest', { params: { convert: market } });
 				const global = response['data']['data'];
 
-				const cryptoGlobal = {
-					color: 0x008000,
-					title: 'Global Crypto Info',
-					author: {
-						name: 'KazBot',
-						icon_url: process.env.AVATAR_URL,
-						url: 'https://kazijawad.github.io/',
-					},
+				message.embed({
+					color: 0x27ae60,
 					fields: [
 						{
 							name: 'Bitcoin Dominance',
-							value: global['btc_dominance'].toString(),
+							value: `${Math.round(global['btc_dominance'])}%`,
 							inline: true,
 						},
 						{
 							name: 'Ethereum Dominance',
-							value: global['eth_dominance'].toString(),
+							value: `${Math.round(global['eth_dominance'])}%`,
 							inline: true,
 						},
 						{
@@ -75,41 +69,34 @@ class CryptoCommand extends Command {
 							value: global['active_exchanges'],
 							inline: true,
 						},
-						{
-							name: 'Total Market Cap',
-							value: global['quote'][market]['total_market_cap'].toString(),
-							inline: true,
-						},
-						{
-							name: 'Total 24hr Volume',
-							value: global['quote'][market]['total_volume_24h'].toString(),
-							inline: true,
-						},
 					],
-					timestamp: new Date(),
 					footer: {
 						text: '@KazBot',
-						icon_url: message.client.user.avatarURL,
+						icon_url: process.env.AVATAR_URL,
 					},
-				};
-				message.embed(cryptoGlobal);
+					timestamp: new Date(),
+					title: 'Global Cryptocurrency Information',
+				});
 			} catch (error) {
 				console.warn(`[COIN API] ${error.message}`);
-				message.say('Failed to locate cryptocurrency in CoinMarketCap.');
+				message.embed({
+					color: 0x27ae60,
+					description:'Failed to retrieve global information from CoinMarketCap.',
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Global Cryptocurrency Information',
+				});
 			}
 		} else {
 			try {
 				const response = await instance.get('/v1/cryptocurrency/quotes/latest', { params: { symbol: coin.toUpperCase(), convert: market } });
 				const crypto = response['data']['data'][coin.toUpperCase()];
 
-				const cryptoInfo = {
-					color: 0x008000,
-					title: crypto['name'],
-					author: {
-						name: 'KazBot',
-						icon_url: process.env.AVATAR_URL,
-						url: 'https://kazijawad.github.io/',
-					},
+				message.embed({
+					color: 0x27ae60,
 					fields: [
 						{
 							name: 'Symbol',
@@ -147,16 +134,25 @@ class CryptoCommand extends Command {
 							inline: true,
 						},
 					],
-					timestamp: new Date(),
 					footer: {
 						text: '@KazBot',
-						icon_url: message.client.user.avatarURL,
+						icon_url: process.env.AVATAR_URL,
 					},
-				};
-				message.embed(cryptoInfo);
+					timestamp: new Date(),
+					title: crypto['name'],
+				});
 			} catch (error) {
 				console.warn(`[COIN API] ${error.message}`);
-				message.say('Failed to retrieve global information from CoinMarketCap.');
+				message.embed({
+					color: 0x27ae60,
+					description: 'Failed to locate cryptocurrency in CoinMarketCap.',
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Cryptocurrency Information',
+				});
 			}
 		}
 	}
