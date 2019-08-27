@@ -40,7 +40,7 @@ class CSGOCommand extends Command {
 				}
 
 				message.embed({
-					color: 0xf1c40f,
+					color: 0xf6e58d,
 					fields: [
 						{
 							name: 'Playtime',
@@ -158,7 +158,7 @@ class CSGOCommand extends Command {
 			} catch (error) {
 				console.error(`[STEAM USER STATS] ${error.message}`);
 				message.embed({
-					color: 0xf1c40f,
+					color: 0xf6e58d,
 					description: 'Failed to retrieve player stats. Game details must be set to public on the player\'s privacy settings.',
 					footer: {
 						text: '@KazBot',
@@ -171,7 +171,7 @@ class CSGOCommand extends Command {
 		} catch (error) {
 			console.error(`[STEAM VANITY URL] ${error.message}`);
 			message.embed({
-				color: 0xf1c40f,
+				color: 0xf6e58d,
 				description: 'Failed to retrieve player.',
 				footer: {
 					text: '@KazBot',

@@ -42,26 +42,47 @@ class FortniteCommand extends Command {
 					try {
 						const status = await fortnite.checkFortniteStatus();
 						if (!status) {
-							message.say('Fortnite is down! Check https://twitter.com/FortniteGame');
+							message.embed({
+								color: 0xf6e58d,
+								description: 'Fortnite is down! Check https://twitter.com/FortniteGame',
+								footer: {
+									text: '@KazBot',
+									icon_url: process.env.AVATAR_URL,
+								},
+								timestamp: new Date(),
+								title: 'Fortnite Server Status',
+							});
 						} else {
-							message.say('Fortnite is online!');
+							message.embed({
+								color: 0xf6e58d,
+								description: 'Fortnite is online!',
+								footer: {
+									text: '@KazBot',
+									icon_url: process.env.AVATAR_URL,
+								},
+								timestamp: new Date(),
+								title: 'Fortnite Server Status',
+							});
 						}
 					} catch (error) {
 						console.error(`[FORTNITE STATUS] ${error.message}`);
-						message.say('Failed to check Fortnite status.');
+						message.embed({
+							color: 0xf6e58d,
+							description: 'Failed to check Fortnite status.',
+							footer: {
+								text: '@KazBot',
+								icon_url: process.env.AVATAR_URL,
+							},
+							timestamp: new Date(),
+							title: 'Fortnite Server Status',
+						});
 					}
 					break;
 				case 'news':
 					try {
 						const news = await fortnite.getFortniteNews('en');
-						const fortNewsEmbed = {
-							color: 0x8e44ad,
-							title: 'Fornite News',
-							author: {
-								name: 'KazBot',
-								icon_url: process.env.AVATAR_URL,
-								url: 'https://kazijawad.github.io/',
-							},
+						message.embed({
+							color: 0xf6e58d,
 							fields: [
 								{
 									name: news['br'][0]['title'],
@@ -76,16 +97,25 @@ class FortniteCommand extends Command {
 									value: news['br'][2]['body'],
 								},
 							],
-							timestamp: new Date(),
 							footer: {
 								text: '@KazBot',
-								icon_url: message.client.user.avatarURL,
+								icon_url: process.env.AVATAR_URL,
 							},
-						};
-						message.embed(fortNewsEmbed);
+							timestamp: new Date(),
+							title: 'Fortnite News',
+						});
 					} catch (error) {
 						console.error(`[FORTNITE NEWS] ${error.message}`);
-						message.say('Failed to find Fortnite news.');
+						message.embed({
+							color: 0xf6e58d,
+							description: 'Failed to find Fortnite news.',
+							footer: {
+								text: '@KazBot',
+								icon_url: process.env.AVATAR_URL,
+							},
+							timestamp: new Date(),
+							title: 'Fortnite News',
+						});
 					}
 					break;
 				default:
@@ -98,14 +128,8 @@ class FortniteCommand extends Command {
 							stats = await fortnite.getStatsBR(player, platform[0]);
 						}
 
-						const fortStatsEmbed = {
-							color: 0x8e44ad,
-							title: `${stats['info']['username']}'s Fortnite Stats`,
-							author: {
-								name: 'KazBot',
-								icon_url: process.env.AVATAR_URL,
-								url: 'https://kazijawad.github.io/',
-							},
+						message.embed({
+							color: 0xf6e58d,
 							fields: [
 								{
 									name: 'Overall',
@@ -124,16 +148,25 @@ class FortniteCommand extends Command {
 									value: `Wins: ${stats['group']['squad']['wins']} | Win %: ${stats['group']['squad']['win%']}\nTop 3: ${stats['group']['squad']['top3']} | Top 6: ${stats['group']['squad']['top6']}\nKills: ${stats['group']['squad']['kills']} | K/D: ${stats['group']['squad']['k/d']}\nKills Per Match: ${stats['group']['squad']['killsPerMatch']}\nMatches: ${stats['group']['squad']['matches']} | Playtime: ${stats['group']['squad']['timePlayed']}`,
 								},
 							],
-							timestamp: new Date(),
 							footer: {
 								text: '@KazBot',
-								icon_url: message.client.user.avatarURL,
+								icon_url: process.env.AVATAR_URL,
 							},
-						};
-						message.embed(fortStatsEmbed);
+							timestamp: new Date(),
+							title: `${stats['info']['username']}'s Fortnite Stats`,
+						});
 					} catch (error) {
 						console.warn(`[FORTNITE STATS] ${error.message}`);
-						message.say('Failed to locate Fortnite username.');
+						message.embed({
+							color: 0xf6e58d,
+							description: 'Failed to locate Fortnite username.',
+							footer: {
+								text: '@KazBot',
+								icon_url: process.env.AVATAR_URL,
+							},
+							timestamp: new Date(),
+							title: 'Fortnite User Stats',
+						});
 					}
 			}
 		}).catch(error => {
