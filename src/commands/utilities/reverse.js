@@ -21,7 +21,17 @@ class ReverseCommand extends Command {
 
 	async run(message, { string }) {
 		const reverse = string.split('').reverse().join('');
-		message.say(`${string} ---> ${reverse}`);
+
+		message.embed({
+			color: 0xf39c12,
+			description: `${string}➡️${reverse}`,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Reverse Command',
+		});
 	}
 }
 

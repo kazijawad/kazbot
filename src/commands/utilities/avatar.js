@@ -24,24 +24,18 @@ class AvatarCommand extends Command {
 	async run(message, { user }) {
 		if (user === 'undefined') { user = message.author; }
 
-		const avatarEmbed = {
-			title: `${user.username}'s Avatar`,
-			author: {
-				name: 'KazBot',
-				icon_url: process.env.AVATAR_URL,
-				url: 'https://kazijawad.github.io/',
-			},
+		message.embed({
+			color: 0xf39c12,
 			image: {
 				url: user.avatarURL,
 			},
-			timestamp: new Date(),
 			footer: {
 				text: '@KazBot',
-				icon_url: message.client.user.avatarURL,
+				icon_url: process.env.AVATAR_URL,
 			},
-		};
-
-		message.embed(avatarEmbed);
+			timestamp: new Date(),
+			title: `${user.username}'s Avatar`,
+		});
 	}
 }
 

@@ -14,17 +14,8 @@ class UserCommand extends Command {
 	}
 
 	async run(message) {
-		const userEmbed = {
-			color: message.member.roles.color,
-			title: message.member.displayName,
-			author: {
-				name: 'KazBot',
-				icon_url: process.env.AVATAR_URL,
-				url: 'https://kazijawad.github.io/',
-			},
-			thumbnail: {
-				url: message.author.avatarURL,
-			},
+		message.embed({
+			color: 0xf39c12,
 			fields: [
 				{
 					name: 'Discord ID',
@@ -47,14 +38,13 @@ class UserCommand extends Command {
 					inline: true,
 				},
 			],
-			timestamp: new Date(),
 			footer: {
 				text: '@KazBot',
-				icon_url: message.client.user.avatarURL,
+				icon_url: process.env.AVATAR_URL,
 			},
-		};
-
-		message.embed(userEmbed);
+			timestamp: new Date(),
+			title: `${message.member.displayName}'s Information`,
+		});
 	}
 }
 

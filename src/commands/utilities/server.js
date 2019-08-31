@@ -15,18 +15,8 @@ class ServerCommand extends Command {
 
 	async run(message) {
 		const afkChannel = message.guild.afkChannel ? message.guild.afkChannel.name : 'N/A';
-
-		const guildEmbed = {
-			color: 0xb8860b,
-			title: message.guild.name,
-			author: {
-				name: 'KazBot',
-				icon_url: process.env.AVATAR_URL,
-				url: 'https://kazijawad.github.io/',
-			},
-			thumbnail: {
-				url: message.guild.iconURL,
-			},
+		message.embed({
+			color: 0xf39c12,
 			fields: [
 				{
 					name: 'Guild ID',
@@ -64,14 +54,13 @@ class ServerCommand extends Command {
 					inline: true,
 				},
 			],
-			timestamp: new Date(),
 			footer: {
 				text: '@KazBot',
-				icon_url: message.client.user.avatarURL,
+				icon_url: process.env.AVATAR_URL,
 			},
-		};
-
-		message.embed(guildEmbed);
+			timestamp: new Date(),
+			title: `${message.guild.name}'s Guild Information`,
+		});
 	}
 }
 

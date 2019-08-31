@@ -14,17 +14,8 @@ class CreditCommand extends Command {
 	}
 
 	async run(message) {
-		const creditEmbed = {
-			color: 0xffd700,
-			title: 'Credit',
-			author: {
-				name: 'KazBot',
-				icon_url: process.env.AVATAR_URL,
-				url: 'https://kazijawad.github.io/',
-			},
-			thumbnail: {
-				url: message.client.user.avatarURL,
-			},
+		message.embed({
+			color: 0xf39c12,
 			fields: [
 				{
 					name: 'Discord.js',
@@ -51,14 +42,13 @@ class CreditCommand extends Command {
 					value: 'https://kazbot.js.org/',
 				},
 			],
-			timestamp: new Date(),
 			footer: {
 				text: '@KazBot',
-				icon_url: message.client.user.avatarURL,
+				icon_url: process.env.AVATAR_URL,
 			},
-		};
-
-		message.embed(creditEmbed);
+			timestamp: new Date(),
+			title: 'Credit',
+		});
 	}
 }
 

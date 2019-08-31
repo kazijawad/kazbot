@@ -23,22 +23,12 @@ class RoleCommand extends Command {
 
 	async run(message, { member }) {
 		if (member === 'undefined') { member = message.member; }
-		const memberColor = member.colorRole ? member.colorRole.color : 0xff0055;
 		const hoistRole = member.hoistRole ? member.hoistRole.name : 'N/A';
 		const colorRole = member.colorRole ? member.colorRole.name : 'N/A';
-
 		const roles = member.roles.map(r => r.name).join(' | ');
-		const roleEmbed = {
-			color: memberColor,
-			title: message.guild.name,
-			author: {
-				name: 'KazBot',
-				icon_url: process.env.AVATAR_URL,
-				url: 'https://kazijawad.github.io/',
-			},
-			thumbnail: {
-				url: message.author.avatarURL,
-			},
+
+		message.embed({
+			color: 0xf39c12,
 			fields: [
 				{
 					name: 'Highest Role',
@@ -61,14 +51,13 @@ class RoleCommand extends Command {
 					inline: true,
 				},
 			],
-			timestamp: new Date(),
 			footer: {
 				text: '@KazBot',
-				icon_url: message.client.user.avatarURL,
+				icon_url: process.env.AVATAR_URL,
 			},
-		};
-
-		message.embed(roleEmbed);
+			timestamp: new Date(),
+			title: `${message.guild.name}'s Roles`,
+		});
 	}
 }
 
