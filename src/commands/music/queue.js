@@ -14,7 +14,18 @@ class QueueCommand extends Command {
 
 	async run(message) {
 		const queue = this.queue.get(message.guild.id);
-		if (!queue) { return message.reply('There is no music playing right now.'); }
+		if (!queue) {
+			return message.embed({
+				color: 0x8e44ad,
+				description: 'There is no music playing right now.',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Status',
+			});
+		}
 
 		message.say(`\`\`\`Song Queue:\n${queue.songs.map(song => song.title).join('\n')}\n\nNow Playing: ${queue.songs[0].title}\`\`\``);
 	}

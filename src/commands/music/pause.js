@@ -22,7 +22,16 @@ class PauseCommand extends Command {
 
 		queue.connection.dispatcher.pause();
 		queue.playing = false;
-		message.say(`\`\`\`Paused ${queue.songs[0].title}\`\`\``);
+		message.embed({
+			color: 0x8e44ad,
+			description: `Paused ${queue.songs[0].title}`,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Song Paused',
+		});
 	}
 
 	get queue() {

@@ -1,5 +1,5 @@
 const { Command } = require('discord.js-commando');
-const { Util, RichEmbed } = require('discord.js');
+const { Util } = require('discord.js');
 const ytdlDiscord = require('ytdl-core-discord');
 const Youtube = require('simple-youtube-api');
 
@@ -36,7 +36,17 @@ class PlayCommand extends Command {
 				const videoID = await youtube.getVideoByID(video.id);
 				await this.handleVideo(message, videoID, true);
 			}
-			return message.say(`Playlist: ${playlist.title} has been added to the queue.`);
+
+			return message.embed({
+				color: 0x8e44ad,
+				description: `Playlist: ${playlist.title} has been added to the queue.`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Playlist Added',
+			});
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -50,29 +60,67 @@ class PlayCommand extends Command {
 						songChannel.push(element.channel.title);
 					});
 
-					const songEmbed = new RichEmbed()
-						.setColor('AQUA')
-						.setTitle('Song Selection')
-						.setDescription('Please respond with a number.')
-						.addField(`1: ${songTitle[0]}`, songChannel[0])
-						.addField(`2: ${songTitle[1]}`, songChannel[1])
-						.addField(`3: ${songTitle[2]}`, songChannel[2])
-						.addField(`4: ${songTitle[3]}`, songChannel[3])
-						.addField(`5: ${songTitle[4]}`, songChannel[4])
-						.setFooter('@KazBot')
-						.setTimestamp(new Date());
-					message.embed(songEmbed);
+					message.embed({
+						color: 0x8e44ad,
+						description: 'Please respond with a number.',
+						fields: [
+							{
+								name: `1: ${songTitle[0]}`,
+								value: songChannel[0],
+							},
+							{
+								name: `2: ${songTitle[1]}`,
+								value: songChannel[1],
+							},
+							{
+								name: `3: ${songTitle[2]}`,
+								value: songChannel[2],
+							},
+							{
+								name: `4: ${songTitle[3]}`,
+								value: songChannel[3],
+							},
+							{
+								name: `5: ${songTitle[4]}`,
+								value: songChannel[4],
+							},
+						],
+						footer: {
+							text: '@KazBot',
+							icon_url: process.env.AVATAR_URL,
+						},
+						timestamp: new Date(),
+						title: 'Song Selection',
+					});
 
 					try {
 						const filter = response => response.content.match(/1|2|3|4|5/);
 						var response = await message.channel.awaitMessages(filter, { maxMatches: 1, time: 10000, errors: ['time'] });
-					} catch (err) {
-						return message.say('Failed to receive a value from the user.');
+					} catch (error) {
+						return message.embed({
+							color: 0x8e44ad,
+							description: 'Failed to receive a value from the user.',
+							footer: {
+								text: '@KazBot',
+								icon_url: process.env.AVATAR_URL,
+							},
+							timestamp: new Date(),
+							title: 'Song Selection',
+						});
 					}
 					const videoIndex = parseInt(response.first().content);
 					video = await youtube.getVideoByID(videos[videoIndex - 1].id);
-				} catch (err) {
-					return message.say('Failed to find Youtube video.');
+				} catch (error) {
+					return message.embed({
+						color: 0x8e44ad,
+						description: 'Failed to find a Youtube video.',
+						footer: {
+							text: '@KazBot',
+							icon_url: process.env.AVATAR_URL,
+						},
+						timestamp: new Date(),
+						title: 'Song Selection',
+					});
 				}
 			}
 			return this.handleVideo(message, video);
@@ -88,8 +136,18 @@ class PlayCommand extends Command {
 			url: `https://www.youtube.com/watch?v=${video.id}`,
 		};
 
-		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
-		if (!guildQueue) {
+		if (!voiceChannel) {
+			return message.embed({
+				color: 0x8e44ad,
+				description: 'Please join a voice channel first!',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Selection',
+			});
+		} else if (!guildQueue) {
 			const queueConstruct = {
 				textChannel: message.channel,
 				voiceChannel: voiceChannel,
@@ -108,12 +166,30 @@ class PlayCommand extends Command {
 			} catch (error) {
 				console.error(`[PLAY] ${error}`);
 				this.queue.delete(message.guild.id);
-				return message.say('Failed to join the voice channel.');
+				return message.embed({
+					color: 0x8e44ad,
+					description: 'Failed to join the voice channel.',
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Song Selection',
+				});
 			}
 		} else {
 			guildQueue.songs.push(song);
 			if (playlist) { return; }
-			message.say(`${song.title} has been added to the queue.`);
+			message.embed({
+				color: 0x8e44ad,
+				description: `${song.title} has been added to the queue.`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Selection',
+			});
 		}
 	}
 
@@ -121,7 +197,19 @@ class PlayCommand extends Command {
 		const guildQueue = this.queue.get(guild.id);
 		if (!song) {
 			guildQueue.voiceChannel.leave();
-			guildQueue.textChannel.send(`KazBot has left ${guildQueue.voiceChannel.name}`);
+			guildQueue.textChannel.send(undefined, {
+				embed: {
+					color: 0x8e44ad,
+					description: `KazBot has left ${guildQueue.voiceChannel.name}`,
+					footer: {
+						text: '@KazBot',
+						icon_url: process.env.AVATAR_URL,
+					},
+					timestamp: new Date(),
+					title: 'Song Selection',
+				},
+			});
+
 			this.queue.delete(guild.id);
 			return;
 		}
@@ -129,7 +217,18 @@ class PlayCommand extends Command {
 		const stream = await ytdlDiscord(song.url);
 		const dispatcher = guildQueue.connection.playOpusStream(stream, { passes: 3 })
 			.on('start', () => {
-				guildQueue.textChannel.send(`Start Playing: ${song.title}`);
+				guildQueue.textChannel.send(undefined, {
+					embed: {
+						color: 0x8e44ad,
+						description: `Playing: ${song.title}`,
+						footer: {
+							text: '@KazBot',
+							icon_url: process.env.AVATAR_URL,
+						},
+						timestamp: new Date(),
+						title: 'Song Selection',
+					},
+				});
 			})
 			.on('end', () => {
 				guildQueue.songs.shift();

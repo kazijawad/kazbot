@@ -16,13 +16,53 @@ class ResumeCommand extends Command {
 		const queue = this.queue.get(message.guild.id);
 		const voiceChannel = message.member.voiceChannel;
 
-		if (!queue) { return message.reply('There is no queue available right now.'); }
-		if (queue.playing) { return message.reply('The song is playing!'); }
-		if (!voiceChannel) { return message.reply('Please join a voice channel first!'); }
+		if (!queue) {
+			return message.embed({
+				color: 0x8e44ad,
+				description: 'There is no queue available right now.',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Status',
+			});
+		} else if (queue.playing) {
+			return message.embed({
+				color: 0x8e44ad,
+				description: 'The song is playing!',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Status',
+			});
+		} else if (!voiceChannel) {
+			return message.embed({
+				color: 0x8e44ad,
+				description: 'Please join a voice channel first!',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Song Status',
+			});
+		}
 
 		queue.connection.dispatcher.resume();
 		queue.playing = true;
-		message.say(`\`\`\`Resumed ${queue.songs[0].title}\`\`\``);
+		message.embed({
+			color: 0x8e44ad,
+			description: `Resumed ${queue.songs[0].title}`,
+			footer: {
+				text: '@KazBot',
+				icon_url: process.env.AVATAR_URL,
+			},
+			timestamp: new Date(),
+			title: 'Song Status',
+		});
 	}
 
 	get queue() {
