@@ -42,15 +42,8 @@ class WarframeCommand extends Command {
 			switch (option) {
 				case 'baro': {
 					const feed = data['voidTrader'];
-					const voidEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Void Trader',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
-						description: feed.character,
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'Location',
@@ -73,27 +66,19 @@ class WarframeCommand extends Command {
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(voidEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Void Trader Status',
+					});
 					break;
 				}
 				case 'sortie': {
 					const feed = data['sortie'];
-					const sortieEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Sortie',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
-						description: feed.character,
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'ETA',
@@ -123,28 +108,25 @@ class WarframeCommand extends Command {
 								value: `${feed.variants[2].missionType} | ${feed.variants[2].modifier}`,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(sortieEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Sortie Status',
+					});
 					break;
 				}
 				case 'daily': {
 					const feed = data['dailyDeals'][0];
-					const dailyEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Daily Deal',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
-						description: feed.item,
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
+							{
+								name: 'Item',
+								value: feed.item,
+								inline: true,
+							},
 							{
 								name: 'Original Price',
 								value: feed.originalPrice,
@@ -156,26 +138,19 @@ class WarframeCommand extends Command {
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(dailyEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Daily Deal',
+					});
 					break;
 				}
 				case 'simaris': {
 					const feed = data['simaris'];
-					const simarisEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Simaris',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'Target',
@@ -183,26 +158,19 @@ class WarframeCommand extends Command {
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(simarisEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Simaris Status',
+					});
 					break;
 				}
 				case 'earth': {
 					const feed = data['earthCycle'];
-					const earthEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Earth Cycle',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'Daytime',
@@ -215,26 +183,19 @@ class WarframeCommand extends Command {
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(earthEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Earth Cycle',
+					});
 					break;
 				}
 				case 'cetus': {
 					const feed = data['cetusCycle'];
-					const cetusEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Cetus Cycle',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'Daytime',
@@ -247,46 +208,38 @@ class WarframeCommand extends Command {
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(cetusEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Cetus Cycle',
+					});
 					break;
 				}
 				case 'construction': {
 					const feed = data['constructionProgress'];
-					const constructEmbed = {
-						color: 0xffd700,
-						title: 'Warframe Construction Progress',
-						author: {
-							name: 'KazBot',
-							icon_url: process.env.AVATAR_URL,
-							url: 'https://kazijawad.github.io/',
-						},
+					message.embed({
+						color: 0xf6e58d,
 						fields: [
 							{
 								name: 'Fomorian Progress',
-								value: feed.fomorianProgress,
+								value: `${feed.fomorianProgress}%`,
 								inline: true,
 							},
 							{
 								name: 'Razorback Progress',
-								value: feed.razorbackProgress,
+								value: `${feed.razorbackProgress}%`,
 								inline: true,
 							},
 						],
-						timestamp: new Date(),
 						footer: {
 							text: '@KazBot',
-							icon_url: message.client.user.avatarURL,
+							icon_url: process.env.AVATAR_URL,
 						},
-					};
-
-					message.embed(constructEmbed);
+						timestamp: new Date(),
+						title: 'Warframe Construction Cycle',
+					});
 					break;
 				}
 				default: {
@@ -295,7 +248,16 @@ class WarframeCommand extends Command {
 			}
 		} catch (error) {
 			console.error(`[WARFRAME API] ${error.message}`);
-			message.say('Failed to connect to the Warframe API.');
+			message.embed({
+				color: 0xf6e58d,
+				description: 'Failed to connect to the Warframe API.',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Warframe Error',
+			});
 		}
 	}
 }
