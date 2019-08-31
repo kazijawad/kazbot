@@ -26,10 +26,20 @@ class PruneCommand extends Command {
 		let number = parseInt(amount) + 1;
 		if (number > 100) { number = 100; }
 
-		message.channel.bulkDelete(number, true)
-			.catch(() => {
-				message.say('Failed to prune messages in this channel.');
+		try {
+			await message.channel.bulkDelete(number, true);
+		} catch (error) {
+			message.embed({
+				color: 0xe74c3c,
+				description: 'Failed to prune messages in this channel.',
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Prune Command',
 			});
+		}
 	}
 }
 

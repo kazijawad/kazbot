@@ -22,9 +22,30 @@ class KickCommmand extends Command {
 	}
 
 	async run(message, { member }) {
-		member.kick()
-			.then(() => message.say(`Kicked ${member.displayName}`))
-			.catch(() => { message.say(`Failed to kick ${member.displayName}.`); });
+		try {
+			await member.kick();
+			message.embed({
+				color: 0xe74c3c,
+				description: `Kicked ${member.displayName}`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Kick Command',
+			});
+		} catch (error) {
+			message.embed({
+				color: 0xe74c3c,
+				description: `Failed to kick ${member.displayName}.`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Kick Command',
+			});
+		}
 	}
 }
 

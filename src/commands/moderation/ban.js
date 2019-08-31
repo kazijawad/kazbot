@@ -34,9 +34,30 @@ class BanCommand extends Command {
 	}
 
 	async run(message, { member, reason, days }) {
-		member.ban({ reason: reason, days: days })
-			.then(() => message.say(`Banned ${member.displayName}`))
-			.catch(() => message.say(`Failed to ban ${member.displayName}.`));
+		try {
+			await member.ban({ reason: reason, days: days });
+			message.embed({
+				color: 0xe74c3c,
+				description: `Banned ${member.displayName}`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Ban Command',
+			});
+		} catch (error) {
+			message.embed({
+				color: 0xe74c3c,
+				description: `Failed to ban ${member.displayName}.`,
+				footer: {
+					text: '@KazBot',
+					icon_url: process.env.AVATAR_URL,
+				},
+				timestamp: new Date(),
+				title: 'Ban Command',
+			});
+		}
 	}
 }
 
