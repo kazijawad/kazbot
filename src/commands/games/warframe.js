@@ -243,7 +243,16 @@ class WarframeCommand extends Command {
 					break;
 				}
 				default: {
-					message.say('Invalid Warframe option.');
+					message.embed({
+						color: 0xf6e58d,
+						description: 'Invalid Warframe option.',
+						footer: {
+							text: '@KazBot',
+							icon_url: process.env.AVATAR_URL,
+						},
+						timestamp: new Date(),
+						title: 'Warframe Command',
+					});
 				}
 			}
 		} catch (error) {
