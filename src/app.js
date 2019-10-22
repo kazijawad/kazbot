@@ -26,8 +26,11 @@ client.registry
 client.on('ready', () => {
 	console.info(`Logged in as ${client.user.tag}!`);
 	if (process.env.NODE_ENV === 'production') {
+		console.info(client.guilds.size);
 		dblClient.postStats(client.guilds.size);
+
 		setInterval(() => {
+			console.info(client.guilds.size);
 			dblClient.postStats(client.guilds.size);
 		}, 1000 * 60 * 60);
 	}
