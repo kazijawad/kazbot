@@ -11,6 +11,7 @@ const client = new CommandoClient({
 	disableEveryone: true,
 	unknownCommandResponse: false,
 });
+const dblClient = new DBL(process.env.DBL_TOKEN, client);
 
 client.registry
 	.registerDefaults()
@@ -25,11 +26,10 @@ client.registry
 client.on('ready', () => {
 	console.info(`Logged in as ${client.user.tag}!`);
 	if (process.env.NODE_ENV === 'production') {
-		const dblClient = new DBL(process.env.DBL_TOKEN, client);
-
-		dblClient.on('posted', () => {
-			console.info(`Server Count: ${client.guilds.size}`);
-		});
+		dblClient.postStats(client.guilds.size);
+		setInterval(() => {
+			dblClient.postStats(client.guilds.size);
+		}, 1000 * 60 * 60);
 	}
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
