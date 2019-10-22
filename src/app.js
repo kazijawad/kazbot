@@ -15,9 +15,7 @@ const client = new CommandoClient({
 client.registry
 	.registerDefaults()
 	.registerGroups([
-		['crypto', 'Crypto'],
 		['fun', 'Fun'],
-		['games', 'Game Stats'],
 		['moderation', 'Moderation'],
 		['music', 'Music'],
 		['utilities', 'Utility'],

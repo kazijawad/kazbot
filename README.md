@@ -64,39 +64,6 @@ For certain video game commands, PC is the default platform and does not need to
 | k!reverse [phrase]           | Reverses any phrase passed through.          | k!reverse kazbot         |             |
 | k!urban [term]               | Searches any term on urban dictionary.       | k!urban discord          |             |
 
-### Crypto Commands
-
-| Command                               | Description                                  | Example                  | Aliases     |
-| ------------------------------------- | -------------------------------------------- | ------------------------ | ----------- |
-| k!crypto [coin]                       | Retrieves data on the specified crypto.      | k!crypto BTC             |             |
-| k!crypto global [conversion currency] | Retrieves data on the global market.         | k!crypto global          |             |
-
-### Fortnite Commands
-
-| Command                      | Description                                  | Example                  | Aliases     |
-| ---------------------------- | -------------------------------------------- | ------------------------ | ----------- |
-| k!ft [pc/xb1/ps4] [username] | Retrives specified player's Fortnite stats.  | k!ft YellowJay64         |             |
-| k!ft status                  | Displays the status of Fortnite.             | k!ft status              |             |
-| k!ft news                    | Retrives Fortnite news.                      | k!ft news                |             |
-
-### Warframe Commands
-
-| Command                         | Description                                  | Example                  | Aliases     |
-| ------------------------------- | -------------------------------------------- | ------------------------ | ----------- |
-| k!wf baro [pc/xb1/ps4]          | Shows information on the Void Trader.        | k!wf baro                |             |
-| k!wf sortie [pc/xb1/ps4]        | Shows information on the current sortie.     | k!wf sortie              |             |
-| k!wf daily [pc/xb1/ps4]         | Shows information on the daily deal.         | k!wf daily               |             |
-| k!wf simaris [pc/xb1/ps4]       | Shows information on Simaris' target.        | k!wf simaris             |             |
-| k!wf earth [pc/xb1/ps4]         | Shows information on the Earth cycle.        | k!wf earth               |             |
-| k!wf cetus [pc/xb1/ps4]         | Shows information on the Cetus cycle.        | k!wf cetus               |             |
-| k!wf construction [pc/xb1/ps4]  | Shows information on construction progress.  | k!wf construction        |             |
-
-### CSGO Commands
-
-| Command                      | Description                                    | Example                  | Aliases     |
-| ---------------------------- | ---------------------------------------------- | ------------------------ | ----------- |
-| k!csgo [username]            | Retrives specified player's CSGO stats.        | k!csgo YellowJay         | cs          |
-
 ## Built With
 - [Discord API](https://discordapp.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/#/)
@@ -106,7 +73,3 @@ Kazi Jawad
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-- [Fornite API Wrapper](https://github.com/qlaffont/fortnite-api)
-- [CoinMarketCap API](https://pro.coinmarketcap.com)
