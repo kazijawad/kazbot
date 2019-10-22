@@ -24,13 +24,13 @@ client.registry
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', () => {
-	console.info(`Logged in as ${client.user.tag}!`);
+	console.info(`[USER TAG ONLINE] ${client.user.tag}!`);
 	if (process.env.NODE_ENV === 'production') {
-		console.info(client.guilds.size);
+		console.info(`[SERVER COUNT] ${client.guilds.size}`);
 		dblClient.postStats(client.guilds.size);
 
 		setInterval(() => {
-			console.info(client.guilds.size);
+			console.info(`[SERVER COUNT] ${client.guilds.size}`);
 			dblClient.postStats(client.guilds.size);
 		}, 1000 * 60 * 60);
 	}
