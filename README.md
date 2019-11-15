@@ -19,8 +19,6 @@ Prefix: k!
 ## Features
 A list of all the available commands!
 
-For certain video game commands, PC is the default platform and does not need to be entered.
-
 ### Server Management Commands
 
 | Command                  | Description                                  | Example                | Aliases     |
