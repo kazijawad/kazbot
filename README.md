@@ -1,25 +1,16 @@
 # KazBot
 
-[![Discord Bots](https://discordbots.org/api/widget/status/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/servers/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/upvotes/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/lib/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-[![Discord Bots](https://discordbots.org/api/widget/owner/419724462716354560.svg)](https://discordbots.org/bot/419724462716354560)
-
-[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
-
-A multipurpose chatbot.
+KazBot is a multipurpose chatbot that provides server management and utility commands. It has a suite of music commands capable of handling volume, queues, song selection, and custom playlists.
 
 ## Getting Started
+
 [Server Invitation](https://discordapp.com/api/oauth2/authorize?client_id=419724462716354560&permissions=8&scope=bot)
 
+```
 Prefix: k!
+```
 
-## Features
-A list of all the available commands!
-
-### Server Management Commands
+## Server Management Commands
 
 | Command                  | Description                                  | Example                | Aliases     |
 | ------------------------ | -------------------------------------------- | ---------------------- | ----------- |
@@ -29,7 +20,7 @@ A list of all the available commands!
 | k!kick [@Discord Member] | Kicks the specified member.                  | k!kick @YellowJay#5984 |             |
 | k!ban [@Discord Member]  | Bans the specified member.                   | k!ban @YellowJay#5984  |             |
 
-### Information Commands
+## Information Commands
 
 | Command                    | Description                                  | Example                  | Aliases     |
 | ------------------------   | -------------------------------------------- | ------------------------ | ----------- |
@@ -39,7 +30,7 @@ A list of all the available commands!
 | k!role [@Discord Member]   | Retrives the specified user's role(s).       | k!role @YellowJay#5984   | roles       |
 | k!credit                   | Displays the credit for KazBot.              | k!credit                 |             |
 
-### Music Commands
+## Music Commands
 
 | Command                    | Description                                  | Example                  | Aliases     |
 | -------------------------- | -------------------------------------------- | ------------------------ | ----------- |
@@ -52,7 +43,7 @@ A list of all the available commands!
 | k!skip                     | Skips the current song.                      | k!skip                   |             |
 | k!stop                     | Cancels the queue.                           | k!stop                   |             |
 
-### Fun Commands
+## Fun Commands
 
 | Command                      | Description                                  | Example                  | Aliases     |
 | ---------------------------- | -------------------------------------------- | ------------------------ | ----------- |
