@@ -4,8 +4,6 @@ KazBot is a multipurpose chatbot that provides server management and utility com
 
 ## Getting Started
 
-[Server Invitation](https://discordapp.com/api/oauth2/authorize?client_id=419724462716354560&permissions=8&scope=bot)
-
 ```
 Prefix: k!
 ```

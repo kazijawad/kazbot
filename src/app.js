@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
-const DBL = require('dblapi.js');
 
 const client = new CommandoClient({
 	owner: '221449635254894594',
@@ -11,7 +10,6 @@ const client = new CommandoClient({
 	disableEveryone: true,
 	unknownCommandResponse: false,
 });
-const dblClient = new DBL(process.env.DBL_TOKEN, client);
 
 client.registry
 	.registerDefaults()
@@ -25,15 +23,6 @@ client.registry
 
 client.on('ready', () => {
 	console.info(`[USER TAG ONLINE] ${client.user.tag}!`);
-	if (process.env.NODE_ENV === 'production') {
-		console.info(`[SERVER COUNT] ${client.guilds.size}`);
-		dblClient.postStats(client.guilds.size);
-
-		setInterval(() => {
-			console.info(`[SERVER COUNT] ${client.guilds.size}`);
-			dblClient.postStats(client.guilds.size);
-		}, 1000 * 60 * 60);
-	}
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
 
