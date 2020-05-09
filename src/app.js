@@ -1,4 +1,4 @@
-process.on('unhandledRejection', error => console.warn(`[UNCAUGHT REJECTION] ${error}`));
+process.on('unhandledRejection', error => console.warn(`[UNHANDLED REJECTION] ${error}`));
 require('dotenv').config();
 
 const path = require('path');
@@ -22,7 +22,7 @@ client.registry
 	.registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', () => {
-	console.info(`[USER TAG ONLINE] ${client.user.tag}!`);
+	console.info(`[ONLINE] ${client.user.tag}!`);
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
 

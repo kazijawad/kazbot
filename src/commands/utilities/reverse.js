@@ -24,7 +24,7 @@ class ReverseCommand extends Command {
 
 		message.embed({
 			color: 0xf39c12,
-			description: `${string}➡️${reverse}`,
+			description: `${string} ➡️ ${reverse}`,
 			footer: {
 				text: '@KazBot',
 				icon_url: process.env.AVATAR_URL,
