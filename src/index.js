@@ -23,6 +23,12 @@ client.registry
 
 client.on('ready', () => {
 	console.info(`[ONLINE] ${client.user.tag}!`);
+	if (process.env.NODE_ENV === 'production') {
+		console.info(`[SERVER COUNT] ${client.guilds.size}`);
+		setInterval(() => {
+			console.info(`[SERVER COUNT] ${client.guilds.size}`);
+		}, 1000 * 60 * 60);
+	}
 	client.user.setPresence({ game: { name: 'k!help' } });
 });
 

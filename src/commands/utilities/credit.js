@@ -22,18 +22,6 @@ class CreditCommand extends Command {
 					value: 'https://discord.js.org/#/',
 				},
 				{
-					name: 'Fortnite API Wrapper',
-					value: 'https://github.com/qlaffont/fortnite-api',
-				},
-				{
-					name: 'CoinMarketCap API',
-					value: 'https://coinmarketcap.com/api',
-				},
-				{
-					name: 'Youtube Download Module',
-					value: 'https://github.com/fent/node-ytdl-core',
-				},
-				{
 					name: 'Github Repository',
 					value: 'https://github.com/kazijawad/KazBot',
 				},
