@@ -1,119 +1,25 @@
 {
 	"name": "kazbot",
 	"private": true,
-	"description": "KazBot is a multifunction Discord Chatbot.",
-	"homepage": "https://github.com/kazijawad/KazBot",
-	"bugs": {
-		"url": "https://github.com/kazijawad/KazBot/issues"
-	},
 	"author": "Kazi Jawad",
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/kazijawad/KazBot"
-	},
-	"engines": {
-		"node": "12.x",
-		"npm": "6.x"
-	},
 	"scripts": {
-		"start": "node ./src/index.js",
-		"watch": "nodemon ./src/index.js",
+		"start": "node src/index.js",
+		"watch": "nodemon src/index.js",
 		"lint": "eslint . --fix"
 	},
 	"dependencies": {
-		"@discordjs/opus": "^0.3.2",
-		"axios": "^0.19.2",
-		"discord.js": "^11.5.1",
+		"@discordjs/opus": "0.4.0",
+		"axios": "0.21.1",
+		"discord.js": "11.5.1",
 		"discord.js-commando": "^0.10.0",
-		"dotenv": "^8.2.0",
-		"ffmpeg-static": "^4.2.1",
-		"simple-youtube-api": "^5.2.1",
-		"ytdl-core-discord": "^1.2.0"
+		"dotenv": "8.2.0",
+		"ffmpeg-static": "4.2.7",
+		"simple-youtube-api": "5.2.1",
+		"ytdl-core-discord": "1.2.5"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.3"
-	},
-	"eslintConfig": {
-		"extends": "eslint:recommended",
-		"env": {
-			"node": true,
-			"es6": true
-		},
-		"parserOptions": {
-			"ecmaVersion": 2018
-		},
-		"rules": {
-			"block-spacing": "error",
-			"brace-style": [
-				"error",
-				"1tbs",
-				{
-					"allowSingleLine": true
-				}
-			],
-			"comma-dangle": [
-				"error",
-				"always-multiline"
-			],
-			"comma-spacing": "error",
-			"comma-style": "error",
-			"curly": "error",
-			"default-case": "error",
-			"handle-callback-err": "error",
-			"indent": [
-				"error",
-				"tab",
-				{
-					"SwitchCase": 1
-				}
-			],
-			"no-console": "off",
-			"no-empty-function": "error",
-			"no-floating-decimal": "error",
-			"no-inline-comments": "off",
-			"no-lonely-if": "error",
-			"no-multi-spaces": "error",
-			"no-multiple-empty-lines": [
-				"error",
-				{
-					"max": 1,
-					"maxEOF": 1,
-					"maxBOF": 0
-				}
-			],
-			"no-trailing-spaces": "error",
-			"object-curly-spacing": [
-				"error",
-				"always"
-			],
-			"prefer-const": "error",
-			"quotes": [
-				"error",
-				"single"
-			],
-			"semi": "error",
-			"space-before-blocks": "error",
-			"space-before-function-paren": [
-				"error",
-				{
-					"anonymous": "never",
-					"named": "never",
-					"asyncArrow": "always"
-				}
-			],
-			"space-in-parens": "error",
-			"space-infix-ops": "error",
-			"space-unary-ops": [
-				"error",
-				{
-					"words": true,
-					"nonwords": false
-				}
-			],
-			"spaced-comment": "error",
-			"yoda": "error",
-			"eol-last": "error"
-		}
+		"eslint": "7.20.0",
+		"nodemon": "2.0.7"
 	}
 }
