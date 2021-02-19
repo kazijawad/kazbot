@@ -1,6 +1,6 @@
 {
 	"name": "kazbot",
-	"version": "1.0.0",
+	"private": true,
 	"description": "KazBot is a multifunction Discord Chatbot.",
 	"homepage": "https://github.com/kazijawad/KazBot",
 	"bugs": {
@@ -8,14 +8,9 @@
 	},
 	"author": "Kazi Jawad",
 	"license": "MIT",
-	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/kazijawad/KazBot"
-	},
-	"engines": {
-		"node": "12.x",
-		"npm": "6.x"
 	},
 	"scripts": {
 		"start": "node ./src/index.js",
