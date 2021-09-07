@@ -2,10 +2,15 @@
     "root": true,
     "env": {
         "node": true,
-        "es6": true
+        "es2021": true
     },
     "parserOptions": {
-        "ecmaVersion": 2020
+        "ecmaVersion": 12
     },
-    "extends": "eslint:recommended"
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": ["error", 4],
+        "quotes": ["error", "single"],
+        "max-len": 0
+    }
 }

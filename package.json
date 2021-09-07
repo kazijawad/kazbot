@@ -1,25 +1,25 @@
 {
-	"name": "kazbot",
-	"private": true,
-	"author": "Kazi Jawad",
-	"license": "MIT",
-	"scripts": {
-		"start": "node src/index.js",
-		"watch": "nodemon src/index.js",
-		"lint": "eslint . --fix"
-	},
-	"dependencies": {
-		"@discordjs/opus": "0.4.0",
-		"axios": "0.21.1",
-		"discord.js": "11.5.1",
-		"discord.js-commando": "^0.10.0",
-		"dotenv": "8.2.0",
-		"ffmpeg-static": "4.2.7",
-		"simple-youtube-api": "5.2.1",
-		"ytdl-core-discord": "1.2.5"
-	},
-	"devDependencies": {
-		"eslint": "7.20.0",
-		"nodemon": "2.0.7"
-	}
+    "name": "kazbot",
+    "private": true,
+    "author": "Kazi Jawad",
+    "license": "MIT",
+    "scripts": {
+        "start": "node src/index.js",
+        "watch": "nodemon src/index.js",
+        "lint": "eslint . --fix"
+    },
+    "dependencies": {
+        "@discordjs/opus": "0.4.0",
+        "axios": "0.21.1",
+        "discord.js": "11.5.1",
+        "discord.js-commando": "^0.10.0",
+        "dotenv": "8.2.0",
+        "ffmpeg-static": "4.2.7",
+        "simple-youtube-api": "5.2.1",
+        "ytdl-core-discord": "1.2.5"
+    },
+    "devDependencies": {
+        "eslint": "7.20.0",
+        "nodemon": "2.0.7"
+    }
 }

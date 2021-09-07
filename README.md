@@ -4,6 +4,8 @@ KazBot is a multipurpose chatbot that provides server management and utility com
 
 ## Getting Started
 
+[Invite Link](https://discord.com/oauth2/authorize?client_id=419724462716354560&scope=bot&permissions=8)
+
 ```
 Prefix: k!
 ```
@@ -52,11 +54,14 @@ Prefix: k!
 | k!urban [term]               | Searches any term on urban dictionary.       | k!urban discord          |             |
 
 ## Built With
+
 - [Discord API](https://discordapp.com/developers/docs/intro)
 - [Discord.js](https://discord.js.org/#/)
 
 ## Author
+
 Kazi Jawad
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
