@@ -1,10 +1,10 @@
+This project is no longer maintained.
+
 # KazBot
 
 KazBot is a multipurpose chatbot that provides server management and utility commands. It has a suite of music commands capable of handling volume, queues, song selection, and custom playlists.
 
 ## Getting Started
-
-[Invite Link](https://discord.com/oauth2/authorize?client_id=419724462716354560&scope=bot&permissions=8)
 
 ```
 Prefix: k!

@@ -3,7 +3,7 @@ const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.warn('Unhandled Rejection at:', promise, 'reason:', reason);
+    console.warn('[Unhandled Rejection]', promise, 'reason:', reason);
 });
 
 dotenv.config();
